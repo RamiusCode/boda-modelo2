@@ -1,0 +1,493 @@
+---
+// FotoZoom.astro - Foto con efectos elegantes de scroll para boda
+---
+
+<section
+    class="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden"
+>
+    <!-- Fondo con imagen -->
+    <div class="absolute inset-0 z-0">
+        <img
+            id="parallax-image"
+            src="/imagenes/foto2.webp"
+            alt="Fotografía de boda"
+            class="w-full h-full object-cover transition-all duration-700 ease-out will-change-transform"
+            style="transform: scale(1.1);"
+        />
+        <!-- Overlay con degradado elegante -->
+        <div
+            id="overlay"
+            class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40 transition-opacity duration-700"
+        >
+        </div>
+
+        <!-- Velo elegante que se desvanece al hacer scroll -->
+        <div
+            id="velo"
+            class="absolute inset-0 bg-gradient-to-b from-white/20 via-white/10 to-transparent backdrop-blur-[2px] transition-all duration-1000"
+        >
+        </div>
+    </div>
+
+    <!-- Partículas elegantes con brillo dorado/plateado -->
+    <div
+        class="absolute inset-0 z-5 pointer-events-none"
+        id="particles-container"
+    >
+        <!-- Partículas grandes con brillo -->
+        <div
+            class="particle-gold absolute top-[15%] left-[10%] w-2 h-2 rounded-full"
+        >
+        </div>
+        <div
+            class="particle-silver absolute top-[20%] right-[15%] w-1.5 h-1.5 rounded-full"
+        >
+        </div>
+        <div
+            class="particle-gold absolute top-[35%] left-[20%] w-2.5 h-2.5 rounded-full"
+        >
+        </div>
+        <div
+            class="particle-silver absolute top-[45%] right-[25%] w-1 h-1 rounded-full"
+        >
+        </div>
+        <div
+            class="particle-gold absolute top-[55%] left-[50%] w-1.5 h-1.5 rounded-full"
+        >
+        </div>
+        <div
+            class="particle-silver absolute top-[25%] left-[40%] w-2 h-2 rounded-full"
+        >
+        </div>
+        <div
+            class="particle-gold absolute top-[65%] right-[30%] w-1 h-1 rounded-full"
+        >
+        </div>
+        <div
+            class="particle-silver absolute top-[75%] left-[35%] w-2.5 h-2.5 rounded-full"
+        >
+        </div>
+        <div
+            class="particle-gold absolute top-[30%] right-[40%] w-1.5 h-1.5 rounded-full"
+        >
+        </div>
+        <div
+            class="particle-silver absolute top-[50%] left-[60%] w-2 h-2 rounded-full"
+        >
+        </div>
+        <div
+            class="particle-gold absolute top-[70%] right-[50%] w-1 h-1 rounded-full"
+        >
+        </div>
+        <div
+            class="particle-silver absolute top-[40%] left-[30%] w-1.5 h-1.5 rounded-full"
+        >
+        </div>
+        <div
+            class="particle-gold absolute top-[60%] right-[20%] w-2 h-2 rounded-full"
+        >
+        </div>
+        <div
+            class="particle-silver absolute top-[80%] left-[45%] w-1 h-1 rounded-full"
+        >
+        </div>
+        <div
+            class="particle-gold absolute top-[10%] right-[35%] w-1.5 h-1.5 rounded-full"
+        >
+        </div>
+
+        <!-- Partículas pequeñas adicionales -->
+        <div class="particle-tiny absolute top-[18%] left-[25%]"></div>
+        <div class="particle-tiny absolute top-[42%] right-[18%]"></div>
+        <div class="particle-tiny absolute top-[58%] left-[55%]"></div>
+        <div class="particle-tiny absolute top-[72%] right-[42%]"></div>
+        <div class="particle-tiny absolute top-[28%] left-[65%]"></div>
+        <div class="particle-tiny absolute top-[88%] right-[28%]"></div>
+    </div>
+
+    <!-- Destellos de luz elegantes -->
+    <div
+        class="absolute inset-0 z-4 pointer-events-none overflow-hidden"
+        id="light-rays"
+    >
+        <div class="light-ray light-ray-1"></div>
+        <div class="light-ray light-ray-2"></div>
+        <div class="light-ray light-ray-3"></div>
+    </div>
+
+    <!-- Indicador de scroll elegante -->
+    <div
+        id="scroll-indicator"
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 transition-opacity duration-500"
+    >
+        <span class="text-white/70 text-sm font-light tracking-widest uppercase"
+            >Desliza</span
+        >
+        <svg
+            class="w-6 h-6 text-white/60 animate-bounce-elegant"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+    </div>
+</section>
+
+<style>
+    /* Animación de bounce elegante */
+    @keyframes bounce-elegant {
+        0%,
+        100% {
+            transform: translateY(0);
+            opacity: 0.6;
+        }
+        50% {
+            transform: translateY(8px);
+            opacity: 1;
+        }
+    }
+
+    .animate-bounce-elegant {
+        animation: bounce-elegant 2s ease-in-out infinite;
+    }
+
+    /* Partículas doradas */
+    .particle-gold {
+        background: radial-gradient(
+            circle,
+            rgba(255, 215, 0, 0.8) 0%,
+            rgba(255, 215, 0, 0.4) 50%,
+            transparent 100%
+        );
+        box-shadow:
+            0 0 10px rgba(255, 215, 0, 0.6),
+            0 0 20px rgba(255, 215, 0, 0.4),
+            0 0 30px rgba(255, 215, 0, 0.2);
+        animation: float-gold 12s ease-in-out infinite;
+    }
+
+    /* Partículas plateadas */
+    .particle-silver {
+        background: radial-gradient(
+            circle,
+            rgba(230, 230, 250, 0.9) 0%,
+            rgba(230, 230, 250, 0.5) 50%,
+            transparent 100%
+        );
+        box-shadow:
+            0 0 10px rgba(230, 230, 250, 0.7),
+            0 0 20px rgba(230, 230, 250, 0.5),
+            0 0 30px rgba(230, 230, 250, 0.3);
+        animation: float-silver 10s ease-in-out infinite;
+    }
+
+    /* Partículas diminutas */
+    .particle-tiny {
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+        animation: twinkle 3s ease-in-out infinite;
+    }
+
+    /* Rayos de luz */
+    .light-ray {
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(255, 255, 255, 0.1) 30%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.1) 70%,
+            transparent 100%
+        );
+        opacity: 0;
+        animation: ray-sweep 8s ease-in-out infinite;
+    }
+
+    .light-ray-1 {
+        left: 20%;
+        animation-delay: 0s;
+    }
+
+    .light-ray-2 {
+        left: 50%;
+        animation-delay: 2.5s;
+    }
+
+    .light-ray-3 {
+        left: 75%;
+        animation-delay: 5s;
+    }
+
+    /* Animación de flotación dorada */
+    @keyframes float-gold {
+        0%,
+        100% {
+            transform: translate(0, 0) scale(1);
+            opacity: 0.7;
+        }
+        25% {
+            transform: translate(-30px, -40px) scale(1.3);
+            opacity: 1;
+        }
+        50% {
+            transform: translate(20px, 30px) scale(0.8);
+            opacity: 0.5;
+        }
+        75% {
+            transform: translate(-15px, 50px) scale(1.4);
+            opacity: 0.9;
+        }
+    }
+
+    /* Animación de flotación plateada */
+    @keyframes float-silver {
+        0%,
+        100% {
+            transform: translate(0, 0) scale(1) rotate(0deg);
+            opacity: 0.6;
+        }
+        33% {
+            transform: translate(25px, -35px) scale(1.2) rotate(120deg);
+            opacity: 0.9;
+        }
+        66% {
+            transform: translate(-20px, 25px) scale(0.9) rotate(240deg);
+            opacity: 0.4;
+        }
+    }
+
+    /* Animación de parpadeo */
+    @keyframes twinkle {
+        0%,
+        100% {
+            opacity: 0.3;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.5);
+        }
+    }
+
+    /* Animación de rayos de luz */
+    @keyframes ray-sweep {
+        0% {
+            opacity: 0;
+            transform: translateX(-50px) scaleY(0.8);
+        }
+        50% {
+            opacity: 0.3;
+            transform: translateX(0) scaleY(1);
+        }
+        100% {
+            opacity: 0;
+            transform: translateX(50px) scaleY(0.8);
+        }
+    }
+
+    /* Añadir delay diferente a cada partícula */
+    .particle-gold:nth-child(1) {
+        animation-delay: 0s;
+    }
+    .particle-gold:nth-child(3) {
+        animation-delay: 2s;
+    }
+    .particle-gold:nth-child(5) {
+        animation-delay: 4s;
+    }
+    .particle-gold:nth-child(7) {
+        animation-delay: 6s;
+    }
+    .particle-gold:nth-child(9) {
+        animation-delay: 1s;
+    }
+    .particle-gold:nth-child(11) {
+        animation-delay: 3s;
+    }
+    .particle-gold:nth-child(13) {
+        animation-delay: 5s;
+    }
+    .particle-gold:nth-child(15) {
+        animation-delay: 7s;
+    }
+
+    .particle-silver:nth-child(2) {
+        animation-delay: 1s;
+    }
+    .particle-silver:nth-child(4) {
+        animation-delay: 3s;
+    }
+    .particle-silver:nth-child(6) {
+        animation-delay: 5s;
+    }
+    .particle-silver:nth-child(8) {
+        animation-delay: 7s;
+    }
+    .particle-silver:nth-child(10) {
+        animation-delay: 2s;
+    }
+    .particle-silver:nth-child(12) {
+        animation-delay: 4s;
+    }
+    .particle-silver:nth-child(14) {
+        animation-delay: 6s;
+    }
+
+    .particle-tiny:nth-child(16) {
+        animation-delay: 0s;
+    }
+    .particle-tiny:nth-child(17) {
+        animation-delay: 1s;
+    }
+    .particle-tiny:nth-child(18) {
+        animation-delay: 2s;
+    }
+    .particle-tiny:nth-child(19) {
+        animation-delay: 0.5s;
+    }
+    .particle-tiny:nth-child(20) {
+        animation-delay: 1.5s;
+    }
+    .particle-tiny:nth-child(21) {
+        animation-delay: 2.5s;
+    }
+</style>
+
+<script>
+    // Variables para el efecto de scroll suave y elegante
+    const parallaxImage = document.getElementById(
+        "parallax-image",
+    ) as HTMLElement;
+    const overlay = document.getElementById("overlay") as HTMLElement;
+    const velo = document.getElementById("velo") as HTMLElement;
+    const scrollIndicator = document.getElementById(
+        "scroll-indicator",
+    ) as HTMLElement;
+    const particlesContainer = document.getElementById(
+        "particles-container",
+    ) as HTMLElement;
+    const lightRays = document.getElementById("light-rays") as HTMLElement;
+
+    let currentScroll = 0;
+    let targetScroll = 0;
+    let animationId: number | null = null;
+
+    // Función de interpolación suave (easing)
+    function easeOutQuad(t: number): number {
+        return t * (2 - t);
+    }
+
+    // Función de interpolación con easing
+    function lerpSmooth(start: number, end: number, factor: number): number {
+        const easedFactor = easeOutQuad(Math.min(factor, 1));
+        return start + (end - start) * easedFactor;
+    }
+
+    // Actualización suave y elegante del scroll
+    function smoothScrollEffect() {
+        // Interpolación muy suave hacia el valor objetivo
+        currentScroll = lerpSmooth(currentScroll, targetScroll, 0.1);
+
+        if (
+            parallaxImage &&
+            overlay &&
+            velo &&
+            scrollIndicator &&
+            particlesContainer &&
+            lightRays
+        ) {
+            // Calcular progreso del scroll (0 a 1)
+            const maxScroll = 1000;
+            const scrollProgress = Math.min(currentScroll / maxScroll, 1);
+
+            // 1. EFECTO ZOOM ELEGANTE: De 1.1 a 1.3
+            const zoomFactor = 1.1 + scrollProgress * 0.2;
+
+            // 2. EFECTO PARALLAX: Movimiento vertical suave
+            const parallaxY = currentScroll * 0.5;
+
+            // 3. EFECTO BLUR PROGRESIVO: Desenfocar ligeramente al hacer scroll
+            const blurAmount = scrollProgress * 3;
+
+            // 4. BRILLO/EXPOSICIÓN: Aumentar levemente el brillo
+            const brightness = 1 + scrollProgress * 0.1;
+
+            // Aplicar transformaciones a la imagen
+            parallaxImage.style.transform = `translateY(${parallaxY}px) scale(${zoomFactor})`;
+            parallaxImage.style.filter = `blur(${blurAmount}px) brightness(${brightness})`;
+
+            // 5. DESVANECER OVERLAY: Oscurecer gradualmente
+            overlay.style.opacity = String(0.3 + scrollProgress * 0.4);
+
+            // 6. DESVANECER VELO: Remover el velo elegantemente
+            velo.style.opacity = String(Math.max(0, 1 - scrollProgress * 2));
+            velo.style.transform = `translateY(${scrollProgress * 100}px)`;
+
+            // 7. OCULTAR INDICADOR: Desvanecer al hacer scroll
+            scrollIndicator.style.opacity = String(
+                Math.max(0, 1 - scrollProgress * 3),
+            );
+            scrollIndicator.style.transform = `translate(-50%, ${scrollProgress * 50}px)`;
+
+            // 8. PARTÍCULAS: Movimiento parallax inverso
+            particlesContainer.style.transform = `translateY(${-currentScroll * 0.3}px)`;
+            particlesContainer.style.opacity = String(
+                Math.max(0.3, 1 - scrollProgress * 0.5),
+            );
+
+            // 9. RAYOS DE LUZ: Intensificar al hacer scroll
+            lightRays.style.opacity = String(scrollProgress * 0.5);
+        }
+
+        // Continuar animación si hay diferencia
+        if (Math.abs(targetScroll - currentScroll) > 0.5) {
+            animationId = requestAnimationFrame(smoothScrollEffect);
+        } else {
+            animationId = null;
+        }
+    }
+
+    // Detectar scroll con throttling para mejor performance
+    let scrollTimeout: number;
+    window.addEventListener(
+        "scroll",
+        () => {
+            targetScroll = window.scrollY;
+
+            // Throttle para reducir cálculos
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                // Iniciar animación solo si no está corriendo
+                if (!animationId) {
+                    animationId = requestAnimationFrame(smoothScrollEffect);
+                }
+            }, 10);
+        },
+        { passive: true },
+    );
+
+    // Efecto inicial suave al cargar la página
+    window.addEventListener("load", () => {
+        if (parallaxImage && velo) {
+            parallaxImage.style.transition =
+                "transform 2s ease-out, filter 2s ease-out";
+            parallaxImage.style.transform = "scale(1.1)";
+            parallaxImage.style.filter = "blur(0px) brightness(1)";
+
+            velo.style.transition = "opacity 2.5s ease-out";
+            setTimeout(() => {
+                velo.style.opacity = "0.8";
+            }, 100);
+        }
+    });
+</script>

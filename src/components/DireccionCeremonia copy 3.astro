@@ -1,0 +1,269 @@
+---
+// CeremoniaReligiosa.astro
+---
+
+<section class="relative w-full py-8 px-6">
+    <div class="max-w-md mx-auto" id="wrapper-ceremonia">
+        <!-- CEREMONIA RELIGIOSA -->
+        <div class="text-center opacity-0" id="ceremonia-content">
+            <!-- Título PRIMERO -->
+            <h3
+                class="text-[#9C7A2E] tracking-[0.2em] uppercase text-xl md:text-2xl font-semibold mb-6"
+            >
+                Ceremonia Religiosa
+            </h3>
+
+            <!-- Contenedor del Icono con hojas centradas -->
+            <div class="relative flex justify-center items-center mb-6">
+                <!-- Hoja izquierda - centrada con la iglesia -->
+                <img
+                    src="/imagenes/hojadorada.png"
+                    alt="hojas"
+                    class="absolute left-0 w-12 h-12 md:w-16 md:h-16 opacity-0 pointer-events-none z-10 dorado-filter"
+                    id="hoja-ceremonia-left"
+                />
+
+                <!-- Icono Iglesia CENTRO -->
+                <img
+                    src="/iconos/iglesia.png"
+                    alt="Icono Iglesia"
+                    class="w-16 h-16 md:w-20 md:h-20 object-contain dorado-filter"
+                    id="icono-iglesia"
+                />
+
+                <!-- Hoja derecha - centrada con la iglesia (volteada) -->
+                <img
+                    src="/imagenes/hojadorada.png"
+                    alt="hojas"
+                    class="absolute right-0 w-12 h-12 md:w-16 md:h-16 opacity-0 pointer-events-none z-10 dorado-filter scale-x-[-1]"
+                    id="hoja-ceremonia-right"
+                />
+            </div>
+
+            <!-- Nombre de la Iglesia -->
+            <p class="font-charm text-[#0F3D2E] text-2xl md:text-3xl mb-3">
+                Parroquia Santa Rosa de Lima
+            </p>
+
+            <!-- Dirección -->
+            <p class="text-[#0F3D2E]/70 text-base md:text-lg mb-6">
+                Av. Principal #123, Centro Histórico
+            </p>
+
+            <!-- Hora y Botón UNO AL LADO DEL OTRO -->
+            <div class="flex items-center justify-center gap-3">
+                <!-- Recuadro de Hora -->
+                <div
+                    class="bg-transparent border-2 border-gray-400 rounded px-6 py-2.5"
+                >
+                    <p
+                        class="text-sm md:text-base text-[#0F3D2E] font-semibold"
+                    >
+                        17:00 HRS.
+                    </p>
+                </div>
+
+                <!-- Botón Ubicación VERDE con MANO ABAJO DERECHA -->
+                <div class="relative">
+                    <a
+                        href="https://maps.app.goo.gl/JnsPvLtSAop8iai57?g_st=iw"
+                        target="_blank"
+                        class="bg-[#4E5F49] hover:bg-[#3d4a39] text-white px-6 py-2.5 rounded text-sm md:text-base font-semibold transition-all duration-300 shadow-md hover:shadow-lg block"
+                        id="boton-ubicacion"
+                    >
+                        Ver ubicación
+                    </a>
+
+                    <!-- MANO EN ESQUINA INFERIOR DERECHA DEL BOTÓN -->
+                    <img
+                        src="/imagenes/mano.png"
+                        alt="Presionar aquí"
+                        class="absolute -bottom-4 -right-4 w-8 h-8 object-contain opacity-0 pointer-events-none z-20"
+                        id="mano-pointer"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 🎬 ANIMACIONES CON GSAP                                     -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initCeremoniaReligiosa = () => {
+        console.log("⛪ Iniciando componente Ceremonia Religiosa...");
+
+        // ═══ ESTADO INICIAL ═══
+        gsap.set("#ceremonia-content", {
+            opacity: 0,
+            y: 40,
+        });
+        gsap.set("#hoja-ceremonia-left", {
+            opacity: 0,
+            y: -30,
+            x: -20,
+            rotation: -15,
+        });
+        gsap.set("#hoja-ceremonia-right", {
+            opacity: 0,
+            y: -30,
+            x: 20,
+            rotation: 15,
+            scaleX: -1,
+        });
+        gsap.set("#mano-pointer", {
+            opacity: 0,
+            scale: 0.8,
+        });
+
+        // ═══ ANIMACIÓN AL ENTRAR ═══
+        ScrollTrigger.create({
+            trigger: "#wrapper-ceremonia",
+            start: "top 80%",
+            end: "top 20%",
+
+            onEnter: () => {
+                const tl = gsap.timeline();
+
+                // HOJAS DECORATIVAS
+                tl.to(
+                    "#hoja-ceremonia-left",
+                    {
+                        opacity: 0.6,
+                        y: 0,
+                        x: 0,
+                        rotation: 0,
+                        duration: 1.2,
+                        ease: "power2.out",
+                    },
+                    0,
+                )
+
+                    .to(
+                        "#hoja-ceremonia-right",
+                        {
+                            opacity: 0.6,
+                            y: 0,
+                            x: 0,
+                            rotation: 0,
+                            scaleX: -1,
+                            duration: 1.2,
+                            ease: "power2.out",
+                        },
+                        0,
+                    )
+
+                    // CONTENIDO PRINCIPAL
+                    .to(
+                        "#ceremonia-content",
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 1.2,
+                            ease: "power3.out",
+                        },
+                        0.2,
+                    )
+
+                    // MANO APUNTANDO - aparece después del contenido
+                    .to(
+                        "#mano-pointer",
+                        {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.5,
+                            ease: "back.out(2)",
+                        },
+                        1.4,
+                    );
+
+                // ═══ ANIMACIÓN DE PRESIONAR (loop infinito) ═══
+                gsap.to("#mano-pointer", {
+                    scale: 0.9,
+                    duration: 0.6,
+                    ease: "power1.inOut",
+                    repeat: -1,
+                    yoyo: true,
+                    delay: 1.9,
+                });
+            },
+
+            onLeaveBack: () => {
+                const tl = gsap.timeline();
+
+                // Detener la animación de la mano
+                gsap.killTweensOf("#mano-pointer");
+
+                tl.to(
+                    "#ceremonia-content, #hoja-ceremonia-left, #hoja-ceremonia-right, #mano-pointer",
+                    {
+                        opacity: 0,
+                        duration: 0.5,
+                        ease: "power2.in",
+                    },
+                )
+                    .to(
+                        "#ceremonia-content",
+                        {
+                            y: 40,
+                            duration: 0.5,
+                            ease: "power2.in",
+                        },
+                        "<",
+                    )
+                    .to(
+                        "#hoja-ceremonia-left",
+                        {
+                            y: -30,
+                            x: -20,
+                            rotation: -15,
+                            duration: 0.5,
+                            ease: "power2.in",
+                        },
+                        "<",
+                    )
+                    .to(
+                        "#hoja-ceremonia-right",
+                        {
+                            y: -30,
+                            x: 20,
+                            rotation: 15,
+                            duration: 0.5,
+                            ease: "power2.in",
+                        },
+                        "<",
+                    )
+                    .to(
+                        "#mano-pointer",
+                        {
+                            scale: 0.8,
+                            duration: 0.5,
+                            ease: "power2.in",
+                        },
+                        "<",
+                    );
+            },
+        });
+
+        console.log("⛪✨ Ceremonia Religiosa activada!");
+    };
+
+    document.addEventListener("DOMContentLoaded", initCeremoniaReligiosa);
+    document.addEventListener("astro:page-load", initCeremoniaReligiosa);
+</script>
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 🎨 ESTILOS PARA CONVERTIR IMÁGENES NEGRAS A DORADO          -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<style>
+    /* Filtro que convierte imágenes PNG negras al color dorado #9C7A2E */
+    .dorado-filter {
+        filter: brightness(0) saturate(100%) invert(56%) sepia(77%)
+            saturate(419%) hue-rotate(5deg) brightness(94%) contrast(92%);
+    }
+</style>sdfd

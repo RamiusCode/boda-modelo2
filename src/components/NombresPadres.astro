@@ -1,0 +1,239 @@
+---
+// src/components/PadresPadrinos.astro
+---
+
+<section class="w-full flex justify-center relative">
+  <!-- Hoja superior izquierda -->
+  <img
+    src="/imagenes/hojadorada.png"
+    alt=""
+    class="absolute top-20 left-0 w-16 md:w-20 opacity-0 pointer-events-none z-10"
+    id="hoja-top-left"
+  />
+
+  <!-- Hoja superior derecha -->
+  <img
+    src="/imagenes/hojadorada.png"
+    alt=""
+    class="absolute top-90 md:top-40 right-0 w-16 md:w-20 opacity-0 pointer-events-none z-10"
+    id="hoja-top-right"
+  />
+
+  <div class="w-full max-w-5xl px-8 py-8 text-center" id="wrapper-familia">
+    <!-- Grid de nombres de los padres y padrinos -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+      <!-- Padres del novio-->
+      <div class="space-y-4 opacity-0 family-block">
+        <h4
+          class="text-[#9C7A2E] tracking-[0.2em] uppercase text-lg md:text-2xl lg:text-2xl xl:text-3xl font-semibold"
+        >
+          Padres del novio
+        </h4>
+        <div class="space-y-2">
+          <p
+            class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+          >
+            Femiín Méndez Arce
+          </p>
+          <p
+            class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+          >
+            Silvia Olguín de Méndez
+          </p>
+        </div>
+      </div>
+
+      <!-- Padres de la novia -->
+      <div class="space-y-4 opacity-0 family-block">
+        <h4
+          class="text-[#9C7A2E] tracking-[0.2em] uppercase text-lg md:text-2xl lg:text-2xl xl:text-3xl font-semibold"
+        >
+          Padres de la Novia
+        </h4>
+        <div class="space-y-2">
+          <p
+            class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+          >
+            Roberto Méndez Arce
+          </p>
+          <p
+            class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+          >
+            Silvia Olguín de Méndez
+          </p>
+        </div>
+      </div>
+
+      <!-- Nombre de los padrinos - CENTRADO -->
+      <div
+        class="space-y-4 opacity-0 family-block md:col-span-2 md:flex md:flex-col md:items-center"
+      >
+        <h4
+          class="text-[#9C7A2E] tracking-[0.2em] uppercase text-lg md:text-2xl lg:text-2xl xl:text-3xl font-semibold"
+        >
+          Nuestros Padrinos
+        </h4>
+        <div class="space-y-2">
+          <p
+            class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+          >
+            Fernando Castillo Vera
+          </p>
+          <p
+            class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+          >
+            Mónica Ruiz de Castillo
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Adorno en la parte de abajo -->
+    <!-- <div class="mt-16 flex justify-center opacity-0" id="family-divider">
+      <div
+        class="h-[1px] w-24 bg-gradient-to-r from-transparent via-[#9C7A2E]/40 to-transparent"
+      >
+      </div>
+    </div> -->
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initFamily = () => {
+    // 🎯 ESTADO INICIAL - Todo oculto
+    gsap.set(".family-block", { opacity: 0, y: 30 });
+    gsap.set("#family-divider", { opacity: 0, scaleX: 0 });
+    gsap.set("#hoja-top-left", { opacity: 0, y: -30, x: -20, rotation: -15 });
+    gsap.set("#hoja-top-right", {
+      opacity: 0,
+      y: -30,
+      x: 20,
+      rotation: 15,
+      scaleX: -1,
+    });
+
+    // ✨ ANIMACIÓN QUE SE REPITE AL BAJAR/SUBIR
+    ScrollTrigger.create({
+      trigger: "#wrapper-familia",
+      start: "top 85%",
+      end: "top 20%",
+
+      onEnter: () => {
+        const tl = gsap.timeline();
+
+        // TODOS LOS TEXTOS AL MISMO TIEMPO
+        tl.to(
+          ".family-block",
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power2.out",
+          },
+          0,
+        )
+
+          // MEDIO SEGUNDO DESPUÉS: Hojas y divisor
+          .to(
+            "#hoja-top-left",
+            {
+              opacity: 0.6,
+              y: 0,
+              x: 0,
+              rotation: 0,
+              duration: 1.5,
+              ease: "power2.out",
+            },
+            0.5,
+          )
+
+          .to(
+            "#hoja-top-right",
+            {
+              opacity: 0.6,
+              y: 0,
+              x: 0,
+              rotation: 0,
+              scaleX: -1,
+              duration: 1.5,
+              ease: "power2.out",
+            },
+            0.5,
+          )
+
+          .to(
+            "#family-divider",
+            {
+              opacity: 1,
+              scaleX: 1,
+              duration: 1.8,
+              ease: "power2.out",
+            },
+            0.5,
+          );
+      },
+
+      onLeaveBack: () => {
+        // Resetea cuando subes
+        const tl = gsap.timeline();
+
+        tl.to(
+          ".family-block, #hoja-top-left, #hoja-top-right, #family-divider",
+          {
+            opacity: 0,
+            duration: 0.4,
+            ease: "power2.in",
+          },
+        )
+          .to(
+            ".family-block",
+            {
+              y: 30,
+              duration: 0.4,
+              ease: "power2.in",
+            },
+            "<",
+          )
+          .to(
+            "#hoja-top-left",
+            {
+              y: -30,
+              x: -20,
+              rotation: -15,
+              duration: 0.4,
+              ease: "power2.in",
+            },
+            "<",
+          )
+          .to(
+            "#hoja-top-right",
+            {
+              y: -30,
+              x: 20,
+              rotation: 15,
+              duration: 0.4,
+              ease: "power2.in",
+            },
+            "<",
+          )
+          .to(
+            "#family-divider",
+            {
+              scaleX: 0,
+              duration: 0.4,
+              ease: "power2.in",
+            },
+            "<",
+          );
+      },
+    });
+  };
+
+  document.addEventListener("DOMContentLoaded", initFamily);
+  document.addEventListener("astro:page-load", initFamily);
+</script>

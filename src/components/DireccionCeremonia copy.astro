@@ -1,0 +1,298 @@
+---
+// CeremoniasEventos.astro
+---
+
+<section class="relative w-full py-2 px-6">
+    <!-- Hoja decorativa superior izquierda -->
+    <img
+        src="/imagenes/hojadorada.png"
+        alt=""
+        class="absolute top-10 left-0 w-16 md:w-20 opacity-0 pointer-events-none z-10"
+        id="hoja-eventos-left"
+    />
+
+    <!-- Hoja decorativa superior derecha -->
+    <img
+        src="/imagenes/hojadorada.png"
+        alt=""
+        class="absolute top-40 right-0 w-16 md:w-20 opacity-0 pointer-events-none z-10"
+        id="hoja-eventos-right"
+    />
+
+    <div class="max-w-sm mx-auto space-y-12" id="contenedor-eventos">
+        <!-- CEREMONIA RELIGIOSA -->
+        <div class="text-center opacity-0" id="ceremonia-civil">
+            <!-- Imagen iglesia -->
+            <div class="flex justify-center mb-4">
+                <img
+                    src="/imagenes/iglesia1.png"
+                    alt="Icono Iglesia"
+                    class="w-12 h-12 object-contain"
+                />
+            </div>
+
+            <!-- Título -->
+            <h3
+                class="text-[#9C7A2E] tracking-[0.2em] uppercase text-lg md:text-xl font-semibold mb-2"
+            >
+                Ceremonia Religiosa
+            </h3>
+
+            <!-- Lugar -->
+            <p class="font-charm text-[#0F3D2E] text-xl md:text-2xl mb-4">
+                Parroquia Santa Rosa de Lima
+            </p>
+
+            <!-- Hora y Botón -->
+            <div class="flex items-center justify-center gap-3">
+                <div
+                    class="bg-transparent border-2 border-[#9C7A2E]/40 rounded px-6 py-2"
+                >
+                    <p class="text-sm text-[#0F3D2E] font-semibold">
+                        17:00 HRS.
+                    </p>
+                </div>
+                <a
+                    href="https://maps.app.goo.gl/JnsPvLtSAop8iai57?g_st=iw"
+                    target="_blank"
+                    class="bg-[#9C7A2E] hover:bg-[#8B6A25] text-white px-6 py-2 rounded text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
+                >
+                    Ubicación
+                </a>
+            </div>
+        </div>
+
+        <!-- RECEPCIÓN SOCIAL -->
+        <div class="text-center opacity-0" id="ceremonia-religiosa">
+            <!-- Icono arco -->
+            <div class="flex justify-center mb-4">
+                <img
+                    src="/imagenes/arco.png"
+                    alt="Icono Recepción"
+                    class="w-12 h-12 object-contain"
+                />
+            </div>
+
+            <!-- Título -->
+            <h3
+                class="text-[#9C7A2E] tracking-[0.2em] uppercase text-lg md:text-xl font-semibold mb-2"
+            >
+                Recepción Social
+            </h3>
+
+            <!-- Lugar -->
+            <p class="font-charm text-[#0F3D2E] text-xl md:text-2xl mb-4">
+                Salón de Eventos Imperia
+            </p>
+
+            <!-- Hora y Botón -->
+            <div class="flex items-center justify-center gap-3">
+                <div
+                    class="bg-transparent border-2 border-[#9C7A2E]/40 rounded px-6 py-2"
+                >
+                    <p class="text-sm text-[#0F3D2E] font-semibold">
+                        19:00 HRS.
+                    </p>
+                </div>
+                <a
+                    href="https://maps.app.goo.gl/X3mUXiRH7uQ949Gb8?g_st=iw"
+                    target="_blank"
+                    class="bg-[#9C7A2E] hover:bg-[#8B6A25] text-white px-6 py-2 rounded text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
+                >
+                    Ubicación
+                </a>
+            </div>
+        </div>
+
+        <!-- CÓDIGO DE VESTIMENTA -->
+        <div
+            class="border-2 border-[#9C7A2E]/40 rounded-3xl p-8 text-center opacity-0 shadow-lg"
+            id="vestimenta"
+        >
+            <!-- Icono vestido -->
+            <div class="flex justify-center mb-4">
+                <img
+                    src="/imagenes/vestido.png"
+                    alt="Icono Vestimenta"
+                    class="w-20 h-20 object-contain"
+                />
+            </div>
+
+            <!-- Título -->
+            <h3
+                class="text-[#9C7A2E] tracking-[0.2em] uppercase text-lg md:text-xl font-semibold mb-3"
+            >
+                Código de Vestimenta
+            </h3>
+
+            <!-- FORMAL -->
+            <p
+                class="font-charm text-[#0F3D2E] text-2xl md:text-3xl font-semibold mb-3"
+            >
+                FORMAL
+            </p>
+
+            <!-- Descripción -->
+            <p
+                class="font-charm text-[#0F3D2E] text-lg md:text-xl leading-relaxed"
+            >
+                Queremos que disfrutes de esta<br />celebración de gala
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 🎬 ANIMACIONES CON GSAP                                     -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initCeremonias = () => {
+        console.log("💒 Iniciando sección de ceremonias...");
+
+        // ═══ ESTADO INICIAL ═══
+        gsap.set("#ceremonia-civil, #ceremonia-religiosa, #vestimenta", {
+            opacity: 0,
+            y: 30,
+        });
+        gsap.set("#hoja-eventos-left", {
+            opacity: 0,
+            y: -30,
+            x: -20,
+            rotation: -15,
+        });
+        gsap.set("#hoja-eventos-right", {
+            opacity: 0,
+            y: -30,
+            x: 20,
+            rotation: 15,
+            scaleX: -1,
+        });
+
+        // ═══ ANIMACIÓN AL ENTRAR ═══
+        ScrollTrigger.create({
+            trigger: "#contenedor-eventos",
+            start: "top 85%",
+            end: "top 20%",
+
+            onEnter: () => {
+                const tl = gsap.timeline();
+
+                // HOJAS PRIMERO
+                tl.to(
+                    "#hoja-eventos-left",
+                    {
+                        opacity: 0.6,
+                        y: 0,
+                        x: 0,
+                        rotation: 0,
+                        duration: 1.5,
+                        ease: "power2.out",
+                    },
+                    0,
+                )
+
+                    .to(
+                        "#hoja-eventos-right",
+                        {
+                            opacity: 0.6,
+                            y: 0,
+                            x: 0,
+                            rotation: 0,
+                            scaleX: -1,
+                            duration: 1.5,
+                            ease: "power2.out",
+                        },
+                        0,
+                    )
+
+                    // LUEGO LOS EVENTOS EN CASCADA
+                    .to(
+                        "#ceremonia-civil",
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 1,
+                            ease: "power2.out",
+                        },
+                        0.3,
+                    )
+
+                    .to(
+                        "#ceremonia-religiosa",
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 1,
+                            ease: "power2.out",
+                        },
+                        0.5,
+                    )
+
+                    .to(
+                        "#vestimenta",
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 1,
+                            ease: "power2.out",
+                        },
+                        0.7,
+                    );
+            },
+
+            onLeaveBack: () => {
+                const tl = gsap.timeline();
+
+                tl.to(
+                    "#ceremonia-civil, #ceremonia-religiosa, #vestimenta, #hoja-eventos-left, #hoja-eventos-right",
+                    {
+                        opacity: 0,
+                        duration: 0.4,
+                        ease: "power2.in",
+                    },
+                )
+                    .to(
+                        "#ceremonia-civil, #ceremonia-religiosa, #vestimenta",
+                        {
+                            y: 30,
+                            duration: 0.4,
+                            ease: "power2.in",
+                        },
+                        "<",
+                    )
+                    .to(
+                        "#hoja-eventos-left",
+                        {
+                            y: -30,
+                            x: -20,
+                            rotation: -15,
+                            duration: 0.4,
+                            ease: "power2.in",
+                        },
+                        "<",
+                    )
+                    .to(
+                        "#hoja-eventos-right",
+                        {
+                            y: -30,
+                            x: 20,
+                            rotation: 15,
+                            duration: 0.4,
+                            ease: "power2.in",
+                        },
+                        "<",
+                    );
+            },
+        });
+
+        console.log("💒✨ Sección de ceremonias activada!");
+    };
+
+    document.addEventListener("DOMContentLoaded", initCeremonias);
+    document.addEventListener("astro:page-load", initCeremonias);
+</script>

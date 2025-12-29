@@ -1,0 +1,265 @@
+---
+// RecepcionSocial.astro
+---
+
+<section class="relative w-full py-8 px-6">
+    <!-- HOJAS DECORATIVAS - Pegadas a los bordes de la pantalla -->
+
+    <!-- Hoja izquierda - AL BORDE IZQUIERDO -->
+    <img
+        src="/imagenes/florlateral.png"
+        alt="hojas"
+        class="absolute left-0 top-20 md:top-24 w-12 h-12 md:w-16 md:h-16 opacity-0 pointer-events-none z-10"
+        id="hoja-recepcion-left"
+    />
+
+    <!-- Hoja derecha - AL BORDE DERECHO (volteada horizontalmente) -->
+    <img
+        src="/imagenes/florlateral.png"
+        alt="hojas"
+        class="absolute right-0 top-20 md:top-24 w-12 h-12 md:w-16 md:h-16 opacity-0 pointer-events-none z-10 scale-x-[-1]"
+        id="hoja-recepcion-right"
+    />
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="max-w-md mx-auto" id="wrapper-recepcion">
+        <!-- RECEPCIÓN SOCIAL -->
+        <div class="text-center opacity-0" id="recepcion-content">
+            <!-- Título -->
+            <h3
+                class="text-[#9C7A2E] tracking-[0.2em] uppercase text-xl md:text-2xl lg:text-2xl xl:text-3xl font-semibold mb-6"
+            >
+                Recepción Social
+            </h3>
+
+            <!-- Icono Salón/Arco -->
+            <div class="flex justify-center mb-6">
+                <img
+                    src="/iconos/recepcion.png"
+                    alt="Icono Recepción"
+                    class="w-16 h-16 md:w-20 md:h-20 object-contain dorado-filter"
+                    id="icono-recepcion"
+                />
+            </div>
+
+            <!-- Nombre del Salón -->
+            <p
+                class="font-charm text-[#0F3D2E] text-2xl md:text-3xl lg:text-3xl xl:text-4xl mb-3"
+            >
+                Salón de Eventos Imperia
+            </p>
+
+            <!-- Dirección -->
+            <p
+                class="text-[#0F3D2E]/70 text-base md:text-xl lg:text-2xl xl:text-3xl mb-6"
+            >
+                Av. Arce #2850, Zona San Jorge, La Paz
+            </p>
+
+            <!-- Hora y Botón -->
+            <div class="flex items-center justify-center gap-3">
+                <!-- Recuadro de Hora -->
+                <div
+                    class="bg-transparent border-2 border-gray-400 rounded px-6 py-2.5"
+                >
+                    <p
+                        class="text-sm md:text-base lg:text-lg xl:text-xl text-[#0F3D2E] font-semibold"
+                    >
+                        19:00 HRS.
+                    </p>
+                </div>
+
+                <!-- Botón Ubicación con MANO -->
+                <div class="relative">
+                    <a
+                        href="https://maps.app.goo.gl/UZ8VbLJUVFuGKBdK8"
+                        target="_blank"
+                        class="bg-[#4E5F49] hover:bg-[#3d4a39]
+                    text-white px-6 py-2.5 rounded text-sm md:text-xl lg:text-lg xl:text-xl
+                    font-semibold transition-all duration-300 shadow-md
+                    hover:shadow-lg block"
+                        id="boton-recepcion"
+                    >
+                        Ver ubicación
+                    </a>
+
+                    <!-- MANO apuntando al botón -->
+                    <img
+                        src="/imagenes/mano.png"
+                        alt="Presionar aquí"
+                        class="absolute -bottom-4 -right-4 w-8 h-8 object-contain opacity-0 pointer-events-none z-20"
+                        id="mano-recepcion-pointer"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 🎬 ANIMACIONES CON GSAP                                     -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <script>
+        import { gsap } from "gsap";
+        import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        const initRecepcionSocial = () => {
+            console.log("🎉 Iniciando componente Recepción Social...");
+
+            // ═══ ESTADO INICIAL ═══
+            gsap.set("#recepcion-content", {
+                opacity: 0,
+                y: 30,
+            });
+            gsap.set("#hoja-recepcion-left", {
+                opacity: 0,
+                x: -20,
+            });
+            gsap.set("#hoja-recepcion-right", {
+                opacity: 0,
+                x: 20,
+            });
+            gsap.set("#mano-recepcion-pointer", {
+                opacity: 0,
+                scale: 0.8,
+            });
+
+            // ═══ ANIMACIÓN AL ENTRAR ═══
+            ScrollTrigger.create({
+                trigger: "#wrapper-recepcion",
+                start: "top 80%",
+                end: "top 20%",
+
+                onEnter: () => {
+                    const tl = gsap.timeline();
+
+                    // 1️⃣ TODO EL CONTENIDO (texto + botones) AL MISMO TIEMPO
+                    tl.to(
+                        "#recepcion-content",
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 1.2,
+                            ease: "power3.out",
+                        },
+                        0,
+                    )
+
+                        // 2️⃣ MEDIO SEGUNDO DESPUÉS: FLORES LATERALES
+                        .to(
+                            "#hoja-recepcion-left",
+                            {
+                                opacity: 0.8,
+                                x: 0,
+                                duration: 1,
+                                ease: "power2.out",
+                            },
+                            0.5,
+                        )
+
+                        .to(
+                            "#hoja-recepcion-right",
+                            {
+                                opacity: 0.8,
+                                x: 0,
+                                duration: 1,
+                                ease: "power2.out",
+                            },
+                            0.5,
+                        )
+
+                        // 3️⃣ MANO después de todo
+                        .to(
+                            "#mano-recepcion-pointer",
+                            {
+                                opacity: 1,
+                                scale: 1,
+                                duration: 0.5,
+                                ease: "back.out(2)",
+                            },
+                            1.5,
+                        );
+
+                    // ═══ ANIMACIÓN DE PRESIONAR BOTÓN (loop infinito) ═══
+                    gsap.to("#mano-recepcion-pointer", {
+                        scale: 0.9,
+                        duration: 0.6,
+                        ease: "power1.inOut",
+                        repeat: -1,
+                        yoyo: true,
+                        delay: 2,
+                    });
+                },
+
+                onLeaveBack: () => {
+                    const tl = gsap.timeline();
+
+                    // Detener la animación de la mano
+                    gsap.killTweensOf("#mano-recepcion-pointer");
+
+                    tl.to(
+                        "#recepcion-content, #hoja-recepcion-left, #hoja-recepcion-right, #mano-recepcion-pointer",
+                        {
+                            opacity: 0,
+                            duration: 0.5,
+                            ease: "power2.in",
+                        },
+                    )
+                        .to(
+                            "#recepcion-content",
+                            {
+                                y: 30,
+                                duration: 0.5,
+                                ease: "power2.in",
+                            },
+                            "<",
+                        )
+                        .to(
+                            "#hoja-recepcion-left",
+                            {
+                                x: -20,
+                                duration: 0.5,
+                                ease: "power2.in",
+                            },
+                            "<",
+                        )
+                        .to(
+                            "#hoja-recepcion-right",
+                            {
+                                x: 20,
+                                duration: 0.5,
+                                ease: "power2.in",
+                            },
+                            "<",
+                        )
+                        .to(
+                            "#mano-recepcion-pointer",
+                            {
+                                scale: 0.8,
+                                duration: 0.5,
+                                ease: "power2.in",
+                            },
+                            "<",
+                        );
+                },
+            });
+
+            console.log("🎉✨ Recepción Social activada!");
+        };
+
+        document.addEventListener("DOMContentLoaded", initRecepcionSocial);
+        document.addEventListener("astro:page-load", initRecepcionSocial);
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 🎨 ESTILOS PARA CONVERTIR IMÁGENES NEGRAS A DORADO          -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <style>
+        /* Filtro que convierte imágenes PNG negras al color dorado #9C7A2E */
+        .dorado-filter {
+            filter: brightness(0) saturate(100%) invert(56%) sepia(77%)
+                saturate(419%) hue-rotate(5deg) brightness(94%) contrast(92%);
+        }
+    </style>
+</section>

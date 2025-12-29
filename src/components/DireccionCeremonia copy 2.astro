@@ -1,0 +1,208 @@
+---
+// CeremoniaReligiosa.astro
+---
+
+<section class="relative w-full py-8 px-6">
+    <!-- Hoja decorativa superior izquierda -->
+    <img
+        src="/imagenes/hojadorada.png"
+        alt=""
+        class="absolute top-0 left-0 w-16 md:w-20 opacity-0 pointer-events-none z-10"
+        id="hoja-ceremonia-left"
+    />
+
+    <!-- Hoja decorativa superior derecha -->
+    <img
+        src="/imagenes/hojadorada.png"
+        alt=""
+        class="absolute top-10 right-0 w-16 md:w-20 opacity-0 pointer-events-none z-10"
+        id="hoja-ceremonia-right"
+    />
+
+    <div class="max-w-md mx-auto" id="wrapper-ceremonia">
+        <!-- CEREMONIA RELIGIOSA -->
+        <div class="text-center opacity-0" id="ceremonia-content">
+            <!-- Título PRIMERO -->
+            <h3
+                class="text-[#9C7A2E] tracking-[0.2em] uppercase text-xl md:text-2xl font-semibold mb-6"
+            >
+                Ceremonia Religiosa
+            </h3>
+
+            <!-- Icono Iglesia DESPUÉS -->
+            <div class="flex justify-center mb-6">
+                <img
+                    src="/imagenes/iglesia1.png"
+                    alt="Icono Iglesia"
+                    class="w-16 h-16 md:w-20 md:h-20 object-contain"
+                />
+            </div>
+
+            <!-- Nombre de la Iglesia -->
+            <p class="font-charm text-[#0F3D2E] text-2xl md:text-3xl mb-3">
+                Parroquia Santa Rosa de Lima
+            </p>
+
+            <!-- Dirección -->
+            <p class="text-[#0F3D2E]/70 text-base md:text-lg mb-6">
+                Av. Principal #123, Centro Histórico
+            </p>
+
+            <!-- Hora y Botón UNO AL LADO DEL OTRO -->
+            <div class="flex items-center justify-center gap-3">
+                <!-- Recuadro de Hora -->
+                <div
+                    class="bg-transparent border-2 border-[#9C7A2E]/40 rounded-lg px-6 py-2.5"
+                >
+                    <p
+                        class="text-sm md:text-base text-[#0F3D2E] font-semibold"
+                    >
+                        17:00 HRS.
+                    </p>
+                </div>
+
+                <!-- Botón Ubicación VERDE -->
+                <a
+                    href="https://maps.app.goo.gl/JnsPvLtSAop8iai57?g_st=iw"
+                    target="_blank"
+                    class="bg-[#4E5F49] hover:bg-[#3d4a39] text-white px-6 py-2.5 rounded-lg text-sm md:text-base font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
+                >
+                    Ubicación
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 🎬 ANIMACIONES CON GSAP                                     -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initCeremoniaReligiosa = () => {
+        console.log("⛪ Iniciando componente Ceremonia Religiosa...");
+
+        // ═══ ESTADO INICIAL ═══
+        gsap.set("#ceremonia-content", {
+            opacity: 0,
+            y: 40,
+        });
+        gsap.set("#hoja-ceremonia-left", {
+            opacity: 0,
+            y: -30,
+            x: -20,
+            rotation: -15,
+        });
+        gsap.set("#hoja-ceremonia-right", {
+            opacity: 0,
+            y: -30,
+            x: 20,
+            rotation: 15,
+            scaleX: -1,
+        });
+
+        // ═══ ANIMACIÓN AL ENTRAR ═══
+        ScrollTrigger.create({
+            trigger: "#wrapper-ceremonia",
+            start: "top 80%",
+            end: "top 20%",
+
+            onEnter: () => {
+                const tl = gsap.timeline();
+
+                // HOJAS DECORATIVAS
+                tl.to(
+                    "#hoja-ceremonia-left",
+                    {
+                        opacity: 0.6,
+                        y: 0,
+                        x: 0,
+                        rotation: 0,
+                        duration: 1.2,
+                        ease: "power2.out",
+                    },
+                    0,
+                )
+
+                    .to(
+                        "#hoja-ceremonia-right",
+                        {
+                            opacity: 0.6,
+                            y: 0,
+                            x: 0,
+                            rotation: 0,
+                            scaleX: -1,
+                            duration: 1.2,
+                            ease: "power2.out",
+                        },
+                        0,
+                    )
+
+                    // CONTENIDO PRINCIPAL
+                    .to(
+                        "#ceremonia-content",
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 1.2,
+                            ease: "power3.out",
+                        },
+                        0.2,
+                    );
+            },
+
+            onLeaveBack: () => {
+                const tl = gsap.timeline();
+
+                tl.to(
+                    "#ceremonia-content, #hoja-ceremonia-left, #hoja-ceremonia-right",
+                    {
+                        opacity: 0,
+                        duration: 0.5,
+                        ease: "power2.in",
+                    },
+                )
+                    .to(
+                        "#ceremonia-content",
+                        {
+                            y: 40,
+                            duration: 0.5,
+                            ease: "power2.in",
+                        },
+                        "<",
+                    )
+                    .to(
+                        "#hoja-ceremonia-left",
+                        {
+                            y: -30,
+                            x: -20,
+                            rotation: -15,
+                            duration: 0.5,
+                            ease: "power2.in",
+                        },
+                        "<",
+                    )
+                    .to(
+                        "#hoja-ceremonia-right",
+                        {
+                            y: -30,
+                            x: 20,
+                            rotation: 15,
+                            duration: 0.5,
+                            ease: "power2.in",
+                        },
+                        "<",
+                    );
+            },
+        });
+
+        console.log("⛪✨ Ceremonia Religiosa activada!");
+    };
+
+    document.addEventListener("DOMContentLoaded", initCeremoniaReligiosa);
+    document.addEventListener("astro:page-load", initCeremoniaReligiosa);
+</script>
