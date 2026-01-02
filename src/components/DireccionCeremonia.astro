@@ -3,25 +3,49 @@
 ---
 
 <section class="relative w-full py-8 px-6">
-    <!-- HOJAS DECORATIVAS - Pegadas a los bordes de la pantalla -->
+    <!-- ═════════════════════════════════════════════════════════════ -->
+    <!-- 🌸 HOJAS DECORATIVAS - Pegadas a los bordes de la pantalla    -->
+    <!-- ═════════════════════════════════════════════════════════════ -->
 
-    <!-- Hoja izquierda - AL BORDE IZQUIERDO -->
+    <!-- ═══ PRIMERA CAPA (ABAJO): Hojas Doradas ═══ -->
+
+    <!-- Hoja dorada izquierda -->
+    <img
+        src="/imagenes/hojadorada.png"
+        alt="hoja dorada"
+        class="absolute left-0 top-20 md:top-24 w-16 h-16 md:w-20 md:h-20 opacity-0 pointer-events-none z-10"
+        id="hoja-dorada-left"
+    />
+
+    <!-- Hoja dorada derecha (volteada horizontalmente) -->
+    <img
+        src="/imagenes/hojadorada.png"
+        alt="hoja dorada"
+        class="absolute right-0 top-20 md:top-24 w-16 h-16 md:w-16 md:h-16 opacity-0 pointer-events-none z-10 scale-x-[-1]"
+        id="hoja-dorada-right"
+    />
+
+    <!-- ═══ SEGUNDA CAPA (ENCIMA): Flores Laterales ═══ -->
+
+    <!-- Hoja lateral izquierda -->
     <img
         src="/imagenes/florlateral.png"
         alt="hojas"
-        class="absolute left-0 top-20 md:top-24 w-12 h-12 md:w-16 md:h-16 opacity-0 pointer-events-none z-10"
+        class="absolute left-0 top-24 md:top-24 w-16 h-16 md:w-20 md:h-20 opacity-0 pointer-events-none z-[11]"
         id="hoja-ceremonia-left"
     />
 
-    <!-- Hoja derecha - AL BORDE DERECHO (volteada horizontalmente) -->
+    <!-- Hoja lateral derecha (volteada horizontalmente) -->
     <img
         src="/imagenes/florlateral.png"
         alt="hojas"
-        class="absolute right-0 top-20 md:top-24 w-12 h-12 md:w-16 md:h-16 opacity-0 pointer-events-none z-10 scale-x-[-1]"
+        class="absolute right-0 top-24 md:top-24 w-16 h-16 md:w-16 md:h-16 opacity-0 pointer-events-none z-[11] scale-x-[-1]"
         id="hoja-ceremonia-right"
     />
 
-    <!-- CONTENEDOR PRINCIPAL -->
+    <!-- ═════════════════════════════════════════════════════════════ -->
+    <!-- 📦 CONTENEDOR PRINCIPAL                                        -->
+    <!-- ═════════════════════════════════════════════════════════════ -->
     <div class="max-w-md mx-auto" id="wrapper-ceremonia">
         <!-- CEREMONIA RELIGIOSA -->
         <div class="text-center opacity-0" id="ceremonia-content">
@@ -75,191 +99,264 @@
                         href="https://maps.app.goo.gl/UZ8VbLJUVFuGKBdK8"
                         target="_blank"
                         class="bg-[#4E5F49] hover:bg-[#3d4a39]
-                    text-white px-6 py-2.5 rounded text-sm md:text-base lg:text-lg xl:text-xl
-                    font-semibold transition-all duration-300 shadow-md
-                    hover:shadow-lg block"
+                    text-white px-6 py-2.5 rounded text-sm md:text-base
+                    lg:text-lg xl:text-xl font-semibold transition-all
+                    duration-300 shadow-md hover:shadow-lg block"
                         id="boton-ubicacion"
                     >
-                        Ver ubicación
-                    </a>
-
-                    <!-- MANO apuntando al botón -->
-                    <img
-                        src="/imagenes/mano.png"
-                        alt="Presionar aquí"
-                        class="absolute -bottom-4 -right-4 w-8 h-8 object-contain opacity-0 pointer-events-none z-20"
-                        id="mano-pointer"
-                    />
+                        Ver ubicación</a
+                    >
                 </div>
+
+                <!-- MANO apuntando al botón -->
+                <img
+                    src="/imagenes/mano.png"
+                    alt="Presionar aquí"
+                    class="absolute -bottom-4 -right-4 w-8 h-8 object-contain opacity-0 pointer-events-none z-20"
+                    id="mano-pointer"
+                />
             </div>
         </div>
     </div>
+</section>
 
-    <!-- ═══════════════════════════════════════════════════════════ -->
-    <!-- 🎬 ANIMACIONES CON GSAP                                     -->
-    <!-- ═══════════════════════════════════════════════════════════ -->
-    <script>
-        import { gsap } from "gsap";
-        import { ScrollTrigger } from "gsap/ScrollTrigger";
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 🎬 ANIMACIONES CON GSAP                                     -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-        gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger);
 
-        const initCeremoniaReligiosa = () => {
-            console.log("⛪ Iniciando componente Ceremonia Religiosa...");
+    const initCeremoniaReligiosa = () => {
+        console.log("⛪ Iniciando componente Ceremonia Religiosa...");
 
-            // ═══ ESTADO INICIAL ═══
-            gsap.set("#ceremonia-content", {
-                opacity: 0,
-                y: 30,
-            });
-            gsap.set("#hoja-ceremonia-left", {
-                opacity: 0,
-                x: -20,
-            });
-            gsap.set("#hoja-ceremonia-right", {
-                opacity: 0,
-                x: 20,
-            });
-            gsap.set("#mano-pointer", {
-                opacity: 0,
-                scale: 0.8,
-            });
+        // ═══════════════════════════════════════════════════════
+        // ⚙️ ESTADO INICIAL
+        // ═══════════════════════════════════════════════════════
 
-            // ═══ ANIMACIÓN AL ENTRAR ═══
-            ScrollTrigger.create({
-                trigger: "#wrapper-ceremonia",
-                start: "top 80%",
-                end: "top 20%",
+        // Contenido principal
+        gsap.set("#ceremonia-content", {
+            opacity: 0,
+            y: 30,
+        });
 
-                onEnter: () => {
-                    const tl = gsap.timeline();
+        // Flores laterales (ENCIMA)
+        gsap.set("#hoja-ceremonia-left", {
+            opacity: 0,
+            x: -20,
+        });
+        gsap.set("#hoja-ceremonia-right", {
+            opacity: 0,
+            x: 20,
+        });
 
-                    // 1️⃣ TODO EL CONTENIDO (texto + botones) AL MISMO TIEMPO
-                    tl.to(
-                        "#ceremonia-content",
+        // Hojas doradas (ABAJO)
+        gsap.set("#hoja-dorada-left", {
+            opacity: 0,
+            x: -20,
+        });
+        gsap.set("#hoja-dorada-right", {
+            opacity: 0,
+            x: 20,
+        });
+
+        // Mano pointer
+        gsap.set("#mano-pointer", {
+            opacity: 0,
+            scale: 0.8,
+        });
+
+        // ═══════════════════════════════════════════════════════
+        // 🎭 ANIMACIÓN AL ENTRAR
+        // ═══════════════════════════════════════════════════════
+
+        ScrollTrigger.create({
+            trigger: "#wrapper-ceremonia",
+            start: "top 80%",
+            end: "top 20%",
+
+            onEnter: () => {
+                const tl = gsap.timeline();
+
+                // 1️⃣ CONTENIDO PRINCIPAL - INMEDIATO (0s)
+                tl.to(
+                    "#ceremonia-content",
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1.2,
+                        ease: "power3.out",
+                    },
+                    0,
+                )
+
+                    // 2️⃣ FLORES LATERALES (ENCIMA) - A LOS 0.5 SEGUNDOS
+                    .to(
+                        "#hoja-ceremonia-left",
                         {
-                            opacity: 1,
-                            y: 0,
-                            duration: 1.2,
-                            ease: "power3.out",
+                            opacity: 0.8,
+                            x: 0,
+                            duration: 1,
+                            ease: "power2.out",
                         },
-                        0,
+                        0.5,
+                    )
+                    .to(
+                        "#hoja-ceremonia-right",
+                        {
+                            opacity: 0.8,
+                            x: 0,
+                            duration: 1,
+                            ease: "power2.out",
+                        },
+                        0.5,
                     )
 
-                        // 2️⃣ MEDIO SEGUNDO DESPUÉS: FLORES LATERALES
-                        .to(
-                            "#hoja-ceremonia-left",
-                            {
-                                opacity: 0.8,
-                                x: 0,
-                                duration: 1,
-                                ease: "power2.out",
-                            },
-                            0.5,
-                        )
-
-                        .to(
-                            "#hoja-ceremonia-right",
-                            {
-                                opacity: 0.8,
-                                x: 0,
-                                duration: 1,
-                                ease: "power2.out",
-                            },
-                            0.5,
-                        )
-
-                        // 3️⃣ MANO después de todo
-                        .to(
-                            "#mano-pointer",
-                            {
-                                opacity: 1,
-                                scale: 1,
-                                duration: 0.5,
-                                ease: "back.out(2)",
-                            },
-                            1.5,
-                        );
-
-                    // ═══ ANIMACIÓN DE PRESIONAR BOTÓN (loop infinito) ═══
-                    gsap.to("#mano-pointer", {
-                        scale: 0.9,
-                        duration: 0.6,
-                        ease: "power1.inOut",
-                        repeat: -1,
-                        yoyo: true,
-                        delay: 2,
-                    });
-                },
-
-                onLeaveBack: () => {
-                    const tl = gsap.timeline();
-
-                    // Detener la animación de la mano
-                    gsap.killTweensOf("#mano-pointer");
-
-                    tl.to(
-                        "#ceremonia-content, #hoja-ceremonia-left, #hoja-ceremonia-right, #mano-pointer",
+                    // 3️⃣ HOJAS DORADAS (ABAJO) - 1 SEGUNDO DESPUÉS (a los 1.5s)
+                    .to(
+                        "#hoja-dorada-left",
                         {
-                            opacity: 0,
+                            opacity: 0.9,
+                            x: 0,
+                            duration: 1,
+                            ease: "power2.out",
+                        },
+                        1.5,
+                    )
+                    .to(
+                        "#hoja-dorada-right",
+                        {
+                            opacity: 0.9,
+                            x: 0,
+                            duration: 1,
+                            ease: "power2.out",
+                        },
+                        1.5,
+                    )
+
+                    // 4️⃣ MANO - DESPUÉS DE TODO (a los 2.5s)
+                    .to(
+                        "#mano-pointer",
+                        {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.5,
+                            ease: "back.out(2)",
+                        },
+                        2.5,
+                    );
+
+                // ═══ ANIMACIÓN DE PRESIONAR BOTÓN (loop infinito) ═══
+                gsap.to("#mano-pointer", {
+                    scale: 0.9,
+                    duration: 0.6,
+                    ease: "power1.inOut",
+                    repeat: -1,
+                    yoyo: true,
+                    delay: 3,
+                });
+            },
+
+            // ═══════════════════════════════════════════════════════
+            // 🔙 ANIMACIÓN AL SALIR (scroll hacia arriba)
+            // ═══════════════════════════════════════════════════════
+
+            onLeaveBack: () => {
+                const tl = gsap.timeline();
+
+                // Detener la animación de la mano
+                gsap.killTweensOf("#mano-pointer");
+
+                // Hacer todo invisible al mismo tiempo
+                tl.to(
+                    "#ceremonia-content, #hoja-ceremonia-left, #hoja-ceremonia-right, #hoja-dorada-left, #hoja-dorada-right, #mano-pointer",
+                    {
+                        opacity: 0,
+                        duration: 0.5,
+                        ease: "power2.in",
+                    },
+                )
+
+                    // Mover el contenido hacia abajo
+                    .to(
+                        "#ceremonia-content",
+                        {
+                            y: 30,
                             duration: 0.5,
                             ease: "power2.in",
                         },
+                        "<",
                     )
-                        .to(
-                            "#ceremonia-content",
-                            {
-                                y: 30,
-                                duration: 0.5,
-                                ease: "power2.in",
-                            },
-                            "<",
-                        )
-                        .to(
-                            "#hoja-ceremonia-left",
-                            {
-                                x: -20,
-                                duration: 0.5,
-                                ease: "power2.in",
-                            },
-                            "<",
-                        )
-                        .to(
-                            "#hoja-ceremonia-right",
-                            {
-                                x: 20,
-                                duration: 0.5,
-                                ease: "power2.in",
-                            },
-                            "<",
-                        )
-                        .to(
-                            "#mano-pointer",
-                            {
-                                scale: 0.8,
-                                duration: 0.5,
-                                ease: "power2.in",
-                            },
-                            "<",
-                        );
-                },
-            });
 
-            console.log("⛪✨ Ceremonia Religiosa activada!");
-        };
+                    // Mover flores laterales hacia afuera
+                    .to(
+                        "#hoja-ceremonia-left",
+                        {
+                            x: -20,
+                            duration: 0.5,
+                            ease: "power2.in",
+                        },
+                        "<",
+                    )
+                    .to(
+                        "#hoja-ceremonia-right",
+                        {
+                            x: 20,
+                            duration: 0.5,
+                            ease: "power2.in",
+                        },
+                        "<",
+                    )
 
-        document.addEventListener("DOMContentLoaded", initCeremoniaReligiosa);
-        document.addEventListener("astro:page-load", initCeremoniaReligiosa);
-    </script>
+                    // Mover hojas doradas hacia afuera
+                    .to(
+                        "#hoja-dorada-left",
+                        {
+                            x: -20,
+                            duration: 0.5,
+                            ease: "power2.in",
+                        },
+                        "<",
+                    )
+                    .to(
+                        "#hoja-dorada-right",
+                        {
+                            x: 20,
+                            duration: 0.5,
+                            ease: "power2.in",
+                        },
+                        "<",
+                    )
 
-    <!-- ═══════════════════════════════════════════════════════════ -->
-    <!-- 🎨 ESTILOS PARA CONVERTIR IMÁGENES NEGRAS A DORADO          -->
-    <!-- ═══════════════════════════════════════════════════════════ -->
-    <style>
-        /* Filtro que convierte imágenes PNG negras al color dorado #9C7A2E */
-        .dorado-filter {
-            filter: brightness(0) saturate(100%) invert(56%) sepia(77%)
-                saturate(419%) hue-rotate(5deg) brightness(94%) contrast(92%);
-        }
-    </style>
-</section>
+                    // Escalar la mano
+                    .to(
+                        "#mano-pointer",
+                        {
+                            scale: 0.8,
+                            duration: 0.5,
+                            ease: "power2.in",
+                        },
+                        "<",
+                    );
+            },
+        });
+
+        console.log("⛪✨ Ceremonia Religiosa activada - Hojas en capas!");
+    };
+
+    document.addEventListener("DOMContentLoaded", initCeremoniaReligiosa);
+    document.addEventListener("astro:page-load", initCeremoniaReligiosa);
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 🎨 ESTILOS PARA CONVERTIR IMÁGENES NEGRAS A DORADO          -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<style>
+    /* Filtro que convierte imágenes PNG negras al color dorado #9C7A2E */
+    .dorado-filter {
+        filter: brightness(0) saturate(100%) invert(56%) sepia(77%)
+            saturate(419%) hue-rotate(5deg) brightness(94%) contrast(92%);
+    }
+</style>
