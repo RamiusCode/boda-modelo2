@@ -453,145 +453,56 @@
                     );
 
                 // ═══════════════════════════════════════════════════
-                // 🍃 MOVIMIENTO NATURAL DE HOJAS - Como hojas reales
+                // 🍃 MOVIMIENTO NATURAL - SIN SALTOS
                 // ═══════════════════════════════════════════════════
 
-                // Flor izquierda - Movimiento circular suave (brisa suave)
+                // Flor izquierda - Solo movimiento y rotación
                 gsap.to("#flor-left", {
-                    keyframes: [
-                        {
-                            y: -6,
-                            x: -2,
-                            rotation: -5,
-                            duration: 3.5,
-                            ease: "sine.inOut",
-                        },
-                        {
-                            y: 2,
-                            x: 1,
-                            rotation: -1,
-                            duration: 3.5,
-                            ease: "sine.inOut",
-                        },
-                        {
-                            y: -3,
-                            x: -1,
-                            rotation: -3,
-                            duration: 3.5,
-                            ease: "sine.inOut",
-                        },
-                    ],
+                    y: -6,
+                    x: -2,
+                    rotation: -5,
+                    duration: 3.5,
                     repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
                     delay: 3,
                 });
 
-                // Flor derecha - Movimiento circular inverso
+                // Flor derecha - Solo movimiento y rotación
                 gsap.to("#flor-right", {
-                    keyframes: [
-                        {
-                            y: -5,
-                            x: 2,
-                            rotation: 6,
-                            duration: 3.8,
-                            ease: "sine.inOut",
-                        },
-                        {
-                            y: 3,
-                            x: -1,
-                            rotation: 1,
-                            duration: 3.8,
-                            ease: "sine.inOut",
-                        },
-                        {
-                            y: -2,
-                            x: 1,
-                            rotation: 4,
-                            duration: 3.8,
-                            ease: "sine.inOut",
-                        },
-                    ],
+                    y: -5,
+                    x: 2,
+                    rotation: 6,
+                    duration: 3.8,
                     repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
                     delay: 3.2,
                 });
 
-                // Hoja dorada izquierda - Balanceo natural con rotación
+                // Hoja izquierda - Movimiento suave
                 gsap.to("#hoja-left", {
-                    keyframes: [
-                        {
-                            y: -8,
-                            rotation: -8,
-                            scale: 0.92,
-                            duration: 4.2,
-                            ease: "sine.inOut",
-                        },
-                        {
-                            y: 1,
-                            rotation: 2,
-                            scale: 0.88,
-                            duration: 2.8,
-                            ease: "sine.inOut",
-                        },
-                        {
-                            y: -5,
-                            rotation: -5,
-                            scale: 0.9,
-                            duration: 3.5,
-                            ease: "sine.inOut",
-                        },
-                        {
-                            y: 2,
-                            rotation: 0,
-                            scale: 0.89,
-                            duration: 2.2,
-                            ease: "sine.inOut",
-                        },
-                    ],
+                    y: -8,
+                    rotation: -8,
+                    duration: 4.2,
                     repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
                     delay: 3.3,
                 });
 
-                // Hoja dorada derecha - Balanceo natural con rotación inversa
+                // Hoja derecha - Movimiento suave
                 gsap.to("#hoja-right", {
-                    keyframes: [
-                        {
-                            y: -7,
-                            rotation: 9,
-                            scaleX: -0.93,
-                            scaleY: 0.93,
-                            duration: 4.5,
-                            ease: "sine.inOut",
-                        },
-                        {
-                            y: 2,
-                            rotation: -2,
-                            scaleX: -0.87,
-                            scaleY: 0.87,
-                            duration: 3,
-                            ease: "sine.inOut",
-                        },
-                        {
-                            y: -4,
-                            rotation: 6,
-                            scaleX: -0.91,
-                            scaleY: 0.91,
-                            duration: 3.8,
-                            ease: "sine.inOut",
-                        },
-                        {
-                            y: 1,
-                            rotation: 1,
-                            scaleX: -0.88,
-                            scaleY: 0.88,
-                            duration: 2.5,
-                            ease: "sine.inOut",
-                        },
-                    ],
+                    y: -7,
+                    rotation: 9,
+                    duration: 4.5,
                     repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
                     delay: 3.5,
                 });
 
-                // ═══ EFECTO DE "RESPIRACIÓN" SUTIL EN LAS HOJAS ═══
-                // Hace que las hojas parezcan que respiran suavemente
+                // ═══ RESPIRACIÓN SUTIL - SOLO SCALE ═══
                 gsap.to("#hoja-left", {
                     scale: 0.88,
                     duration: 5.5,
@@ -680,21 +591,26 @@
                     .set("#flor-left", {
                         rotation: -8,
                         scale: 0.9,
+                        x: -40,
+                        y: 0,
                     })
                     .set("#flor-right", {
                         rotation: 8,
                         scaleX: -0.9,
                         scaleY: 0.9,
+                        x: 40,
+                        y: 0,
                     })
                     .set("#hoja-left", {
                         rotation: -6,
-                        transformOrigin: "bottom center",
+                        scale: 0,
+                        y: 0,
                     })
                     .set("#hoja-right", {
                         scaleX: 0,
                         scaleY: 0,
                         rotation: 6,
-                        transformOrigin: "bottom center",
+                        y: 0,
                     });
             },
         });
@@ -705,4 +621,3 @@
     document.addEventListener("DOMContentLoaded", initRegalos);
     document.addEventListener("astro:page-load", initRegalos);
 </script>
-bienprefecto
