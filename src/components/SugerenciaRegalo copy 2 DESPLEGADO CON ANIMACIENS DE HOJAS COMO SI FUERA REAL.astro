@@ -289,7 +289,7 @@
 </style>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<!-- 🎬 ANIMACIONES CON GSAP - MOVIMIENTOS MÁS NOTORIOS         -->
+<!-- 🎬 ANIMACIONES CON GSAP                                     -->
 <!-- ═══════════════════════════════════════════════════════════ -->
 <script>
     import { gsap } from "gsap";
@@ -453,59 +453,59 @@
                     );
 
                 // ═══════════════════════════════════════════════════
-                // 🍃 MOVIMIENTOS MÁS NOTORIOS Y NATURALES
+                // 🍃 MOVIMIENTO NATURAL - SIN SALTOS
                 // ═══════════════════════════════════════════════════
 
-                // Flor izquierda - Movimiento más amplio
+                // Flor izquierda - Solo movimiento y rotación
                 gsap.to("#flor-left", {
-                    y: -15,
-                    x: -8,
-                    rotation: -12,
-                    duration: 3,
+                    y: -6,
+                    x: -2,
+                    rotation: -5,
+                    duration: 3.5,
                     repeat: -1,
                     yoyo: true,
                     ease: "sine.inOut",
                     delay: 3,
                 });
 
-                // Flor derecha - Movimiento más amplio inverso
+                // Flor derecha - Solo movimiento y rotación
                 gsap.to("#flor-right", {
-                    y: -12,
-                    x: 8,
-                    rotation: 12,
-                    duration: 3.3,
+                    y: -5,
+                    x: 2,
+                    rotation: 6,
+                    duration: 3.8,
                     repeat: -1,
                     yoyo: true,
                     ease: "sine.inOut",
                     delay: 3.2,
                 });
 
-                // Hoja izquierda - Balanceo más pronunciado
+                // Hoja izquierda - Movimiento suave
                 gsap.to("#hoja-left", {
-                    y: -18,
-                    rotation: -15,
-                    duration: 3.5,
+                    y: -8,
+                    rotation: -8,
+                    duration: 4.2,
                     repeat: -1,
                     yoyo: true,
                     ease: "sine.inOut",
                     delay: 3.3,
                 });
 
-                // Hoja derecha - Balanceo más pronunciado
+                // Hoja derecha - Movimiento suave
                 gsap.to("#hoja-right", {
-                    y: -16,
-                    rotation: 15,
-                    duration: 3.8,
+                    y: -7,
+                    rotation: 9,
+                    duration: 4.5,
                     repeat: -1,
                     yoyo: true,
                     ease: "sine.inOut",
                     delay: 3.5,
                 });
 
-                // ═══ RESPIRACIÓN MÁS VISIBLE ═══
+                // ═══ RESPIRACIÓN SUTIL - SOLO SCALE ═══
                 gsap.to("#hoja-left", {
-                    scale: 0.8,
-                    duration: 4,
+                    scale: 0.88,
+                    duration: 5.5,
                     repeat: -1,
                     yoyo: true,
                     ease: "sine.inOut",
@@ -513,32 +513,13 @@
                 });
 
                 gsap.to("#hoja-right", {
-                    scaleX: -0.8,
-                    scaleY: 0.8,
-                    duration: 4.5,
+                    scaleX: -0.86,
+                    scaleY: 0.86,
+                    duration: 6,
                     repeat: -1,
                     yoyo: true,
                     ease: "sine.inOut",
                     delay: 4.3,
-                });
-
-                // ═══ MOVIMIENTO HORIZONTAL ADICIONAL (Efecto brisa) ═══
-                gsap.to("#flor-left", {
-                    x: -12,
-                    duration: 5,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 4.5,
-                });
-
-                gsap.to("#flor-right", {
-                    x: 12,
-                    duration: 5.5,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 4.8,
                 });
             },
 
@@ -571,6 +552,7 @@
                         "<",
                     )
 
+                    // Flores salen suavemente
                     .to(
                         "#flor-left",
                         {
@@ -593,6 +575,7 @@
                         "<",
                     )
 
+                    // Hojas se encogen
                     .to(
                         "#hoja-left, #hoja-right",
                         {
@@ -604,6 +587,7 @@
                         "<",
                     )
 
+                    // Resetear estado inicial
                     .set("#flor-left", {
                         rotation: -8,
                         scale: 0.9,
