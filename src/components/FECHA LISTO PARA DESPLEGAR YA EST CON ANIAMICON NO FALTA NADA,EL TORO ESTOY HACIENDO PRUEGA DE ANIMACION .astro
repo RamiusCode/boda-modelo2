@@ -145,7 +145,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<!-- 🎬 ANIMACIONES CON GSAP - ANIMACIÓN DE ENTRADA MEJORADA     -->
+<!-- 🎬 ANIMACIONES CON GSAP - SEPARACIÓN RESPONSIVE             -->
 <!-- ═══════════════════════════════════════════════════════════ -->
 <script>
   import { gsap } from "gsap";
@@ -175,50 +175,46 @@
 
       let separacionActual = getSeparacion();
 
-      // 🎯 ESTADO INICIAL - SUAVE Y ELEGANTE
-      gsap.set("#paloma-izq", { opacity: 0, x: -250, y: -20 });
-      gsap.set("#paloma-der", { opacity: 0, x: 250, y: -20 });
+      // 🎯 ESTADO INICIAL
+      gsap.set("#paloma-izq", { opacity: 0, x: -200 });
+      gsap.set("#paloma-der", { opacity: 0, x: 200 });
 
       // Flores laterales (ENCIMA)
       gsap.set("#hoja-fecha-izq", {
         opacity: 0,
-        x: -40,
-        y: 20,
-        rotation: -15,
-        scale: 0.8,
+        x: -20,
+        rotation: 0,
+        scale: 1,
       });
       gsap.set("#hoja-fecha-der", {
         opacity: 0,
-        x: 40,
-        y: 20,
-        rotation: 15,
-        scaleX: -0.8,
-        scaleY: 0.8,
+        x: 20,
+        rotation: 0,
+        scaleX: -1,
+        scaleY: 1,
       });
 
       // Hojas doradas (ABAJO)
       gsap.set("#hoja-dorada-fecha-izq", {
         opacity: 0,
-        x: -50,
-        y: 25,
-        rotation: -20,
-        scale: 0.7,
+        x: -20,
+        rotation: 0,
+        scale: 1,
       });
       gsap.set("#hoja-dorada-fecha-der", {
         opacity: 0,
-        x: 50,
-        y: 25,
-        rotation: 20,
-        scaleX: -0.7,
-        scaleY: 0.7,
+        x: 20,
+        rotation: 0,
+        scaleX: -1,
+        scaleY: 1,
       });
 
-      gsap.set("#texto-invitacion", { opacity: 0, scale: 0.9, y: 15 });
-      gsap.set("#anio-evento", { opacity: 0, scale: 0.9, y: 15 });
-      gsap.set("#fecha-evento", { opacity: 0, scale: 0.9, y: 15 });
-      gsap.set("#hora-evento", { opacity: 0, scale: 0.9, y: 15 });
+      gsap.set("#texto-invitacion", { opacity: 0, scale: 0.9 });
+      gsap.set("#anio-evento", { opacity: 0, scale: 0.9 });
+      gsap.set("#fecha-evento", { opacity: 0, scale: 0.9 });
+      gsap.set("#hora-evento", { opacity: 0, scale: 0.9 });
 
-      // ✨ ANIMACIÓN DE ENTRADA MEJORADA
+      // ✨ ANIMACIÓN
       ScrollTrigger.create({
         trigger: "#palomas-container",
         start: "top 85%",
@@ -228,13 +224,12 @@
           separacionActual = getSeparacion();
           const tl = gsap.timeline();
 
-          // 1️⃣ PALOMAS - Vuelo suave y delicado
           tl.to(
             "#paloma-izq, #paloma-der",
             {
               opacity: 1,
-              duration: 2,
-              ease: "power1.inOut",
+              duration: 1.5,
+              ease: "power2.out",
             },
             0,
           )
@@ -242,9 +237,8 @@
               "#paloma-izq",
               {
                 x: -separacionActual,
-                y: 0,
-                duration: 3,
-                ease: "power2.inOut",
+                duration: 2.5,
+                ease: "power2.out",
               },
               0,
             )
@@ -252,115 +246,62 @@
               "#paloma-der",
               {
                 x: separacionActual,
-                y: 0,
-                duration: 3,
-                ease: "power2.inOut",
+                duration: 2.5,
+                ease: "power2.out",
               },
               0,
             )
-            // 2️⃣ TEXTO INVITACIÓN - Aparición suave y romántica
             .to(
-              "#texto-invitacion",
+              "#texto-invitacion, #anio-evento, #fecha-evento, #hora-evento",
               {
                 opacity: 1,
                 scale: 1,
-                y: 0,
-                duration: 1.8,
-                ease: "power2.out",
+                duration: 1,
+                ease: "back.out(1.2)",
               },
               0.8,
             )
-            // 3️⃣ AÑO - Entrada delicada
-            .to(
-              "#anio-evento",
-              {
-                opacity: 1,
-                scale: 1,
-                y: 0,
-                duration: 1.5,
-                ease: "power2.out",
-              },
-              1.3,
-            )
-            // 4️⃣ FECHA - Entrada suave
-            .to(
-              "#fecha-evento",
-              {
-                opacity: 1,
-                scale: 1,
-                y: 0,
-                duration: 1.5,
-                ease: "power2.out",
-              },
-              1.6,
-            )
-            // 5️⃣ HORA - Entrada delicada
-            .to(
-              "#hora-evento",
-              {
-                opacity: 1,
-                scale: 1,
-                y: 0,
-                duration: 1.5,
-                ease: "power2.out",
-              },
-              1.9,
-            )
-            // 6️⃣ FLORES LATERALES - Aparición suave como pétalos
+            // 2️⃣ FLORES LATERALES (ENCIMA) - A LOS 0.5 SEGUNDOS
             .to(
               "#hoja-fecha-izq",
               {
                 opacity: 0.8,
                 x: 0,
-                y: 0,
-                rotation: 0,
-                scale: 1,
-                duration: 2,
-                ease: "power1.out",
+                duration: 1,
+                ease: "power2.out",
               },
-              2.2,
+              1.3,
             )
             .to(
               "#hoja-fecha-der",
               {
                 opacity: 0.8,
                 x: 0,
-                y: 0,
-                rotation: 0,
-                scaleX: -1,
-                scaleY: 1,
-                duration: 2,
-                ease: "power1.out",
+                duration: 1,
+                ease: "power2.out",
               },
-              2.3,
+              1.3,
             )
-            // 7️⃣ HOJAS DORADAS - Entrada suave y elegante
+            // 3️⃣ HOJAS DORADAS (ABAJO) - 1 SEGUNDO DESPUÉS
             .to(
               "#hoja-dorada-fecha-izq",
               {
                 opacity: 0.9,
                 x: 0,
-                y: 0,
-                rotation: 0,
-                scale: 1,
-                duration: 2.2,
-                ease: "power1.out",
+                duration: 1,
+                ease: "power2.out",
               },
-              2.5,
+              2.3,
             )
             .to(
               "#hoja-dorada-fecha-der",
               {
                 opacity: 0.9,
                 x: 0,
-                y: 0,
-                rotation: 0,
-                scaleX: -1,
-                scaleY: 1,
-                duration: 2.2,
-                ease: "power1.out",
+                duration: 1,
+                ease: "power2.out",
               },
-              2.6,
+              2.3,
             );
 
           // ═══════════════════════════════════════════════════
@@ -472,43 +413,26 @@
           )
             .to(
               "#paloma-izq",
-              { x: -250, y: -20, duration: 0.6, ease: "power2.in" },
+              { x: -200, duration: 0.5, ease: "power2.in" },
               "<",
             )
             .to(
               "#paloma-der",
-              { x: 250, y: -20, duration: 0.6, ease: "power2.in" },
+              { x: 200, duration: 0.5, ease: "power2.in" },
               "<",
             )
             .to(
-              "#texto-invitacion",
-              { scale: 0.9, y: 15, duration: 0.6, ease: "power2.in" },
+              "#texto-invitacion, #anio-evento, #fecha-evento, #hora-evento",
+              { scale: 0.9, duration: 0.5, ease: "power2.in" },
               "<",
             )
-            .to(
-              "#anio-evento",
-              { scale: 0.9, y: 15, duration: 0.6, ease: "power2.in" },
-              "<",
-            )
-            .to(
-              "#fecha-evento",
-              { scale: 0.9, y: 15, duration: 0.6, ease: "power2.in" },
-              "<",
-            )
-            .to(
-              "#hora-evento",
-              { scale: 0.9, y: 15, duration: 0.6, ease: "power2.in" },
-              "<",
-            )
-            // Mover flores laterales hacia afuera suavemente
+            // Mover flores laterales hacia afuera
             .to(
               "#hoja-fecha-izq",
               {
-                x: -40,
-                y: 20,
-                rotation: -15,
-                scale: 0.8,
-                duration: 0.6,
+                x: -20,
+                y: 0,
+                duration: 0.5,
                 ease: "power2.in",
               },
               "<",
@@ -516,25 +440,20 @@
             .to(
               "#hoja-fecha-der",
               {
-                x: 40,
-                y: 20,
-                rotation: 15,
-                scaleX: -0.8,
-                scaleY: 0.8,
-                duration: 0.6,
+                x: 20,
+                y: 0,
+                duration: 0.5,
                 ease: "power2.in",
               },
               "<",
             )
-            // Mover hojas doradas hacia afuera suavemente
+            // Mover hojas doradas hacia afuera
             .to(
               "#hoja-dorada-fecha-izq",
               {
-                x: -50,
-                y: 25,
-                rotation: -20,
-                scale: 0.7,
-                duration: 0.6,
+                x: -20,
+                y: 0,
+                duration: 0.5,
                 ease: "power2.in",
               },
               "<",
@@ -542,16 +461,32 @@
             .to(
               "#hoja-dorada-fecha-der",
               {
-                x: 50,
-                y: 25,
-                rotation: 20,
-                scaleX: -0.7,
-                scaleY: 0.7,
-                duration: 0.6,
+                x: 20,
+                y: 0,
+                duration: 0.5,
                 ease: "power2.in",
               },
               "<",
-            );
+            )
+            // Resetear rotaciones y scales
+            .set("#hoja-fecha-izq", {
+              rotation: 0,
+              scale: 1,
+            })
+            .set("#hoja-fecha-der", {
+              rotation: 0,
+              scaleX: -1,
+              scaleY: 1,
+            })
+            .set("#hoja-dorada-fecha-izq", {
+              rotation: 0,
+              scale: 1,
+            })
+            .set("#hoja-dorada-fecha-der", {
+              rotation: 0,
+              scaleX: -1,
+              scaleY: 1,
+            });
         },
       });
 
