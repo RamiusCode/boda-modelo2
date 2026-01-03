@@ -1,0 +1,258 @@
+---
+// DespedidaBoda.astro
+---
+
+<section class="relative w-full py-4 px-6">
+    <!-- HOJAS DECORATIVAS - Pegadas a los bordes de la pantalla -->
+
+    <!-- Hoja izquierda - AL BORDE IZQUIERDO -->
+    <img
+        src="/imagenes/florlateral.png"
+        alt="hojas"
+        class="absolute left-0 top-20 md:top-24 w-12 h-12 md:w-16 md:h-16 opacity-0 pointer-events-none z-10"
+        id="hoja-despedida-left"
+    />
+
+    <!-- Hoja derecha - AL BORDE DERECHO (volteada horizontalmente) -->
+    <img
+        src="/imagenes/florlateral.png"
+        alt="hojas"
+        class="absolute right-0 top-20 md:top-24 w-12 h-12 md:w-16 md:h-16 opacity-0 pointer-events-none z-10 scale-x-[-1]"
+        id="hoja-despedida-right"
+    />
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="max-w-md mx-auto" id="wrapper-despedida">
+        <!-- DESPEDIDA -->
+        <div class="text-center opacity-0" id="despedida-content">
+            <!-- Título -->
+            <h3
+                class="text-[#9C7A2E] tracking-[0.2em] uppercase text-xl md:text-2xl lg:text-2xl xl:text-3xl font-semibold mb-6"
+            >
+                Querida Familia y Amigos
+            </h3>
+
+            <!-- Icono Corazón -->
+            <div class="flex justify-center mb-6">
+                <svg
+                    class="w-8 h-8 md:w-20 md:h-20 text-[#9C7A2E]"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    id="icono-corazon"
+                >
+                    <path
+                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                    ></path>
+                </svg>
+            </div>
+
+            <!-- Mensaje Principal -->
+            <p
+                class="font-charm text-[#0F3D2E] text-xl md:text-xl lg:text-2xl xl:text-2xl mb-6 leading-relaxed"
+            >
+                Nos llena de felicidad poder compartir con ustedes este momento
+                tan único y especial. Con la esperanza de que hagamos de este
+                día un recuerdo inolvidable. Los esperamos con los corazones
+                llenos de emoción, listos para celebrar el amor y crear memorias
+                que permanezcan siempre en nuestros corazones.
+            </p>
+
+            <!-- Texto Confirmar Asistencia -->
+            <p
+                class="font-charm text-[#9C7A2E] text-xl md:text-2xl lg:text-2xl xl:text-3xl font-bold mb-4"
+            >
+                Esperamos contar con tu presencia
+            </p>
+
+            <p
+                class="text-[#0F3D2E]/70 text-lg md:text-lg lg:text-xl xl:text-2xl mb-6"
+            >
+                Por favor, confirma tu asistencia haciendo clic en el botón
+            </p>
+
+            <!-- Botón Confirmar con MANO -->
+            <div class="flex items-center justify-center">
+                <div class="relative">
+                    <a
+                        href="https://wa.link/eyhp6p"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        id="btn-whatsapp-despedida"
+                        class="bg-[#4E5F49]
+                    hover:bg-[#3d4a39] text-white px-8 py-3 rounded text-base
+                    md:text-lg lg:text-xl xl:text-2xl font-semibold
+                    transition-all duration-300 shadow-md hover:shadow-lg
+                    inline-block text-center"
+                    >
+                        Confirmar Asistencia
+                    </a>
+
+                    <!-- MANO apuntando al botón -->
+                    <img
+                        src="/imagenes/mano.png"
+                        alt="Presionar aquí"
+                        class="absolute -bottom-4 -right-4 w-8 h-8 object-contain opacity-0 pointer-events-none z-20"
+                        id="mano-pointer-despedida"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 🎬 ANIMACIONES CON GSAP                                     -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <script>
+        import { gsap } from "gsap";
+        import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        const initDespedidaBoda = () => {
+            console.log("💑 Iniciando componente Despedida de Boda...");
+
+            // ═══ ESTADO INICIAL ═══
+            gsap.set("#despedida-content", {
+                opacity: 0,
+                y: 30,
+            });
+            gsap.set("#hoja-despedida-left", {
+                opacity: 0,
+                x: -20,
+            });
+            gsap.set("#hoja-despedida-right", {
+                opacity: 0,
+                x: 20,
+            });
+            gsap.set("#mano-pointer-despedida", {
+                opacity: 0,
+                scale: 0.8,
+            });
+
+            // ═══ ANIMACIÓN AL ENTRAR ═══
+            ScrollTrigger.create({
+                trigger: "#wrapper-despedida",
+                start: "top 80%",
+                end: "top 20%",
+
+                onEnter: () => {
+                    const tl = gsap.timeline();
+
+                    // 1️⃣ TODO EL CONTENIDO (texto + botones) AL MISMO TIEMPO
+                    tl.to(
+                        "#despedida-content",
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 1.2,
+                            ease: "power3.out",
+                        },
+                        0,
+                    )
+
+                        // 2️⃣ MEDIO SEGUNDO DESPUÉS: FLORES LATERALES
+                        .to(
+                            "#hoja-despedida-left",
+                            {
+                                opacity: 0.8,
+                                x: 0,
+                                duration: 1,
+                                ease: "power2.out",
+                            },
+                            0.5,
+                        )
+
+                        .to(
+                            "#hoja-despedida-right",
+                            {
+                                opacity: 0.8,
+                                x: 0,
+                                duration: 1,
+                                ease: "power2.out",
+                            },
+                            0.5,
+                        )
+
+                        // 3️⃣ MANO después de todo
+                        .to(
+                            "#mano-pointer-despedida",
+                            {
+                                opacity: 1,
+                                scale: 1,
+                                duration: 0.5,
+                                ease: "back.out(2)",
+                            },
+                            1.5,
+                        );
+
+                    // ═══ ANIMACIÓN DE PRESIONAR BOTÓN (loop infinito) ═══
+                    gsap.to("#mano-pointer-despedida", {
+                        scale: 0.9,
+                        duration: 0.6,
+                        ease: "power1.inOut",
+                        repeat: -1,
+                        yoyo: true,
+                        delay: 2,
+                    });
+                },
+
+                onLeaveBack: () => {
+                    const tl = gsap.timeline();
+
+                    // Detener la animación de la mano
+                    gsap.killTweensOf("#mano-pointer-despedida");
+
+                    tl.to(
+                        "#despedida-content, #hoja-despedida-left, #hoja-despedida-right, #mano-pointer-despedida",
+                        {
+                            opacity: 0,
+                            duration: 0.5,
+                            ease: "power2.in",
+                        },
+                    )
+                        .to(
+                            "#despedida-content",
+                            {
+                                y: 30,
+                                duration: 0.5,
+                                ease: "power2.in",
+                            },
+                            "<",
+                        )
+                        .to(
+                            "#hoja-despedida-left",
+                            {
+                                x: -20,
+                                duration: 0.5,
+                                ease: "power2.in",
+                            },
+                            "<",
+                        )
+                        .to(
+                            "#hoja-despedida-right",
+                            {
+                                x: 20,
+                                duration: 0.5,
+                                ease: "power2.in",
+                            },
+                            "<",
+                        )
+                        .to(
+                            "#mano-pointer-despedida",
+                            {
+                                scale: 0.8,
+                                duration: 0.5,
+                                ease: "power2.in",
+                            },
+                            "<",
+                        );
+                },
+            });
+
+            console.log("💑✨ Despedida de Boda activada!");
+        };
+
+        document.addEventListener("DOMContentLoaded", initDespedidaBoda);
+        document.addEventListener("astro:page-load", initDespedidaBoda);
+    </script>
+</section>

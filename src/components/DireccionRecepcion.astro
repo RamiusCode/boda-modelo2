@@ -106,6 +106,7 @@
                     >
                         Ver ubicación</a
                     >
+                    >
                 </div>
 
                 <!-- MANO apuntando al botón -->
@@ -146,20 +147,30 @@
         gsap.set("#hoja-recepcion-left", {
             opacity: 0,
             x: -20,
+            rotation: 0,
+            scale: 1,
         });
         gsap.set("#hoja-recepcion-right", {
             opacity: 0,
             x: 20,
+            rotation: 0,
+            scaleX: -1,
+            scaleY: 1,
         });
 
         // Hojas doradas (ABAJO)
         gsap.set("#hoja-dorada-recepcion-left", {
             opacity: 0,
             x: -20,
+            rotation: 0,
+            scale: 1,
         });
         gsap.set("#hoja-dorada-recepcion-right", {
             opacity: 0,
             x: 20,
+            rotation: 0,
+            scaleX: -1,
+            scaleY: 1,
         });
 
         // Mano pointer
@@ -248,6 +259,95 @@
                         2.5,
                     );
 
+                // ═══════════════════════════════════════════════════
+                // 🍃 MOVIMIENTOS NATURALES SUAVES (después de entrada)
+                // ═══════════════════════════════════════════════════
+
+                // Flor recepcion izquierda - Movimiento suave
+                gsap.to("#hoja-recepcion-left", {
+                    y: -10,
+                    x: -5,
+                    rotation: -8,
+                    duration: 3.5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 2.5,
+                });
+
+                // Flor recepcion derecha
+                gsap.to("#hoja-recepcion-right", {
+                    y: -8,
+                    x: 5,
+                    rotation: 8,
+                    duration: 3.8,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 2.7,
+                });
+
+                // Hoja dorada izquierda - Balanceo suave
+                gsap.to("#hoja-dorada-recepcion-left", {
+                    y: -12,
+                    rotation: -10,
+                    duration: 4,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 2.8,
+                });
+
+                // Hoja dorada derecha
+                gsap.to("#hoja-dorada-recepcion-right", {
+                    y: -11,
+                    rotation: 10,
+                    duration: 4.3,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 3,
+                });
+
+                // ═══ RESPIRACIÓN SUTIL (SCALE) ═══
+                gsap.to("#hoja-dorada-recepcion-left", {
+                    scale: 0.85,
+                    duration: 4.5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 3.2,
+                });
+
+                gsap.to("#hoja-dorada-recepcion-right", {
+                    scaleX: -0.85,
+                    scaleY: 0.85,
+                    duration: 5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 3.5,
+                });
+
+                // ═══ EFECTO BRISA SUTIL ═══
+                gsap.to("#hoja-recepcion-left", {
+                    x: -8,
+                    duration: 5.5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 3.8,
+                });
+
+                gsap.to("#hoja-recepcion-right", {
+                    x: 8,
+                    duration: 6,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 4,
+                });
+
                 // ═══ ANIMACIÓN DE PRESIONAR BOTÓN (loop infinito) ═══
                 gsap.to("#mano-recepcion-pointer", {
                     scale: 0.9,
@@ -264,10 +364,14 @@
             // ═══════════════════════════════════════════════════════
 
             onLeaveBack: () => {
-                const tl = gsap.timeline();
-
-                // Detener la animación de la mano
+                // Detener TODAS las animaciones continuas
                 gsap.killTweensOf("#mano-recepcion-pointer");
+                gsap.killTweensOf("#hoja-recepcion-left");
+                gsap.killTweensOf("#hoja-recepcion-right");
+                gsap.killTweensOf("#hoja-dorada-recepcion-left");
+                gsap.killTweensOf("#hoja-dorada-recepcion-right");
+
+                const tl = gsap.timeline();
 
                 // Hacer todo invisible al mismo tiempo
                 tl.to(
@@ -295,6 +399,7 @@
                         "#hoja-recepcion-left",
                         {
                             x: -20,
+                            y: 0,
                             duration: 0.5,
                             ease: "power2.in",
                         },
@@ -304,6 +409,7 @@
                         "#hoja-recepcion-right",
                         {
                             x: 20,
+                            y: 0,
                             duration: 0.5,
                             ease: "power2.in",
                         },
@@ -315,6 +421,7 @@
                         "#hoja-dorada-recepcion-left",
                         {
                             x: -20,
+                            y: 0,
                             duration: 0.5,
                             ease: "power2.in",
                         },
@@ -324,6 +431,7 @@
                         "#hoja-dorada-recepcion-right",
                         {
                             x: 20,
+                            y: 0,
                             duration: 0.5,
                             ease: "power2.in",
                         },
@@ -339,11 +447,33 @@
                             ease: "power2.in",
                         },
                         "<",
-                    );
+                    )
+
+                    // Resetear rotaciones y scales
+                    .set("#hoja-recepcion-left", {
+                        rotation: 0,
+                        scale: 1,
+                    })
+                    .set("#hoja-recepcion-right", {
+                        rotation: 0,
+                        scaleX: -1,
+                        scaleY: 1,
+                    })
+                    .set("#hoja-dorada-recepcion-left", {
+                        rotation: 0,
+                        scale: 1,
+                    })
+                    .set("#hoja-dorada-recepcion-right", {
+                        rotation: 0,
+                        scaleX: -1,
+                        scaleY: 1,
+                    });
             },
         });
 
-        console.log("🎉✨ Recepción Social activada - Hojas en capas!");
+        console.log(
+            "🎉✨ Recepción Social activada - Movimiento natural en hojas!",
+        );
     };
 
     document.addEventListener("DOMContentLoaded", initRecepcionSocial);

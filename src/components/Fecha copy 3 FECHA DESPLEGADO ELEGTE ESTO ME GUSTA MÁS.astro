@@ -1,42 +1,20 @@
 <!-- ═══════════════════════════════════════════════════════════ --><!-- 📅 COMPONENTE FECHA - FECHA DEL EVENTO DE BODA             --><!-- ═══════════════════════════════════════════════════════════ -->
 <section class="relative w-full py-2 md:py-10 px-4">
-  <!-- ═════════════════════════════════════════════════════════════ -->
-  <!-- 🌸 HOJAS DECORATIVAS - Pegadas a los bordes de la pantalla    -->
-  <!-- ═════════════════════════════════════════════════════════════ -->
+  <!-- 🍃 HOJAS DECORATIVAS - PEGADAS A LOS BORDES DE LA PANTALLA -->
 
-  <!-- ═══ PRIMERA CAPA (ABAJO): Hojas Doradas ═══ -->
-
-  <!-- Hoja dorada izquierda -->
-  <img
-    src="/imagenes/hojadorada.png"
-    alt="hoja dorada"
-    class="absolute left-0 top-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 opacity-0 pointer-events-none z-10"
-    id="hoja-dorada-fecha-izq"
-  />
-
-  <!-- Hoja dorada derecha (volteada horizontalmente) -->
-  <img
-    src="/imagenes/hojadorada.png"
-    alt="hoja dorada"
-    class="absolute right-0 top-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 opacity-0 pointer-events-none z-10 scale-x-[-1]"
-    id="hoja-dorada-fecha-der"
-  />
-
-  <!-- ═══ SEGUNDA CAPA (ENCIMA): Flores Laterales ═══ -->
-
-  <!-- Hoja lateral izquierda -->
+  <!-- 🍃 HOJA IZQUIERDA - AL BORDE IZQUIERDO -->
   <img
     src="/imagenes/florlateral.png"
     alt="Hoja izquierda"
-    class="absolute left-0 top-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 opacity-0 pointer-events-none z-[11]"
+    class="absolute left-0 top-1/2 -translate-y-1/3 w-16 md:w-20 opacity-0 pointer-events-none z-10"
     id="hoja-fecha-izq"
   />
 
-  <!-- Hoja lateral derecha (volteada horizontalmente) -->
+  <!-- 🍃 HOJA DERECHA - AL BORDE DERECHO -->
   <img
     src="/imagenes/florlateral.png"
     alt="Hoja derecha"
-    class="absolute right-0 top-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 opacity-0 pointer-events-none z-[11] scale-x-[-1]"
+    class="absolute right-0 top-1/2 -translate-y-1/3 w-16 md:w-20 opacity-0 pointer-events-none z-10 -scale-x-100"
     id="hoja-fecha-der"
   />
 
@@ -109,7 +87,7 @@
           <div class="w-full h-px bg-[#9C7A2E] mt-2"></div>
         </div>
 
-        <!-- Número 26 - CENTRADO -->
+        <!-- Número 31 - CENTRADO -->
         <div
           class="flex items-center justify-center min-w-[80px] md:min-w-[100px]"
         >
@@ -120,7 +98,7 @@
           </span>
         </div>
 
-        <!-- SEPTIEMBRE con líneas arriba y abajo -->
+        <!-- ENERO con líneas arriba y abajo -->
         <div class="flex flex-col items-center w-24 md:w-28">
           <div class="w-full h-px bg-[#9C7A2E] mb-2"></div>
           <span
@@ -178,37 +156,8 @@
       // 🎯 ESTADO INICIAL
       gsap.set("#paloma-izq", { opacity: 0, x: -200 });
       gsap.set("#paloma-der", { opacity: 0, x: 200 });
-
-      // Flores laterales (ENCIMA)
-      gsap.set("#hoja-fecha-izq", {
-        opacity: 0,
-        x: -20,
-        rotation: 0,
-        scale: 1,
-      });
-      gsap.set("#hoja-fecha-der", {
-        opacity: 0,
-        x: 20,
-        rotation: 0,
-        scaleX: -1,
-        scaleY: 1,
-      });
-
-      // Hojas doradas (ABAJO)
-      gsap.set("#hoja-dorada-fecha-izq", {
-        opacity: 0,
-        x: -20,
-        rotation: 0,
-        scale: 1,
-      });
-      gsap.set("#hoja-dorada-fecha-der", {
-        opacity: 0,
-        x: 20,
-        rotation: 0,
-        scaleX: -1,
-        scaleY: 1,
-      });
-
+      gsap.set("#hoja-fecha-izq", { opacity: 0 });
+      gsap.set("#hoja-fecha-der", { opacity: 0 });
       gsap.set("#texto-invitacion", { opacity: 0, scale: 0.9 });
       gsap.set("#anio-evento", { opacity: 0, scale: 0.9 });
       gsap.set("#fecha-evento", { opacity: 0, scale: 0.9 });
@@ -261,150 +210,22 @@
               },
               0.8,
             )
-            // 2️⃣ FLORES LATERALES (ENCIMA) - A LOS 0.5 SEGUNDOS
             .to(
-              "#hoja-fecha-izq",
+              "#hoja-fecha-izq, #hoja-fecha-der",
               {
                 opacity: 0.8,
-                x: 0,
                 duration: 1,
                 ease: "power2.out",
               },
               1.3,
-            )
-            .to(
-              "#hoja-fecha-der",
-              {
-                opacity: 0.8,
-                x: 0,
-                duration: 1,
-                ease: "power2.out",
-              },
-              1.3,
-            )
-            // 3️⃣ HOJAS DORADAS (ABAJO) - 1 SEGUNDO DESPUÉS
-            .to(
-              "#hoja-dorada-fecha-izq",
-              {
-                opacity: 0.9,
-                x: 0,
-                duration: 1,
-                ease: "power2.out",
-              },
-              2.3,
-            )
-            .to(
-              "#hoja-dorada-fecha-der",
-              {
-                opacity: 0.9,
-                x: 0,
-                duration: 1,
-                ease: "power2.out",
-              },
-              2.3,
             );
-
-          // ═══════════════════════════════════════════════════
-          // 🍃 MOVIMIENTOS NATURALES SUAVES
-          // ═══════════════════════════════════════════════════
-
-          // Flor lateral izquierda - Movimiento suave
-          gsap.to("#hoja-fecha-izq", {
-            y: -10,
-            x: -5,
-            rotation: -8,
-            duration: 3.5,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            delay: 3.3,
-          });
-
-          // Flor lateral derecha
-          gsap.to("#hoja-fecha-der", {
-            y: -8,
-            x: 5,
-            rotation: 8,
-            duration: 3.8,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            delay: 3.5,
-          });
-
-          // Hoja dorada izquierda - Balanceo suave
-          gsap.to("#hoja-dorada-fecha-izq", {
-            y: -12,
-            rotation: -10,
-            duration: 4,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            delay: 3.8,
-          });
-
-          // Hoja dorada derecha
-          gsap.to("#hoja-dorada-fecha-der", {
-            y: -11,
-            rotation: 10,
-            duration: 4.3,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            delay: 4,
-          });
-
-          // ═══ RESPIRACIÓN MÁS SUTIL (SCALE) ═══
-          gsap.to("#hoja-dorada-fecha-izq", {
-            scale: 0.85,
-            duration: 4.5,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            delay: 4.2,
-          });
-
-          gsap.to("#hoja-dorada-fecha-der", {
-            scaleX: -0.85,
-            scaleY: 0.85,
-            duration: 5,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            delay: 4.5,
-          });
-
-          // ═══ EFECTO BRISA MÁS SUTIL ═══
-          gsap.to("#hoja-fecha-izq", {
-            x: -8,
-            duration: 5.5,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            delay: 4.8,
-          });
-
-          gsap.to("#hoja-fecha-der", {
-            x: 8,
-            duration: 6,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            delay: 5,
-          });
         },
 
         onLeaveBack: () => {
-          // Detener TODAS las animaciones continuas
-          gsap.killTweensOf("#hoja-fecha-izq");
-          gsap.killTweensOf("#hoja-fecha-der");
-          gsap.killTweensOf("#hoja-dorada-fecha-izq");
-          gsap.killTweensOf("#hoja-dorada-fecha-der");
-
           const tl = gsap.timeline();
 
           tl.to(
-            "#paloma-izq, #paloma-der, #hoja-fecha-izq, #hoja-fecha-der, #hoja-dorada-fecha-izq, #hoja-dorada-fecha-der, #texto-invitacion, #anio-evento, #fecha-evento, #hora-evento",
+            "#paloma-izq, #paloma-der, #hoja-fecha-izq, #hoja-fecha-der, #texto-invitacion, #anio-evento, #fecha-evento, #hora-evento",
             {
               opacity: 0,
               duration: 0.5,
@@ -425,68 +246,7 @@
               "#texto-invitacion, #anio-evento, #fecha-evento, #hora-evento",
               { scale: 0.9, duration: 0.5, ease: "power2.in" },
               "<",
-            )
-            // Mover flores laterales hacia afuera
-            .to(
-              "#hoja-fecha-izq",
-              {
-                x: -20,
-                y: 0,
-                duration: 0.5,
-                ease: "power2.in",
-              },
-              "<",
-            )
-            .to(
-              "#hoja-fecha-der",
-              {
-                x: 20,
-                y: 0,
-                duration: 0.5,
-                ease: "power2.in",
-              },
-              "<",
-            )
-            // Mover hojas doradas hacia afuera
-            .to(
-              "#hoja-dorada-fecha-izq",
-              {
-                x: -20,
-                y: 0,
-                duration: 0.5,
-                ease: "power2.in",
-              },
-              "<",
-            )
-            .to(
-              "#hoja-dorada-fecha-der",
-              {
-                x: 20,
-                y: 0,
-                duration: 0.5,
-                ease: "power2.in",
-              },
-              "<",
-            )
-            // Resetear rotaciones y scales
-            .set("#hoja-fecha-izq", {
-              rotation: 0,
-              scale: 1,
-            })
-            .set("#hoja-fecha-der", {
-              rotation: 0,
-              scaleX: -1,
-              scaleY: 1,
-            })
-            .set("#hoja-dorada-fecha-izq", {
-              rotation: 0,
-              scale: 1,
-            })
-            .set("#hoja-dorada-fecha-der", {
-              rotation: 0,
-              scaleX: -1,
-              scaleY: 1,
-            });
+            );
         },
       });
 

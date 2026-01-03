@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class="max-w-sm mx-auto relative z-20" id="contenedor-vestimenta">
+    <div class="max-w-sm mx-auto relative z-10" id="contenedor-vestimenta">
         <!-- MARCO PRINCIPAL CON EFECTO GLASSMORPHISM -->
         <div
             class="backdrop-blur-sm rounded-3xl border-2 border-[#0F3D2E]/25 p-8 shadow-sm relative overflow-hidden"
@@ -102,6 +102,42 @@
             </div>
         </div>
     </div>
+
+    <!-- ═════════════════════════════════════════════════════════════ -->
+    <!-- 🌸 HOJAS Y FLORES CON MOVIMIENTO NATURAL - ENCIMA DEL CARD   -->
+    <!-- ═════════════════════════════════════════════════════════════ -->
+
+    <!-- Hoja dorada izquierda (CAPA INFERIOR) -->
+    <img
+        src="/imagenes/hojadorada.png"
+        alt="hoja dorada"
+        class="absolute left-0 top-8 md:top-24 w-16 h-16 md:w-20 md:h-20 opacity-0 pointer-events-none z-20"
+        id="hoja-vestimenta-left"
+    />
+
+    <!-- Hoja dorada derecha (CAPA INFERIOR) -->
+    <img
+        src="/imagenes/hojadorada.png"
+        alt="hoja dorada"
+        class="absolute right-0 top-8 md:top-24 w-16 h-16 md:w-16 md:h-16 opacity-0 pointer-events-none z-20 scale-x-[-1]"
+        id="hoja-vestimenta-right"
+    />
+
+    <!-- Flor lateral izquierda (CAPA SUPERIOR) -->
+    <img
+        src="/imagenes/florlateral.png"
+        alt="hojas"
+        class="absolute left-0 top-12 md:top-24 w-16 h-16 md:w-20 md:h-20 opacity-0 pointer-events-none z-30"
+        id="flor-vestimenta-left"
+    />
+
+    <!-- Flor lateral derecha (CAPA SUPERIOR) -->
+    <img
+        src="/imagenes/florlateral.png"
+        alt="hojas"
+        class="absolute right-0 top-12 md:top-24 w-16 h-16 md:w-16 md:h-16 opacity-0 pointer-events-none z-30 scale-x-[-1]"
+        id="flor-vestimenta-right"
+    />
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
@@ -162,10 +198,16 @@
             transform: translateY(-8px) scale(1.05);
         }
     }
+
+    /* Filtro que convierte imágenes PNG negras al color #0F3D2E */
+    .verde-filter {
+        filter: brightness(0) saturate(100%) invert(18%) sepia(42%)
+            saturate(525%) hue-rotate(115deg) brightness(78%) contrast(105%);
+    }
 </style>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<!-- 🎬 ANIMACIONES CON GSAP - SIMPLE Y SUAVE                    -->
+<!-- 🎬 ANIMACIONES CON GSAP - CON HOJAS DECORATIVAS             -->
 <!-- ═══════════════════════════════════════════════════════════ -->
 <script>
     import { gsap } from "gsap";
@@ -179,7 +221,40 @@
         // ═══ ESTADO INICIAL ═══
         gsap.set("#contenedor-vestimenta", {
             opacity: 0,
-            y: 30,
+            y: 50,
+            scale: 0.95,
+        });
+
+        // Flores laterales - Estado inicial
+        gsap.set("#flor-vestimenta-left", {
+            opacity: 0,
+            x: -40,
+            rotation: -8,
+            scale: 0.9,
+        });
+
+        gsap.set("#flor-vestimenta-right", {
+            opacity: 0,
+            x: 40,
+            rotation: 8,
+            scaleX: -0.9,
+            scaleY: 0.9,
+        });
+
+        // Hojas doradas - Estado inicial
+        gsap.set("#hoja-vestimenta-left", {
+            opacity: 0,
+            scale: 0,
+            rotation: -6,
+            transformOrigin: "bottom center",
+        });
+
+        gsap.set("#hoja-vestimenta-right", {
+            opacity: 0,
+            scaleX: 0,
+            scaleY: 0,
+            rotation: 6,
+            transformOrigin: "bottom center",
         });
 
         gsap.set("#tarjeta-vestimenta", { opacity: 0, y: 20 });
@@ -193,17 +268,74 @@
             onEnter: () => {
                 const tl = gsap.timeline();
 
+                // Card aparece
                 tl.to(
                     "#contenedor-vestimenta",
                     {
                         opacity: 1,
                         y: 0,
-                        duration: 1.2,
-                        ease: "power2.out",
+                        scale: 1,
+                        duration: 1.6,
+                        ease: "power3.out",
                     },
                     0,
                 )
 
+                    // 🌸 FLORES LATERALES - Entrada suave
+                    .to(
+                        "#flor-vestimenta-left",
+                        {
+                            opacity: 0.75,
+                            x: 0,
+                            rotation: -3,
+                            scale: 1,
+                            duration: 2.8,
+                            ease: "sine.out",
+                        },
+                        0,
+                    )
+
+                    .to(
+                        "#flor-vestimenta-right",
+                        {
+                            opacity: 0.75,
+                            x: 0,
+                            rotation: 3,
+                            scaleX: -1,
+                            scaleY: 1,
+                            duration: 2.8,
+                            ease: "sine.out",
+                        },
+                        0.05,
+                    )
+
+                    // 🍃 HOJAS DORADAS - Crecimiento natural
+                    .to(
+                        "#hoja-vestimenta-left",
+                        {
+                            opacity: 0.7,
+                            scale: 0.9,
+                            rotation: -3,
+                            duration: 2.2,
+                            ease: "sine.out",
+                        },
+                        0.1,
+                    )
+
+                    .to(
+                        "#hoja-vestimenta-right",
+                        {
+                            opacity: 0.7,
+                            scaleX: -0.9,
+                            scaleY: 0.9,
+                            rotation: 3,
+                            duration: 2.2,
+                            ease: "sine.out",
+                        },
+                        0.15,
+                    )
+
+                    // Contenido del card
                     .to(
                         "#tarjeta-vestimenta",
                         {
@@ -212,51 +344,192 @@
                             duration: 1,
                             ease: "power2.out",
                         },
-                        0.4,
+                        0.8,
                     );
+
+                // ═══════════════════════════════════════════════════
+                // 🍃 MOVIMIENTOS MÁS NOTORIOS Y NATURALES
+                // ═══════════════════════════════════════════════════
+
+                // Flor izquierda - Movimiento más amplio
+                gsap.to("#flor-vestimenta-left", {
+                    y: -15,
+                    x: -8,
+                    rotation: -12,
+                    duration: 3,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 3,
+                });
+
+                // Flor derecha - Movimiento más amplio inverso
+                gsap.to("#flor-vestimenta-right", {
+                    y: -12,
+                    x: 8,
+                    rotation: 12,
+                    duration: 3.3,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 3.2,
+                });
+
+                // Hoja izquierda - Balanceo más pronunciado
+                gsap.to("#hoja-vestimenta-left", {
+                    y: -18,
+                    rotation: -15,
+                    duration: 3.5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 3.3,
+                });
+
+                // Hoja derecha - Balanceo más pronunciado
+                gsap.to("#hoja-vestimenta-right", {
+                    y: -16,
+                    rotation: 15,
+                    duration: 3.8,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 3.5,
+                });
+
+                // ═══ RESPIRACIÓN MÁS VISIBLE ═══
+                gsap.to("#hoja-vestimenta-left", {
+                    scale: 0.8,
+                    duration: 4,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 4,
+                });
+
+                gsap.to("#hoja-vestimenta-right", {
+                    scaleX: -0.8,
+                    scaleY: 0.8,
+                    duration: 4.5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 4.3,
+                });
+
+                // ═══ MOVIMIENTO HORIZONTAL ADICIONAL (Efecto brisa) ═══
+                gsap.to("#flor-vestimenta-left", {
+                    x: -12,
+                    duration: 5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 4.5,
+                });
+
+                gsap.to("#flor-vestimenta-right", {
+                    x: 12,
+                    duration: 5.5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 4.8,
+                });
             },
 
             onLeaveBack: () => {
+                // Resetear todas las animaciones continuas
+                gsap.killTweensOf("#flor-vestimenta-left");
+                gsap.killTweensOf("#flor-vestimenta-right");
+                gsap.killTweensOf("#hoja-vestimenta-left");
+                gsap.killTweensOf("#hoja-vestimenta-right");
+
                 const tl = gsap.timeline();
 
-                tl.to(
-                    "#tarjeta-vestimenta",
-                    {
-                        opacity: 0,
-                        y: 20,
-                        duration: 0.3,
-                        ease: "power2.in",
-                    },
-                    0,
-                )
+                tl.to("#tarjeta-vestimenta", {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.3,
+                    ease: "power2.in",
+                })
 
                     .to(
                         "#contenedor-vestimenta",
                         {
                             opacity: 0,
-                            y: 30,
-                            duration: 0.4,
+                            y: 50,
+                            scale: 0.95,
+                            duration: 0.5,
                             ease: "power2.in",
                         },
                         "<",
-                    );
+                    )
+
+                    .to(
+                        "#flor-vestimenta-left",
+                        {
+                            opacity: 0,
+                            x: -40,
+                            duration: 1,
+                            ease: "sine.in",
+                        },
+                        "<",
+                    )
+
+                    .to(
+                        "#flor-vestimenta-right",
+                        {
+                            opacity: 0,
+                            x: 40,
+                            duration: 1,
+                            ease: "sine.in",
+                        },
+                        "<",
+                    )
+
+                    .to(
+                        "#hoja-vestimenta-left, #hoja-vestimenta-right",
+                        {
+                            opacity: 0,
+                            scale: 0,
+                            duration: 0.8,
+                            ease: "sine.in",
+                        },
+                        "<",
+                    )
+
+                    .set("#flor-vestimenta-left", {
+                        rotation: -8,
+                        scale: 0.9,
+                        x: -40,
+                        y: 0,
+                    })
+                    .set("#flor-vestimenta-right", {
+                        rotation: 8,
+                        scaleX: -0.9,
+                        scaleY: 0.9,
+                        x: 40,
+                        y: 0,
+                    })
+                    .set("#hoja-vestimenta-left", {
+                        rotation: -6,
+                        scale: 0,
+                        y: 0,
+                    })
+                    .set("#hoja-vestimenta-right", {
+                        scaleX: 0,
+                        scaleY: 0,
+                        rotation: 6,
+                        y: 0,
+                    });
             },
         });
 
-        console.log("👔✨ Sección de código de vestimenta activada!");
+        console.log(
+            "👔✨ Sección de código de vestimenta con hojas vivas activada!",
+        );
     };
 
     document.addEventListener("DOMContentLoaded", initVestimenta);
     document.addEventListener("astro:page-load", initVestimenta);
 </script>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- 🎨 ESTILOS PARA CONVERTIR IMÁGENES NEGRAS A VERDE OSCURO     -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<style>
-    /* Filtro que convierte imágenes PNG negras al color #0F3D2E */
-    .verde-filter {
-        filter: brightness(0) saturate(100%) invert(18%) sepia(42%)
-            saturate(525%) hue-rotate(115deg) brightness(78%) contrast(105%);
-    }
-</style>

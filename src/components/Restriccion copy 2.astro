@@ -27,7 +27,43 @@
         </div>
     </div>
 
-    <div class="max-w-sm mx-auto relative z-10" id="contenedor-adultos">
+    <!-- LADO IZQUIERDO -->
+    <!-- Flor lateral izquierda -->
+    <img
+        src="/imagenes/florlateral.png"
+        alt=""
+        class="absolute top-15 left-0 w-20 md:w-24 opacity-0 pointer-events-none z-10 transition-all duration-700"
+        id="flor-adultos-left"
+    />
+
+    <!-- Hoja dorada izquierda -->
+    <img
+        src="/imagenes/hojadorada.png"
+        alt=""
+        class="absolute top-0 left-0 w-20 md:w-24 opacity-0 pointer-events-none z-9 transition-all duration-700"
+        id="hoja-adultos-left"
+        style="transform-origin: bottom center;"
+    />
+
+    <!-- LADO DERECHO -->
+    <!-- Flor lateral derecha -->
+    <img
+        src="/imagenes/florlateral.png"
+        alt=""
+        class="absolute top-15 right-0 w-20 md:w-24 opacity-0 pointer-events-none z-10 scale-x-[-1] transition-all duration-700"
+        id="flor-adultos-right"
+    />
+
+    <!-- Hoja dorada derecha -->
+    <img
+        src="/imagenes/hojadorada.png"
+        alt=""
+        class="absolute top-0 right-0 w-20 md:w-24 opacity-0 pointer-events-none z-9 scale-x-[-1] transition-all duration-700"
+        id="hoja-adultos-right"
+        style="transform-origin: bottom center;"
+    />
+
+    <div class="max-w-sm mx-auto relative z-20" id="contenedor-adultos">
         <!-- MARCO PRINCIPAL CON EFECTO GLASSMORPHISM -->
         <div
             class="backdrop-blur-sm rounded-3xl border-2 border-[#0F3D2E]/25 p-8 shadow-sm relative overflow-hidden"
@@ -43,6 +79,7 @@
                 style="animation-delay: 1s;"
             >
             </div>
+
             <!-- CONTENIDO -->
             <div class="text-center relative" id="tarjeta-adultos">
                 <!-- Icono de copas -->
@@ -52,6 +89,7 @@
                             class="absolute inset-0 bg-gradient-to-br from-[#9C7A2E]/20 to-[#9C7A2E]/5 rounded-full blur-xl animate-pulse-slow"
                         >
                         </div>
+
                         <img
                             src="/iconos/restriccion.png"
                             alt="Icono de copas"
@@ -60,16 +98,19 @@
                         />
                     </div>
                 </div>
+
                 <!-- Título principal -->
                 <h3
                     class="text-[#9C7A2E] tracking-[0.3em] uppercase text-xl md:text-2xl mb-2 relative inline-block"
                 >
                     Solo Adultos
                 </h3>
+
                 <!-- Punto decorativo -->
                 <div class="flex justify-center mb-6">
                     <div class="w-1.5 h-1.5 rounded-full bg-[#0F3D2E]/40"></div>
                 </div>
+
                 <!-- Texto descriptivo -->
                 <p
                     class="font-charm text-[#0F3D2E] text-lg md:text-xl leading-relaxed"
@@ -80,42 +121,6 @@
             </div>
         </div>
     </div>
-
-    <!-- ═════════════════════════════════════════════════════════════ -->
-    <!-- 🌸 HOJAS Y FLORES CON MOVIMIENTO NATURAL - ENCIMA DEL CARD   -->
-    <!-- ═════════════════════════════════════════════════════════════ -->
-
-    <!-- Hoja dorada izquierda (CAPA INFERIOR) -->
-    <img
-        src="/imagenes/hojadorada.png"
-        alt="hoja dorada"
-        class="absolute left-0 top-16 md:top-24 w-16 h-16 md:w-20 md:h-20 opacity-0 pointer-events-none z-20"
-        id="hoja-adultos-left"
-    />
-
-    <!-- Hoja dorada derecha (CAPA INFERIOR) -->
-    <img
-        src="/imagenes/hojadorada.png"
-        alt="hoja dorada"
-        class="absolute right-0 top-16 md:top-24 w-16 h-16 md:w-16 md:h-16 opacity-0 pointer-events-none z-20 scale-x-[-1]"
-        id="hoja-adultos-right"
-    />
-
-    <!-- Flor lateral izquierda (CAPA SUPERIOR) -->
-    <img
-        src="/imagenes/florlateral.png"
-        alt="hojas"
-        class="absolute left-0 top-20 md:top-24 w-16 h-16 md:w-20 md:h-20 opacity-0 pointer-events-none z-30"
-        id="flor-adultos-left"
-    />
-
-    <!-- Flor lateral derecha (CAPA SUPERIOR) -->
-    <img
-        src="/imagenes/florlateral.png"
-        alt="hojas"
-        class="absolute right-0 top-20 md:top-24 w-16 h-16 md:w-16 md:h-16 opacity-0 pointer-events-none z-30 scale-x-[-1]"
-        id="flor-adultos-right"
-    />
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
@@ -132,6 +137,7 @@
         animation: flotar 6s ease-in-out infinite;
         opacity: 0.4;
     }
+
     @keyframes flotar {
         0%,
         100% {
@@ -143,6 +149,7 @@
             opacity: 0.6;
         }
     }
+
     /* Animación de pulso lento */
     @keyframes pulse-slow {
         0%,
@@ -155,13 +162,16 @@
             transform: scale(1.05);
         }
     }
+
     .animate-pulse-slow {
         animation: pulse-slow 4s ease-in-out infinite;
     }
+
     /* Animación suave del icono */
     .adultos-icon-container:hover svg {
         animation: bounce-gentle 0.6s ease;
     }
+
     @keyframes bounce-gentle {
         0%,
         100% {
@@ -171,19 +181,15 @@
             transform: translateY(-8px) scale(1.05);
         }
     }
-    /* Filtro que convierte imágenes PNG negras al color #0F3D2E */
-    .verde-filter {
-        filter: brightness(0) saturate(100%) invert(18%) sepia(42%)
-            saturate(525%) hue-rotate(115deg) brightness(78%) contrast(105%);
-    }
 </style>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<!-- 🎬 ANIMACIONES CON GSAP - CON HOJAS DECORATIVAS             -->
+<!-- 🎬 ANIMACIONES CON GSAP                                     -->
 <!-- ═══════════════════════════════════════════════════════════ -->
 <script>
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
+
     gsap.registerPlugin(ScrollTrigger);
 
     const initAdultos = () => {
@@ -196,7 +202,7 @@
             scale: 0.95,
         });
 
-        // Flores laterales - Estado inicial
+        // Flores laterales - VIENEN DESDE AFUERA MÁS SUAVE
         gsap.set("#flor-adultos-left", {
             opacity: 0,
             x: -40,
@@ -212,7 +218,7 @@
             scaleY: 0.9,
         });
 
-        // Hojas doradas - Estado inicial
+        // Hojas doradas - CRECIMIENTO NATURAL DESDE ABAJO
         gsap.set("#hoja-adultos-left", {
             opacity: 0,
             scale: 0,
@@ -239,7 +245,7 @@
             onEnter: () => {
                 const tl = gsap.timeline();
 
-                // Card aparece
+                // Card y flores aparecen juntos
                 tl.to(
                     "#contenedor-adultos",
                     {
@@ -252,7 +258,7 @@
                     0,
                 )
 
-                    // 🌸 FLORES LATERALES - Entrada suave
+                    // 🌸 FLORES LATERALES - MÁS SUAVES
                     .to(
                         "#flor-adultos-left",
                         {
@@ -280,7 +286,7 @@
                         0.05,
                     )
 
-                    // 🍃 HOJAS DORADAS - Crecimiento natural
+                    // 🍃 HOJAS DORADAS APARECEN AL MISMO TIEMPO QUE EL CARD
                     .to(
                         "#hoja-adultos-left",
                         {
@@ -306,7 +312,7 @@
                         0.15,
                     )
 
-                    // Contenido del card
+                    // Tarjeta de contenido
                     .to(
                         "#tarjeta-adultos",
                         {
@@ -318,93 +324,49 @@
                         0.8,
                     );
 
-                // ═══════════════════════════════════════════════════
-                // 🍃 MOVIMIENTOS MÁS NOTORIOS Y NATURALES
-                // ═══════════════════════════════════════════════════
-
-                // Flor izquierda - Movimiento más amplio
+                // Animación continua de las flores - FLOTACIÓN DELICADA
                 gsap.to("#flor-adultos-left", {
-                    y: -15,
-                    x: -8,
-                    rotation: -12,
-                    duration: 3,
+                    y: -4,
+                    rotation: -4,
+                    duration: 5.5,
                     repeat: -1,
                     yoyo: true,
                     ease: "sine.inOut",
                     delay: 3,
                 });
 
-                // Flor derecha - Movimiento más amplio inverso
                 gsap.to("#flor-adultos-right", {
-                    y: -12,
-                    x: 8,
-                    rotation: 12,
-                    duration: 3.3,
+                    y: -4,
+                    rotation: 4,
+                    duration: 5.5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: 3.1,
+                });
+
+                // Animación continua de las hojas doradas
+                gsap.to("#hoja-adultos-left", {
+                    y: -5,
+                    rotation: -5,
+                    scale: 0.92,
+                    duration: 5,
                     repeat: -1,
                     yoyo: true,
                     ease: "sine.inOut",
                     delay: 3.2,
                 });
 
-                // Hoja izquierda - Balanceo más pronunciado
-                gsap.to("#hoja-adultos-left", {
-                    y: -18,
-                    rotation: -15,
-                    duration: 3.5,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 3.3,
-                });
-
-                // Hoja derecha - Balanceo más pronunciado
                 gsap.to("#hoja-adultos-right", {
-                    y: -16,
-                    rotation: 15,
-                    duration: 3.8,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 3.5,
-                });
-
-                // ═══ RESPIRACIÓN MÁS VISIBLE ═══
-                gsap.to("#hoja-adultos-left", {
-                    scale: 0.8,
-                    duration: 4,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 4,
-                });
-
-                gsap.to("#hoja-adultos-right", {
-                    scaleX: -0.8,
-                    scaleY: 0.8,
-                    duration: 4.5,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 4.3,
-                });
-
-                // ═══ MOVIMIENTO HORIZONTAL ADICIONAL (Efecto brisa) ═══
-                gsap.to("#flor-adultos-left", {
-                    x: -12,
+                    y: -5,
+                    rotation: 5,
+                    scaleX: -0.92,
+                    scaleY: 0.92,
                     duration: 5,
                     repeat: -1,
                     yoyo: true,
                     ease: "sine.inOut",
-                    delay: 4.5,
-                });
-
-                gsap.to("#flor-adultos-right", {
-                    x: 12,
-                    duration: 5.5,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 4.8,
+                    delay: 3.3,
                 });
             },
 
@@ -417,12 +379,16 @@
 
                 const tl = gsap.timeline();
 
-                tl.to("#tarjeta-adultos", {
-                    opacity: 0,
-                    y: 20,
-                    duration: 0.3,
-                    ease: "power2.in",
-                })
+                tl.to(
+                    "#tarjeta-adultos",
+                    {
+                        opacity: 0,
+                        y: 20,
+                        duration: 0.3,
+                        ease: "power2.in",
+                    },
+                    0,
+                )
 
                     .to(
                         "#contenedor-adultos",
@@ -436,6 +402,7 @@
                         "<",
                     )
 
+                    // Las flores se van hacia afuera suavemente
                     .to(
                         "#flor-adultos-left",
                         {
@@ -458,6 +425,7 @@
                         "<",
                     )
 
+                    // Las hojas se encogen
                     .to(
                         "#hoja-adultos-left, #hoja-adultos-right",
                         {
@@ -469,34 +437,34 @@
                         "<",
                     )
 
+                    // Resetear estado inicial flores
                     .set("#flor-adultos-left", {
                         rotation: -8,
                         scale: 0.9,
-                        x: -40,
-                        y: 0,
                     })
+
                     .set("#flor-adultos-right", {
                         rotation: 8,
                         scaleX: -0.9,
                         scaleY: 0.9,
-                        x: 40,
-                        y: 0,
                     })
+
+                    // Resetear estado inicial hojas
                     .set("#hoja-adultos-left", {
                         rotation: -6,
-                        scale: 0,
-                        y: 0,
+                        transformOrigin: "bottom center",
                     })
+
                     .set("#hoja-adultos-right", {
                         scaleX: 0,
                         scaleY: 0,
                         rotation: 6,
-                        y: 0,
+                        transformOrigin: "bottom center",
                     });
             },
         });
 
-        console.log("🍾✨ Sección Solo Adultos con hojas vivas activada!");
+        console.log("🍾✨ Sección Solo Adultos activada!");
     };
 
     document.addEventListener("DOMContentLoaded", initAdultos);
@@ -504,10 +472,10 @@
 </script>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<!-- 🎨 ESTILOS PARA CONVERTIR IMÁGENES NEGRAS A DORADO          -->
+<!-- 🎨 ESTILOS PARA CONVERTIR IMÁGENES NEGRAS A VERDE OSCURO     -->
 <!-- ═══════════════════════════════════════════════════════════ -->
 <style>
-    /* Filtro que convierte imágenes PNG negras al color dorado #9C7A2E */
+    /* Filtro que convierte imágenes PNG negras al color #0F3D2E */
     .verde-filter {
         filter: brightness(0) saturate(100%) invert(18%) sepia(42%)
             saturate(525%) hue-rotate(115deg) brightness(78%) contrast(105%);

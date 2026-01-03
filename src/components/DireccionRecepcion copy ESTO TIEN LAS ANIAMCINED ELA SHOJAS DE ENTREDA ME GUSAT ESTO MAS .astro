@@ -1,5 +1,5 @@
 ---
-// CeremoniaReligiosa.astro
+// RecepcionSocial.astro
 ---
 
 <section class="relative w-full py-8 px-6">
@@ -14,7 +14,7 @@
         src="/imagenes/hojadorada.png"
         alt="hoja dorada"
         class="absolute left-0 top-20 md:top-24 w-16 h-16 md:w-20 md:h-20 opacity-0 pointer-events-none z-10"
-        id="hoja-dorada-left"
+        id="hoja-dorada-recepcion-left"
     />
 
     <!-- Hoja dorada derecha (volteada horizontalmente) -->
@@ -22,7 +22,7 @@
         src="/imagenes/hojadorada.png"
         alt="hoja dorada"
         class="absolute right-0 top-20 md:top-24 w-16 h-16 md:w-16 md:h-16 opacity-0 pointer-events-none z-10 scale-x-[-1]"
-        id="hoja-dorada-right"
+        id="hoja-dorada-recepcion-right"
     />
 
     <!-- ═══ SEGUNDA CAPA (ENCIMA): Flores Laterales ═══ -->
@@ -32,7 +32,7 @@
         src="/imagenes/florlateral.png"
         alt="hojas"
         class="absolute left-0 top-24 md:top-24 w-16 h-16 md:w-20 md:h-20 opacity-0 pointer-events-none z-[11]"
-        id="hoja-ceremonia-left"
+        id="hoja-recepcion-left"
     />
 
     <!-- Hoja lateral derecha (volteada horizontalmente) -->
@@ -40,44 +40,44 @@
         src="/imagenes/florlateral.png"
         alt="hojas"
         class="absolute right-0 top-24 md:top-24 w-16 h-16 md:w-16 md:h-16 opacity-0 pointer-events-none z-[11] scale-x-[-1]"
-        id="hoja-ceremonia-right"
+        id="hoja-recepcion-right"
     />
 
     <!-- ═════════════════════════════════════════════════════════════ -->
     <!-- 📦 CONTENEDOR PRINCIPAL                                        -->
     <!-- ═════════════════════════════════════════════════════════════ -->
-    <div class="max-w-md mx-auto" id="wrapper-ceremonia">
-        <!-- CEREMONIA RELIGIOSA -->
-        <div class="text-center opacity-0" id="ceremonia-content">
+    <div class="max-w-md mx-auto" id="wrapper-recepcion">
+        <!-- RECEPCIÓN SOCIAL -->
+        <div class="text-center opacity-0" id="recepcion-content">
             <!-- Título -->
             <h3
                 class="text-[#9C7A2E] tracking-[0.2em] uppercase text-xl md:text-2xl lg:text-2xl xl:text-3xl font-semibold mb-6"
             >
-                Ceremonia Religiosa
+                Recepción Social
             </h3>
 
-            <!-- Icono Iglesia -->
+            <!-- Icono Salón/Arco -->
             <div class="flex justify-center mb-6">
                 <img
-                    src="/iconos/iglesia.png"
-                    alt="Icono Iglesia"
+                    src="/iconos/recepcion.png"
+                    alt="Icono Recepción"
                     class="w-16 h-16 md:w-20 md:h-20 object-contain dorado-filter"
-                    id="icono-iglesia"
+                    id="icono-recepcion"
                 />
             </div>
 
-            <!-- Nombre de la Iglesia -->
+            <!-- Nombre del Salón -->
             <p
                 class="font-charm text-[#0F3D2E] text-2xl md:text-3xl lg:text-3xl xl:text-4xl mb-3"
             >
-                Parroquia Santa Rosa de Lima
+                Salón de Eventos Imperia
             </p>
 
             <!-- Dirección -->
             <p
                 class="text-[#0F3D2E]/70 text-base md:text-xl lg:text-2xl xl:text-3xl mb-6"
             >
-                Av. Principal #123, Centro Histórico
+                Av. Arce #2850, Zona San Jorge, La Paz
             </p>
 
             <!-- Hora y Botón -->
@@ -89,7 +89,7 @@
                     <p
                         class="text-sm md:text-base lg:text-lg xl:text-xl text-[#0F3D2E] font-semibold"
                     >
-                        17:00 HRS.
+                        19:00 HRS.
                     </p>
                 </div>
 
@@ -102,20 +102,20 @@
                     text-white px-6 py-2.5 rounded text-sm md:text-base
                     lg:text-lg xl:text-xl font-semibold transition-all
                     duration-300 shadow-md hover:shadow-lg block"
-                        id="boton-ubicacion"
+                        id="boton-recepcion"
                     >
                         Ver ubicación</a
                     >
                 </div>
-            </div>
 
-            <!-- MANO apuntando al botón -->
-            <img
-                src="/imagenes/mano.png"
-                alt="Presionar aquí"
-                class="absolute -bottom-4 -right-4 w-8 h-8 object-contain opacity-0 pointer-events-none z-20"
-                id="mano-pointer"
-            />
+                <!-- MANO apuntando al botón -->
+                <img
+                    src="/imagenes/mano.png"
+                    alt="Presionar aquí"
+                    class="absolute -bottom-4 -right-4 w-8 h-8 object-contain opacity-0 pointer-events-none z-20"
+                    id="mano-recepcion-pointer"
+                />
+            </div>
         </div>
     </div>
 </section>
@@ -129,51 +129,41 @@
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const initCeremoniaReligiosa = () => {
-        console.log("⛪ Iniciando componente Ceremonia Religiosa...");
+    const initRecepcionSocial = () => {
+        console.log("🎉 Iniciando componente Recepción Social...");
 
         // ═══════════════════════════════════════════════════════
         // ⚙️ ESTADO INICIAL
         // ═══════════════════════════════════════════════════════
 
         // Contenido principal
-        gsap.set("#ceremonia-content", {
+        gsap.set("#recepcion-content", {
             opacity: 0,
             y: 30,
         });
 
         // Flores laterales (ENCIMA)
-        gsap.set("#hoja-ceremonia-left", {
+        gsap.set("#hoja-recepcion-left", {
             opacity: 0,
             x: -20,
-            rotation: 0,
-            scale: 1,
         });
-        gsap.set("#hoja-ceremonia-right", {
+        gsap.set("#hoja-recepcion-right", {
             opacity: 0,
             x: 20,
-            rotation: 0,
-            scaleX: -1,
-            scaleY: 1,
         });
 
         // Hojas doradas (ABAJO)
-        gsap.set("#hoja-dorada-left", {
+        gsap.set("#hoja-dorada-recepcion-left", {
             opacity: 0,
             x: -20,
-            rotation: 0,
-            scale: 1,
         });
-        gsap.set("#hoja-dorada-right", {
+        gsap.set("#hoja-dorada-recepcion-right", {
             opacity: 0,
             x: 20,
-            rotation: 0,
-            scaleX: -1,
-            scaleY: 1,
         });
 
         // Mano pointer
-        gsap.set("#mano-pointer", {
+        gsap.set("#mano-recepcion-pointer", {
             opacity: 0,
             scale: 0.8,
         });
@@ -183,7 +173,7 @@
         // ═══════════════════════════════════════════════════════
 
         ScrollTrigger.create({
-            trigger: "#wrapper-ceremonia",
+            trigger: "#wrapper-recepcion",
             start: "top 80%",
             end: "top 20%",
 
@@ -192,7 +182,7 @@
 
                 // 1️⃣ CONTENIDO PRINCIPAL - INMEDIATO (0s)
                 tl.to(
-                    "#ceremonia-content",
+                    "#recepcion-content",
                     {
                         opacity: 1,
                         y: 0,
@@ -204,7 +194,7 @@
 
                     // 2️⃣ FLORES LATERALES (ENCIMA) - A LOS 0.5 SEGUNDOS
                     .to(
-                        "#hoja-ceremonia-left",
+                        "#hoja-recepcion-left",
                         {
                             opacity: 0.8,
                             x: 0,
@@ -214,7 +204,7 @@
                         0.5,
                     )
                     .to(
-                        "#hoja-ceremonia-right",
+                        "#hoja-recepcion-right",
                         {
                             opacity: 0.8,
                             x: 0,
@@ -226,7 +216,7 @@
 
                     // 3️⃣ HOJAS DORADAS (ABAJO) - 1 SEGUNDO DESPUÉS (a los 1.5s)
                     .to(
-                        "#hoja-dorada-left",
+                        "#hoja-dorada-recepcion-left",
                         {
                             opacity: 0.9,
                             x: 0,
@@ -236,7 +226,7 @@
                         1.5,
                     )
                     .to(
-                        "#hoja-dorada-right",
+                        "#hoja-dorada-recepcion-right",
                         {
                             opacity: 0.9,
                             x: 0,
@@ -248,7 +238,7 @@
 
                     // 4️⃣ MANO - DESPUÉS DE TODO (a los 2.5s)
                     .to(
-                        "#mano-pointer",
+                        "#mano-recepcion-pointer",
                         {
                             opacity: 1,
                             scale: 1,
@@ -258,97 +248,8 @@
                         2.5,
                     );
 
-                // ═══════════════════════════════════════════════════
-                // 🍃 MOVIMIENTOS NATURALES SUAVES (30% menos intensidad)
-                // ═══════════════════════════════════════════════════
-
-                // Flor ceremonia izquierda - Movimiento suave
-                gsap.to("#hoja-ceremonia-left", {
-                    y: -10, // era -15
-                    x: -5, // era -8
-                    rotation: -8, // era -12
-                    duration: 3.5, // más lento
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 2.5,
-                });
-
-                // Flor ceremonia derecha
-                gsap.to("#hoja-ceremonia-right", {
-                    y: -8, // era -12
-                    x: 5, // era 8
-                    rotation: 8, // era 12
-                    duration: 3.8, // más lento
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 2.7,
-                });
-
-                // Hoja dorada izquierda - Balanceo suave
-                gsap.to("#hoja-dorada-left", {
-                    y: -12, // era -18
-                    rotation: -10, // era -15
-                    duration: 4, // más lento
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 2.8,
-                });
-
-                // Hoja dorada derecha
-                gsap.to("#hoja-dorada-right", {
-                    y: -11, // era -16
-                    rotation: 10, // era 15
-                    duration: 4.3, // más lento
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 3,
-                });
-
-                // ═══ RESPIRACIÓN MÁS SUTIL (SCALE) ═══
-                gsap.to("#hoja-dorada-left", {
-                    scale: 0.85, // era 0.8
-                    duration: 4.5, // más lento
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 3.2,
-                });
-
-                gsap.to("#hoja-dorada-right", {
-                    scaleX: -0.85, // era -0.8
-                    scaleY: 0.85, // era 0.8
-                    duration: 5, // más lento
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 3.5,
-                });
-
-                // ═══ EFECTO BRISA MÁS SUTIL ═══
-                gsap.to("#hoja-ceremonia-left", {
-                    x: -8, // era -12
-                    duration: 5.5, // más lento
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 3.8,
-                });
-
-                gsap.to("#hoja-ceremonia-right", {
-                    x: 8, // era 12
-                    duration: 6, // más lento
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 4,
-                });
-
                 // ═══ ANIMACIÓN DE PRESIONAR BOTÓN (loop infinito) ═══
-                gsap.to("#mano-pointer", {
+                gsap.to("#mano-recepcion-pointer", {
                     scale: 0.9,
                     duration: 0.6,
                     ease: "power1.inOut",
@@ -363,18 +264,14 @@
             // ═══════════════════════════════════════════════════════
 
             onLeaveBack: () => {
-                // Detener TODAS las animaciones continuas
-                gsap.killTweensOf("#mano-pointer");
-                gsap.killTweensOf("#hoja-ceremonia-left");
-                gsap.killTweensOf("#hoja-ceremonia-right");
-                gsap.killTweensOf("#hoja-dorada-left");
-                gsap.killTweensOf("#hoja-dorada-right");
-
                 const tl = gsap.timeline();
+
+                // Detener la animación de la mano
+                gsap.killTweensOf("#mano-recepcion-pointer");
 
                 // Hacer todo invisible al mismo tiempo
                 tl.to(
-                    "#ceremonia-content, #hoja-ceremonia-left, #hoja-ceremonia-right, #hoja-dorada-left, #hoja-dorada-right, #mano-pointer",
+                    "#recepcion-content, #hoja-recepcion-left, #hoja-recepcion-right, #hoja-dorada-recepcion-left, #hoja-dorada-recepcion-right, #mano-recepcion-pointer",
                     {
                         opacity: 0,
                         duration: 0.5,
@@ -384,7 +281,7 @@
 
                     // Mover el contenido hacia abajo
                     .to(
-                        "#ceremonia-content",
+                        "#recepcion-content",
                         {
                             y: 30,
                             duration: 0.5,
@@ -395,20 +292,18 @@
 
                     // Mover flores laterales hacia afuera
                     .to(
-                        "#hoja-ceremonia-left",
+                        "#hoja-recepcion-left",
                         {
                             x: -20,
-                            y: 0,
                             duration: 0.5,
                             ease: "power2.in",
                         },
                         "<",
                     )
                     .to(
-                        "#hoja-ceremonia-right",
+                        "#hoja-recepcion-right",
                         {
                             x: 20,
-                            y: 0,
                             duration: 0.5,
                             ease: "power2.in",
                         },
@@ -417,20 +312,18 @@
 
                     // Mover hojas doradas hacia afuera
                     .to(
-                        "#hoja-dorada-left",
+                        "#hoja-dorada-recepcion-left",
                         {
                             x: -20,
-                            y: 0,
                             duration: 0.5,
                             ease: "power2.in",
                         },
                         "<",
                     )
                     .to(
-                        "#hoja-dorada-right",
+                        "#hoja-dorada-recepcion-right",
                         {
                             x: 20,
-                            y: 0,
                             duration: 0.5,
                             ease: "power2.in",
                         },
@@ -439,42 +332,22 @@
 
                     // Escalar la mano
                     .to(
-                        "#mano-pointer",
+                        "#mano-recepcion-pointer",
                         {
                             scale: 0.8,
                             duration: 0.5,
                             ease: "power2.in",
                         },
                         "<",
-                    )
-
-                    // Resetear rotaciones y scales
-                    .set("#hoja-ceremonia-left", {
-                        rotation: 0,
-                        scale: 1,
-                    })
-                    .set("#hoja-ceremonia-right", {
-                        rotation: 0,
-                        scaleX: -1,
-                        scaleY: 1,
-                    })
-                    .set("#hoja-dorada-left", {
-                        rotation: 0,
-                        scale: 1,
-                    })
-                    .set("#hoja-dorada-right", {
-                        rotation: 0,
-                        scaleX: -1,
-                        scaleY: 1,
-                    });
+                    );
             },
         });
 
-        console.log("⛪✨ Ceremonia Religiosa activada - Movimiento suave!");
+        console.log("🎉✨ Recepción Social activada - Hojas en capas!");
     };
 
-    document.addEventListener("DOMContentLoaded", initCeremoniaReligiosa);
-    document.addEventListener("astro:page-load", initCeremoniaReligiosa);
+    document.addEventListener("DOMContentLoaded", initRecepcionSocial);
+    document.addEventListener("astro:page-load", initRecepcionSocial);
 </script>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
