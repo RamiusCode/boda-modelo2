@@ -94,18 +94,19 @@
                 </div>
 
                 <!-- Botón Ubicación con MANO -->
+                <!-- Botón Ubicación con MANO -->
                 <div class="relative">
                     <a
                         href="https://maps.app.goo.gl/UZ8VbLJUVFuGKBdK8"
                         target="_blank"
                         class="bg-[#4E5F49] hover:bg-[#3d4a39]
-                    text-white px-6 py-2.5 rounded text-sm md:text-base
-                    lg:text-lg xl:text-xl font-semibold transition-all
-                    duration-300 shadow-md hover:shadow-lg block"
+                        text-white px-6 py-2.5 rounded text-sm md:text-base
+                        lg:text-lg xl:text-xl font-semibold transition-all
+                        duration-300 shadow-md hover:shadow-lg block"
                         id="boton-recepcion"
                     >
-                        Ver ubicación</a
-                    >
+                        Ver ubicación
+                    </a>
                 </div>
 
                 <!-- MANO apuntando al botón -->
@@ -118,374 +119,374 @@
             </div>
         </div>
     </div>
-</section>
 
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- 🎬 ANIMACIONES CON GSAP                                     -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<script>
-    import { gsap } from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 🎬 ANIMACIONES CON GSAP                                     -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <script>
+        import { gsap } from "gsap";
+        import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-    gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollTrigger);
 
-    const initRecepcionSocial = () => {
-        console.log("🎉 Iniciando componente Recepción Social...");
-
-        // ═══════════════════════════════════════════════════════
-        // ⚙️ ESTADO INICIAL
-        // ═══════════════════════════════════════════════════════
-
-        // Contenido principal
-        gsap.set("#recepcion-content", {
-            opacity: 0,
-            y: 30,
-        });
-
-        // Flores laterales (ENCIMA)
-        gsap.set("#hoja-recepcion-left", {
-            opacity: 0,
-            x: -20,
-            rotation: 0,
-            scale: 1,
-        });
-        gsap.set("#hoja-recepcion-right", {
-            opacity: 0,
-            x: 20,
-            rotation: 0,
-            scaleX: -1,
-            scaleY: 1,
-        });
-
-        // Hojas doradas (ABAJO)
-        gsap.set("#hoja-dorada-recepcion-left", {
-            opacity: 0,
-            x: -20,
-            rotation: 0,
-            scale: 1,
-        });
-        gsap.set("#hoja-dorada-recepcion-right", {
-            opacity: 0,
-            x: 20,
-            rotation: 0,
-            scaleX: -1,
-            scaleY: 1,
-        });
-
-        // Mano pointer
-        gsap.set("#mano-recepcion-pointer", {
-            opacity: 0,
-            scale: 0.8,
-        });
-
-        // ═══════════════════════════════════════════════════════
-        // 🎭 ANIMACIÓN AL ENTRAR
-        // ═══════════════════════════════════════════════════════
-
-        ScrollTrigger.create({
-            trigger: "#wrapper-recepcion",
-            start: "top 80%",
-            end: "top 20%",
-
-            onEnter: () => {
-                const tl = gsap.timeline();
-
-                // 1️⃣ CONTENIDO PRINCIPAL - INMEDIATO (0s)
-                tl.to(
-                    "#recepcion-content",
-                    {
-                        opacity: 1,
-                        y: 0,
-                        duration: 1.2,
-                        ease: "power3.out",
-                    },
-                    0,
-                )
-
-                    // 2️⃣ FLORES LATERALES (ENCIMA) - A LOS 0.5 SEGUNDOS
-                    .to(
-                        "#hoja-recepcion-left",
-                        {
-                            opacity: 0.8,
-                            x: 0,
-                            duration: 1,
-                            ease: "power2.out",
-                        },
-                        0.5,
-                    )
-                    .to(
-                        "#hoja-recepcion-right",
-                        {
-                            opacity: 0.8,
-                            x: 0,
-                            duration: 1,
-                            ease: "power2.out",
-                        },
-                        0.5,
-                    )
-
-                    // 3️⃣ HOJAS DORADAS (ABAJO) - 1 SEGUNDO DESPUÉS (a los 1.5s)
-                    .to(
-                        "#hoja-dorada-recepcion-left",
-                        {
-                            opacity: 0.9,
-                            x: 0,
-                            duration: 1,
-                            ease: "power2.out",
-                        },
-                        1.5,
-                    )
-                    .to(
-                        "#hoja-dorada-recepcion-right",
-                        {
-                            opacity: 0.9,
-                            x: 0,
-                            duration: 1,
-                            ease: "power2.out",
-                        },
-                        1.5,
-                    )
-
-                    // 4️⃣ MANO - DESPUÉS DE TODO (a los 2.5s)
-                    .to(
-                        "#mano-recepcion-pointer",
-                        {
-                            opacity: 1,
-                            scale: 1,
-                            duration: 0.5,
-                            ease: "back.out(2)",
-                        },
-                        2.5,
-                    );
-
-                // ═══════════════════════════════════════════════════
-                // 🍃 MOVIMIENTOS NATURALES SUAVES (después de entrada)
-                // ═══════════════════════════════════════════════════
-
-                // Flor recepcion izquierda - Movimiento suave
-                gsap.to("#hoja-recepcion-left", {
-                    y: -10,
-                    x: -5,
-                    rotation: -8,
-                    duration: 3.5,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 2.5,
-                });
-
-                // Flor recepcion derecha
-                gsap.to("#hoja-recepcion-right", {
-                    y: -8,
-                    x: 5,
-                    rotation: 8,
-                    duration: 3.8,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 2.7,
-                });
-
-                // Hoja dorada izquierda - Balanceo suave
-                gsap.to("#hoja-dorada-recepcion-left", {
-                    y: -12,
-                    rotation: -10,
-                    duration: 4,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 2.8,
-                });
-
-                // Hoja dorada derecha
-                gsap.to("#hoja-dorada-recepcion-right", {
-                    y: -11,
-                    rotation: 10,
-                    duration: 4.3,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 3,
-                });
-
-                // ═══ RESPIRACIÓN SUTIL (SCALE) ═══
-                gsap.to("#hoja-dorada-recepcion-left", {
-                    scale: 0.85,
-                    duration: 4.5,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 3.2,
-                });
-
-                gsap.to("#hoja-dorada-recepcion-right", {
-                    scaleX: -0.85,
-                    scaleY: 0.85,
-                    duration: 5,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 3.5,
-                });
-
-                // ═══ EFECTO BRISA SUTIL ═══
-                gsap.to("#hoja-recepcion-left", {
-                    x: -8,
-                    duration: 5.5,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 3.8,
-                });
-
-                gsap.to("#hoja-recepcion-right", {
-                    x: 8,
-                    duration: 6,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: 4,
-                });
-
-                // ═══ ANIMACIÓN DE PRESIONAR BOTÓN (loop infinito) ═══
-                gsap.to("#mano-recepcion-pointer", {
-                    scale: 0.9,
-                    duration: 0.6,
-                    ease: "power1.inOut",
-                    repeat: -1,
-                    yoyo: true,
-                    delay: 3,
-                });
-            },
+        const initRecepcionSocial = () => {
+            console.log("🎉 Iniciando componente Recepción Social...");
 
             // ═══════════════════════════════════════════════════════
-            // 🔙 ANIMACIÓN AL SALIR (scroll hacia arriba)
+            // ⚙️ ESTADO INICIAL
             // ═══════════════════════════════════════════════════════
 
-            onLeaveBack: () => {
-                // Detener TODAS las animaciones continuas
-                gsap.killTweensOf("#mano-recepcion-pointer");
-                gsap.killTweensOf("#hoja-recepcion-left");
-                gsap.killTweensOf("#hoja-recepcion-right");
-                gsap.killTweensOf("#hoja-dorada-recepcion-left");
-                gsap.killTweensOf("#hoja-dorada-recepcion-right");
+            // Contenido principal
+            gsap.set("#recepcion-content", {
+                opacity: 0,
+                y: 30,
+            });
 
-                const tl = gsap.timeline();
+            // Flores laterales (ENCIMA)
+            gsap.set("#hoja-recepcion-left", {
+                opacity: 0,
+                x: -20,
+                rotation: 0,
+                scale: 1,
+            });
+            gsap.set("#hoja-recepcion-right", {
+                opacity: 0,
+                x: 20,
+                rotation: 0,
+                scaleX: -1,
+                scaleY: 1,
+            });
 
-                // Hacer todo invisible al mismo tiempo
-                tl.to(
-                    "#recepcion-content, #hoja-recepcion-left, #hoja-recepcion-right, #hoja-dorada-recepcion-left, #hoja-dorada-recepcion-right, #mano-recepcion-pointer",
-                    {
-                        opacity: 0,
-                        duration: 0.5,
-                        ease: "power2.in",
-                    },
-                )
+            // Hojas doradas (ABAJO)
+            gsap.set("#hoja-dorada-recepcion-left", {
+                opacity: 0,
+                x: -20,
+                rotation: 0,
+                scale: 1,
+            });
+            gsap.set("#hoja-dorada-recepcion-right", {
+                opacity: 0,
+                x: 20,
+                rotation: 0,
+                scaleX: -1,
+                scaleY: 1,
+            });
 
-                    // Mover el contenido hacia abajo
-                    .to(
+            // Mano pointer
+            gsap.set("#mano-recepcion-pointer", {
+                opacity: 0,
+                scale: 0.8,
+            });
+
+            // ═══════════════════════════════════════════════════════
+            // 🎭 ANIMACIÓN AL ENTRAR
+            // ═══════════════════════════════════════════════════════
+
+            ScrollTrigger.create({
+                trigger: "#wrapper-recepcion",
+                start: "top 80%",
+                end: "top 20%",
+
+                onEnter: () => {
+                    const tl = gsap.timeline();
+
+                    // 1️⃣ CONTENIDO PRINCIPAL - INMEDIATO (0s)
+                    tl.to(
                         "#recepcion-content",
                         {
-                            y: 30,
-                            duration: 0.5,
-                            ease: "power2.in",
+                            opacity: 1,
+                            y: 0,
+                            duration: 1.2,
+                            ease: "power3.out",
                         },
-                        "<",
+                        0,
                     )
 
-                    // Mover flores laterales hacia afuera
-                    .to(
-                        "#hoja-recepcion-left",
-                        {
-                            x: -20,
-                            y: 0,
-                            duration: 0.5,
-                            ease: "power2.in",
-                        },
-                        "<",
-                    )
-                    .to(
-                        "#hoja-recepcion-right",
-                        {
-                            x: 20,
-                            y: 0,
-                            duration: 0.5,
-                            ease: "power2.in",
-                        },
-                        "<",
-                    )
+                        // 2️⃣ FLORES LATERALES (ENCIMA) - A LOS 0.5 SEGUNDOS
+                        .to(
+                            "#hoja-recepcion-left",
+                            {
+                                opacity: 0.8,
+                                x: 0,
+                                duration: 1,
+                                ease: "power2.out",
+                            },
+                            0.5,
+                        )
+                        .to(
+                            "#hoja-recepcion-right",
+                            {
+                                opacity: 0.8,
+                                x: 0,
+                                duration: 1,
+                                ease: "power2.out",
+                            },
+                            0.5,
+                        )
 
-                    // Mover hojas doradas hacia afuera
-                    .to(
-                        "#hoja-dorada-recepcion-left",
-                        {
-                            x: -20,
-                            y: 0,
-                            duration: 0.5,
-                            ease: "power2.in",
-                        },
-                        "<",
-                    )
-                    .to(
-                        "#hoja-dorada-recepcion-right",
-                        {
-                            x: 20,
-                            y: 0,
-                            duration: 0.5,
-                            ease: "power2.in",
-                        },
-                        "<",
-                    )
+                        // 3️⃣ HOJAS DORADAS (ABAJO) - 1 SEGUNDO DESPUÉS (a los 1.5s)
+                        .to(
+                            "#hoja-dorada-recepcion-left",
+                            {
+                                opacity: 0.9,
+                                x: 0,
+                                duration: 1,
+                                ease: "power2.out",
+                            },
+                            1.5,
+                        )
+                        .to(
+                            "#hoja-dorada-recepcion-right",
+                            {
+                                opacity: 0.9,
+                                x: 0,
+                                duration: 1,
+                                ease: "power2.out",
+                            },
+                            1.5,
+                        )
 
-                    // Escalar la mano
-                    .to(
-                        "#mano-recepcion-pointer",
-                        {
-                            scale: 0.8,
-                            duration: 0.5,
-                            ease: "power2.in",
-                        },
-                        "<",
-                    )
+                        // 4️⃣ MANO - DESPUÉS DE TODO (a los 2.5s)
+                        .to(
+                            "#mano-recepcion-pointer",
+                            {
+                                opacity: 1,
+                                scale: 1,
+                                duration: 0.5,
+                                ease: "back.out(2)",
+                            },
+                            2.5,
+                        );
 
-                    // Resetear rotaciones y scales
-                    .set("#hoja-recepcion-left", {
-                        rotation: 0,
-                        scale: 1,
-                    })
-                    .set("#hoja-recepcion-right", {
-                        rotation: 0,
-                        scaleX: -1,
-                        scaleY: 1,
-                    })
-                    .set("#hoja-dorada-recepcion-left", {
-                        rotation: 0,
-                        scale: 1,
-                    })
-                    .set("#hoja-dorada-recepcion-right", {
-                        rotation: 0,
-                        scaleX: -1,
-                        scaleY: 1,
+                    // ═══════════════════════════════════════════════════
+                    // 🍃 MOVIMIENTOS NATURALES SUAVES (después de entrada)
+                    // ═══════════════════════════════════════════════════
+
+                    // Flor recepcion izquierda - Movimiento suave
+                    gsap.to("#hoja-recepcion-left", {
+                        y: -10,
+                        x: -5,
+                        rotation: -8,
+                        duration: 3.5,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut",
+                        delay: 2.5,
                     });
-            },
-        });
 
-        console.log(
-            "🎉✨ Recepción Social activada - Movimiento natural en hojas!",
-        );
-    };
+                    // Flor recepcion derecha
+                    gsap.to("#hoja-recepcion-right", {
+                        y: -8,
+                        x: 5,
+                        rotation: 8,
+                        duration: 3.8,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut",
+                        delay: 2.7,
+                    });
 
-    document.addEventListener("DOMContentLoaded", initRecepcionSocial);
-    document.addEventListener("astro:page-load", initRecepcionSocial);
-</script>
+                    // Hoja dorada izquierda - Balanceo suave
+                    gsap.to("#hoja-dorada-recepcion-left", {
+                        y: -12,
+                        rotation: -10,
+                        duration: 4,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut",
+                        delay: 2.8,
+                    });
 
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- 🎨 ESTILOS PARA CONVERTIR IMÁGENES NEGRAS A DORADO          -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<style>
-    /* Filtro que convierte imágenes PNG negras al color dorado #9C7A2E */
-    .dorado-filter {
-        filter: brightness(0) saturate(100%) invert(56%) sepia(77%)
-            saturate(419%) hue-rotate(5deg) brightness(94%) contrast(92%);
-    }
-</style>
+                    // Hoja dorada derecha
+                    gsap.to("#hoja-dorada-recepcion-right", {
+                        y: -11,
+                        rotation: 10,
+                        duration: 4.3,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut",
+                        delay: 3,
+                    });
+
+                    // ═══ RESPIRACIÓN SUTIL (SCALE) ═══
+                    gsap.to("#hoja-dorada-recepcion-left", {
+                        scale: 0.85,
+                        duration: 4.5,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut",
+                        delay: 3.2,
+                    });
+
+                    gsap.to("#hoja-dorada-recepcion-right", {
+                        scaleX: -0.85,
+                        scaleY: 0.85,
+                        duration: 5,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut",
+                        delay: 3.5,
+                    });
+
+                    // ═══ EFECTO BRISA SUTIL ═══
+                    gsap.to("#hoja-recepcion-left", {
+                        x: -8,
+                        duration: 5.5,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut",
+                        delay: 3.8,
+                    });
+
+                    gsap.to("#hoja-recepcion-right", {
+                        x: 8,
+                        duration: 6,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut",
+                        delay: 4,
+                    });
+
+                    // ═══ ANIMACIÓN DE PRESIONAR BOTÓN (loop infinito) ═══
+                    gsap.to("#mano-recepcion-pointer", {
+                        scale: 0.9,
+                        duration: 0.6,
+                        ease: "power1.inOut",
+                        repeat: -1,
+                        yoyo: true,
+                        delay: 3,
+                    });
+                },
+
+                // ═══════════════════════════════════════════════════════
+                // 🔙 ANIMACIÓN AL SALIR (scroll hacia arriba)
+                // ═══════════════════════════════════════════════════════
+
+                onLeaveBack: () => {
+                    // Detener TODAS las animaciones continuas
+                    gsap.killTweensOf("#mano-recepcion-pointer");
+                    gsap.killTweensOf("#hoja-recepcion-left");
+                    gsap.killTweensOf("#hoja-recepcion-right");
+                    gsap.killTweensOf("#hoja-dorada-recepcion-left");
+                    gsap.killTweensOf("#hoja-dorada-recepcion-right");
+
+                    const tl = gsap.timeline();
+
+                    // Hacer todo invisible al mismo tiempo
+                    tl.to(
+                        "#recepcion-content, #hoja-recepcion-left, #hoja-recepcion-right, #hoja-dorada-recepcion-left, #hoja-dorada-recepcion-right, #mano-recepcion-pointer",
+                        {
+                            opacity: 0,
+                            duration: 0.5,
+                            ease: "power2.in",
+                        },
+                    )
+
+                        // Mover el contenido hacia abajo
+                        .to(
+                            "#recepcion-content",
+                            {
+                                y: 30,
+                                duration: 0.5,
+                                ease: "power2.in",
+                            },
+                            "<",
+                        )
+
+                        // Mover flores laterales hacia afuera
+                        .to(
+                            "#hoja-recepcion-left",
+                            {
+                                x: -20,
+                                y: 0,
+                                duration: 0.5,
+                                ease: "power2.in",
+                            },
+                            "<",
+                        )
+                        .to(
+                            "#hoja-recepcion-right",
+                            {
+                                x: 20,
+                                y: 0,
+                                duration: 0.5,
+                                ease: "power2.in",
+                            },
+                            "<",
+                        )
+
+                        // Mover hojas doradas hacia afuera
+                        .to(
+                            "#hoja-dorada-recepcion-left",
+                            {
+                                x: -20,
+                                y: 0,
+                                duration: 0.5,
+                                ease: "power2.in",
+                            },
+                            "<",
+                        )
+                        .to(
+                            "#hoja-dorada-recepcion-right",
+                            {
+                                x: 20,
+                                y: 0,
+                                duration: 0.5,
+                                ease: "power2.in",
+                            },
+                            "<",
+                        )
+
+                        // Escalar la mano
+                        .to(
+                            "#mano-recepcion-pointer",
+                            {
+                                scale: 0.8,
+                                duration: 0.5,
+                                ease: "power2.in",
+                            },
+                            "<",
+                        )
+
+                        // Resetear rotaciones y scales
+                        .set("#hoja-recepcion-left", {
+                            rotation: 0,
+                            scale: 1,
+                        })
+                        .set("#hoja-recepcion-right", {
+                            rotation: 0,
+                            scaleX: -1,
+                            scaleY: 1,
+                        })
+                        .set("#hoja-dorada-recepcion-left", {
+                            rotation: 0,
+                            scale: 1,
+                        })
+                        .set("#hoja-dorada-recepcion-right", {
+                            rotation: 0,
+                            scaleX: -1,
+                            scaleY: 1,
+                        });
+                },
+            });
+
+            console.log(
+                "🎉✨ Recepción Social activada - Movimiento natural en hojas!",
+            );
+        };
+
+        document.addEventListener("DOMContentLoaded", initRecepcionSocial);
+        document.addEventListener("astro:page-load", initRecepcionSocial);
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 🎨 ESTILOS PARA CONVERTIR IMÁGENES NEGRAS A DORADO          -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <style>
+        /* Filtro que convierte imágenes PNG negras al color dorado #9C7A2E */
+        .dorado-filter {
+            filter: brightness(0) saturate(100%) invert(56%) sepia(77%)
+                saturate(419%) hue-rotate(5deg) brightness(94%) contrast(92%);
+        }
+    </style>
+</section>
