@@ -7,7 +7,6 @@ const FECHA_BODA = "24 de abril 2026";
 
 <section
   class="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden"
-  id="seccion-invitacion"
 >
   <!-- Fondo con imagen -->
   <div class="absolute inset-0 z-[1]">
@@ -24,10 +23,9 @@ const FECHA_BODA = "24 de abril 2026";
   </div>
 
   <!-- Partículas flotantes -->
-  <div
+  <!-- <div
     class="absolute inset-0 z-[5] pointer-events-none"
     id="particulas-container"
-    style="opacity: 0;"
   >
     <div
       class="particle absolute top-[10%] left-[10%] w-3 h-3 bg-white rounded-full shadow-[0_0_20px_rgba(255,255,255,1)] animate-[float_8s_ease-in-out_infinite]"
@@ -109,7 +107,7 @@ const FECHA_BODA = "24 de abril 2026";
       class="particle absolute top-[72%] left-[55%] w-3 h-3 bg-white rounded-full shadow-[0_0_20px_rgba(255,255,255,1)] animate-[float_8.6s_ease-in-out_infinite_5.7s]"
     >
     </div>
-  </div>
+  </div> -->
 
   <!-- Contenido principal -->
   <div
@@ -223,18 +221,18 @@ const FECHA_BODA = "24 de abril 2026";
   <div class="fixed bottom-6 right-6 z-[9999]" id="boton-musica-flotante">
     <button
       id="toggle-musica-global"
-      class="group relative w-14 h-14 bg-white/80 hover:bg-white/20 backdrop-blur-md rounded-full shadow-lg hover:shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border border-white/40"
+      class="group relative w-14 h-14 bg-white/80 hover:bg-white/90 backdrop-blur-md rounded-full shadow-lg hover:shadow-2xl flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 border border-white/40"
       aria-label="Controlar música"
     >
       <div
-        class="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        class="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"
       >
       </div>
 
-      <!-- ICONO PAUSE -->
+      <!-- ICONO PAUSE - INICIA VISIBLE -->
       <svg
         id="icono-pause-global"
-        class="w-6 h-6 text-[#0F3D2E] relative z-10 transition-transform duration-300 group-hover:scale-110"
+        class="w-6 h-6 text-[#0F3D2E] relative z-10 transition-all duration-100"
         fill="currentColor"
         viewBox="0 0 20 20"
       >
@@ -243,10 +241,10 @@ const FECHA_BODA = "24 de abril 2026";
         ></path>
       </svg>
 
-      <!-- ICONO PLAY -->
+      <!-- ICONO PLAY - INICIA OCULTO -->
       <svg
         id="icono-play-global"
-        class="w-6 h-6 text-[#0F3D2E] hidden relative z-10 transition-transform duration-300 group-hover:scale-110"
+        class="w-6 h-6 text-[#0F3D2E] hidden relative z-10 transition-all duration-100"
         fill="currentColor"
         viewBox="0 0 20 20"
       >
@@ -255,7 +253,7 @@ const FECHA_BODA = "24 de abril 2026";
         ></path>
       </svg>
 
-      <!-- Ondas de sonido -->
+      <!-- Ondas de sonido - INICIA VISIBLE -->
       <div
         class="absolute -inset-2 rounded-full border-2 border-white/40 animate-ping-slow"
         id="onda-sonido"
@@ -409,20 +407,6 @@ const FECHA_BODA = "24 de abril 2026";
     }
   }
 
-  @keyframes glow {
-    0%,
-    100% {
-      box-shadow:
-        0 0 15px rgba(255, 255, 255, 0.2),
-        inset 0 0 10px rgba(255, 255, 255, 0.1);
-    }
-    50% {
-      box-shadow:
-        0 0 30px rgba(255, 255, 255, 0.5),
-        inset 0 0 20px rgba(255, 255, 255, 0.2);
-    }
-  }
-
   @keyframes shimmer {
     0% {
       transform: translateX(-100%);
@@ -470,8 +454,6 @@ const FECHA_BODA = "24 de abril 2026";
 <script>
   import { gsap } from "gsap";
 
-  console.log("🎨 Script de InvitacionBoda cargado");
-
   // ═══════════════════════════════════════════════════════
   // EFECTO PARALLAX SUAVE
   // ═══════════════════════════════════════════════════════
@@ -511,70 +493,30 @@ const FECHA_BODA = "24 de abril 2026";
   );
 
   // ═══════════════════════════════════════════════════════
-  // ✨ INICIALIZACIÓN DE PARTÍCULAS CON RETRASO
-  // ═══════════════════════════════════════════════════════
-
-  function inicializarParticulas() {
-    console.log("✨ Inicializando partículas...");
-
-    const particulasContainer = document.getElementById("particulas-container");
-    const portadaActiva = document.body.classList.contains("portada-activa");
-
-    console.log("   Container encontrado:", !!particulasContainer);
-    console.log("   Portada activa:", portadaActiva);
-
-    if (particulasContainer) {
-      // Si la portada NO está activa, mostrar partículas inmediatamente
-      if (!portadaActiva) {
-        console.log("   🚀 Mostrando partículas inmediatamente");
-        gsap.to(particulasContainer, {
-          opacity: 1,
-          duration: 2,
-          ease: "power2.out",
-        });
-      } else {
-        console.log("   ⏳ Esperando que se cierre la portada...");
-        // Observar cuando se elimine la clase portada-activa
-        const observer = new MutationObserver((mutations) => {
-          mutations.forEach((mutation) => {
-            if (mutation.attributeName === "class") {
-              const tienePortada =
-                document.body.classList.contains("portada-activa");
-              if (!tienePortada) {
-                console.log("   🎉 Portada cerrada, mostrando partículas");
-                gsap.to(particulasContainer, {
-                  opacity: 1,
-                  duration: 2,
-                  delay: 0.3,
-                  ease: "power2.out",
-                });
-                observer.disconnect();
-              }
-            }
-          });
-        });
-
-        observer.observe(document.body, {
-          attributes: true,
-          attributeFilter: ["class"],
-        });
-      }
-    } else {
-      console.error("❌ No se encontró el container de partículas");
-    }
-  }
-
-  // ═══════════════════════════════════════════════════════
   // 🎵 BOTÓN FLOTANTE DE MÚSICA
   // ═══════════════════════════════════════════════════════
 
-  function inicializarBotonMusica() {
+  document.addEventListener("DOMContentLoaded", () => {
     console.log("🎵 Inicializando botón de música flotante...");
 
     const botonToggle = document.getElementById("toggle-musica-global");
     const iconoPlay = document.getElementById("icono-play-global");
     const iconoPause = document.getElementById("icono-pause-global");
     const ondaSonido = document.getElementById("onda-sonido");
+    const particulasContainer = document.getElementById("particulas-container");
+
+    // ═══ ANIMACIÓN DE ENTRADA DE PARTÍCULAS ═══
+    if (particulasContainer) {
+      gsap.set(particulasContainer, { opacity: 0 });
+
+      // Esperar un momento antes de mostrar las partículas
+      gsap.to(particulasContainer, {
+        opacity: 1,
+        duration: 2,
+        delay: 0.5,
+        ease: "power2.out",
+      });
+    }
 
     // ═══ ANIMACIÓN DE ENTRADA DEL BOTÓN ═══
     gsap.fromTo(
@@ -587,100 +529,41 @@ const FECHA_BODA = "24 de abril 2026";
         duration: 0.8,
         ease: "back.out(1.7)",
         delay: 1.5,
-        onComplete: () => {
-          verificarEstadoMusica();
-        },
       },
     );
 
-    // ═══ FUNCIÓN PARA VERIFICAR ESTADO ═══
-    function verificarEstadoMusica() {
-      const estadoInicial = (window as any).estaReproduciendoGlobal;
-      const audioExiste = (window as any).audioGlobal;
-
-      console.log("🎵 Verificando estado de música...");
-      console.log("   Estado: ", estadoInicial);
-      console.log("   Audio existe: ", !!audioExiste);
-
-      if (estadoInicial && audioExiste) {
-        iconoPlay?.classList.add("hidden");
-        iconoPause?.classList.remove("hidden");
-        ondaSonido?.classList.remove("hidden");
-        console.log("✅ Mostrando icono PAUSE (música reproduciéndose)");
-      } else {
-        iconoPlay?.classList.remove("hidden");
-        iconoPause?.classList.add("hidden");
-        ondaSonido?.classList.add("hidden");
-        console.log("✅ Mostrando icono PLAY (música pausada)");
-      }
-    }
-
-    // ═══ TOGGLE AL HACER CLIC ═══
+    // ═══ TOGGLE AL HACER CLIC - TRANSICIONES RÁPIDAS ═══
     botonToggle?.addEventListener("click", () => {
       const audioActual = (window as any).audioGlobal;
       const estadoActual = (window as any).estaReproduciendoGlobal;
 
       if (estadoActual && audioActual) {
+        // PAUSAR MÚSICA
         audioActual.pause();
         (window as any).estaReproduciendoGlobal = false;
 
-        gsap.to(iconoPause, {
-          scale: 0,
-          rotation: -90,
-          duration: 0.2,
-          ease: "back.in(2)",
-          onComplete: () => {
-            iconoPause?.classList.add("hidden");
-            iconoPlay?.classList.remove("hidden");
-            ondaSonido?.classList.add("hidden");
-            gsap.fromTo(
-              iconoPlay,
-              { scale: 0, rotation: 90 },
-              { scale: 1, rotation: 0, duration: 0.3, ease: "back.out(2)" },
-            );
-          },
-        });
+        // Cambio INSTANTÁNEO de iconos
+        iconoPause?.classList.add("hidden");
+        iconoPlay?.classList.remove("hidden");
+        ondaSonido?.classList.add("hidden");
+
+        console.log("⏸️ Música pausada");
       } else if (audioActual) {
+        // REPRODUCIR MÚSICA
         audioActual.play().catch((error: any) => {
           console.log("❌ Error al reproducir:", error);
         });
         (window as any).estaReproduciendoGlobal = true;
 
-        gsap.to(iconoPlay, {
-          scale: 0,
-          rotation: 90,
-          duration: 0.2,
-          ease: "back.in(2)",
-          onComplete: () => {
-            iconoPlay?.classList.add("hidden");
-            iconoPause?.classList.remove("hidden");
-            ondaSonido?.classList.remove("hidden");
-            gsap.fromTo(
-              iconoPause,
-              { scale: 0, rotation: -90 },
-              { scale: 1, rotation: 0, duration: 0.3, ease: "back.out(2)" },
-            );
-          },
-        });
+        // Cambio INSTANTÁNEO de iconos
+        iconoPlay?.classList.add("hidden");
+        iconoPause?.classList.remove("hidden");
+        ondaSonido?.classList.remove("hidden");
+
+        console.log("▶️ Música reproduciéndose");
       }
     });
 
     console.log("✅ Botón de música flotante listo!");
-  }
-
-  // ═══════════════════════════════════════════════════════
-  // 🚀 INICIALIZACIÓN GLOBAL
-  // ═══════════════════════════════════════════════════════
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-      console.log("📄 DOM cargado - Inicializando componentes");
-      inicializarParticulas();
-      inicializarBotonMusica();
-    });
-  } else {
-    console.log("📄 DOM ya estaba cargado - Inicializando componentes");
-    inicializarParticulas();
-    inicializarBotonMusica();
-  }
+  });
 </script>
