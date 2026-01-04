@@ -1,0 +1,295 @@
+---
+// src/components/Portada.astro - Bloquea scroll hasta hacer clic
+---
+
+<section
+    class="fixed inset-0 w-full h-screen flex justify-center z-[10000] bg-white"
+    id="portada-section"
+>
+    <div class="relative w-full max-w-[480px]">
+        <!-- Decoración floral superior -->
+        <div class="absolute top-0 left-0 right-0 h-32 overflow-hidden">
+            <div id="flor-izq" class="absolute top-0 left-0 w-28 h-28">
+                <img
+                    src="/imagenes/floriz.webp"
+                    alt=""
+                    class="w-full h-full object-contain"
+                />
+            </div>
+            <div
+                id="flor-der"
+                class="absolute top-0 right-0 w-28 h-28 opacity-80"
+            >
+                <img
+                    src="/imagenes/florde.webp"
+                    alt=""
+                    class="w-full h-full object-contain"
+                />
+            </div>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="relative z-10 pt-28 pb-2 px-6">
+            <!-- Título: ¡NOS CASAMOS! -->
+            <h1
+                id="titulo"
+                class="text-2xl font-serif text-[#c9a961] text-center mb-6 tracking-wider font-bold"
+            >
+                ¡NOS CASAMOS!
+            </h1>
+
+            <!-- Nombres de los novios -->
+            <div
+                id="nombres"
+                class="text-5xl font-script text-[#5a6650] text-center mb-6"
+            >
+                Andrea <span class="text-4xl mx-2">&</span> Erick
+            </div>
+
+            <!-- Fecha -->
+            <div id="fecha" class="text-center mb-2 font-serif text-[#5a6650]">
+                <p class="text-lg">SÁBADO 27 DE DICIEMBRE</p>
+            </div>
+
+            <!-- Sobre -->
+            <div
+                id="sobre-container"
+                class="flex justify-center mb-4 cursor-pointer"
+            >
+                <div class="relative">
+                    <img
+                        src="/imagenes/sobre.webp"
+                        alt="Sobre de invitación"
+                        class="w-[280px]"
+                    />
+                </div>
+            </div>
+
+            <!-- Texto instrucción -->
+            <p
+                id="instruccion"
+                class="text-center text-[#5a6650] font-serif text-base uppercase tracking-wide mb-4 px-4"
+            >
+                Hacer clic en el sobre para ver la invitación
+            </p>
+
+            <!-- Texto final -->
+            <p
+                id="texto-final"
+                class="text-center text-[#5a6650] font-serif text-base italic px-6"
+            >
+                Por favor, confirmar hasta el 15 de diciembre.
+            </p>
+        </div>
+    </div>
+</section>
+
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant:wght@300;400;600;700&display=swap");
+
+    .font-script {
+        font-family: "Great Vibes", cursive;
+    }
+
+    .font-serif {
+        font-family: "Cormorant", serif;
+    }
+
+    /* Bloquear scroll cuando la portada está activa */
+    body.portada-activa {
+        overflow: hidden !important;
+        height: 100vh !important;
+    }
+
+    /* Ocultar contenido principal hasta que se abra la invitación */
+    body.portada-activa #contenido-principal {
+        display: none !important;
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+
+    if (typeof window !== "undefined") {
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("✨ Iniciando animaciones portada...");
+
+            // ═══════════════════════════════════════════════════════
+            // 🔒 BLOQUEAR SCROLL Y OCULTAR CONTENIDO
+            // ═══════════════════════════════════════════════════════
+
+            document.body.classList.add("portada-activa");
+            console.log("🔒 Scroll bloqueado - Portada activa");
+
+            // ═══════════════════════════════════════════════════════
+            // 🎬 ANIMACIONES DE ENTRADA DE LA PORTADA
+            // ═══════════════════════════════════════════════════════
+
+            // Estado inicial - Todo oculto
+            gsap.set("#flor-izq", { opacity: 0, x: -100 });
+            gsap.set("#flor-der", { opacity: 0, x: 100 });
+            gsap.set("#titulo", { opacity: 0, y: -20 });
+            gsap.set("#nombres", { opacity: 0, y: -20 });
+            gsap.set("#fecha", { opacity: 0, y: 20 });
+            gsap.set("#sobre-container", { opacity: 0, scale: 0.95 });
+            gsap.set("#instruccion", { opacity: 0, y: 20 });
+            gsap.set("#texto-final", { opacity: 0, y: 20 });
+
+            // Timeline - Animaciones simultáneas suaves
+            const tl = gsap.timeline({ delay: 0.5 });
+
+            tl.to("#flor-izq", {
+                opacity: 0.8,
+                x: 0,
+                duration: 2,
+                ease: "power1.out",
+            })
+                .to(
+                    "#flor-der",
+                    {
+                        opacity: 0.8,
+                        x: 0,
+                        duration: 2,
+                        ease: "power1.out",
+                    },
+                    "<",
+                )
+                .to(
+                    "#titulo",
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1.8,
+                        ease: "power1.out",
+                    },
+                    "<",
+                )
+                .to(
+                    "#nombres",
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1.8,
+                        ease: "power1.out",
+                    },
+                    "<",
+                )
+                .to(
+                    "#fecha",
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1.8,
+                        ease: "power1.out",
+                    },
+                    "<",
+                )
+                .to(
+                    "#sobre-container",
+                    {
+                        opacity: 1,
+                        scale: 1,
+                        duration: 1.8,
+                        ease: "power1.out",
+                    },
+                    "<",
+                )
+                .to(
+                    "#instruccion",
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1.8,
+                        ease: "power1.out",
+                    },
+                    "<",
+                )
+                .to(
+                    "#texto-final",
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1.8,
+                        ease: "power1.out",
+                    },
+                    "<",
+                );
+
+            // ═══════════════════════════════════════════════════════
+            // 🖱️ HOVER EN EL SOBRE
+            // ═══════════════════════════════════════════════════════
+
+            const sobreContainer = document.getElementById("sobre-container");
+
+            if (sobreContainer) {
+                sobreContainer.addEventListener("mouseenter", () => {
+                    gsap.to("#sobre-container", {
+                        y: -8,
+                        scale: 1.03,
+                        duration: 0.4,
+                        ease: "power1.out",
+                    });
+                });
+
+                sobreContainer.addEventListener("mouseleave", () => {
+                    gsap.to("#sobre-container", {
+                        y: 0,
+                        scale: 1,
+                        duration: 0.4,
+                        ease: "power1.out",
+                    });
+                });
+            }
+
+            // ═══════════════════════════════════════════════════════
+            // 📨 CLICK EN EL SOBRE → REPRODUCIR MÚSICA Y ABRIR INVITACIÓN
+            // ═══════════════════════════════════════════════════════
+
+            const portadaSection = document.getElementById("portada-section");
+
+            sobreContainer?.addEventListener("click", () => {
+                console.log("📨 Abriendo invitación y reproduciendo música...");
+
+                // 🎵 CREAR Y REPRODUCIR MÚSICA AUTOMÁTICAMENTE
+                const audio = new Audio("/musica/melodia.mp3");
+                audio.loop = true;
+                audio.volume = 0.5;
+                audio.play().catch((error) => {
+                    console.log("❌ Error al reproducir audio:", error);
+                });
+
+                // Guardar en window para que NombresFlores pueda controlarlo
+                (window as any).audioGlobal = audio;
+                (window as any).estaReproduciendoGlobal = true;
+
+                console.log("✅ Audio creado y guardado en window.audioGlobal");
+
+                // Animar salida de la portada
+                gsap.to(portadaSection, {
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    onStart: () => {
+                        // Desbloquear scroll y mostrar contenido
+                        document.body.classList.remove("portada-activa");
+                        console.log(
+                            "🔓 Scroll desbloqueado - Contenido visible",
+                        );
+                    },
+                    onComplete: () => {
+                        portadaSection?.remove();
+                        console.log("✅ Portada eliminada del DOM");
+
+                        // Hacer scroll suave al inicio
+                        window.scrollTo({
+                            top: 0,
+                            behavior: "smooth",
+                        });
+                    },
+                });
+            });
+
+            console.log("✨ Sistema de portada con música listo!");
+        });
+    }
+</script>
