@@ -14,7 +14,21 @@
   <img
     src="/imagenes/hojadorada.png"
     alt=""
+    class="absolute top-145 left-0 w-16 md:w-16 lg:w-28 opacity-0 pointer-events-none z-10"
+    id="hoja-dorada-familia-izq"
+  />
+
+  <img
+    src="/imagenes/hojadorada.png"
+    alt=""
     class="absolute top-90 md:top-40 right-0 w-16 md:w-16 lg:w-28 opacity-0 pointer-events-none z-10 scale-x-[-1]"
+    id="hoja-dorada-familia-der"
+  />
+
+  <img
+    src="/imagenes/hojadorada.png"
+    alt=""
+    class="absolute top-260 md:top-40 right-0 w-16 md:w-16 lg:w-28 opacity-0 pointer-events-none z-10 scale-x-[-1]"
     id="hoja-dorada-familia-der"
   />
 
@@ -32,12 +46,12 @@
           <p
             class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
           >
-            Femiín Méndez Arce
+            Gustavo Castro Balderrama
           </p>
           <p
             class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
           >
-            Silvia Olguín de Méndez
+            Antonia Ramírez Cruz
           </p>
         </div>
       </div>
@@ -53,12 +67,12 @@
           <p
             class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
           >
-            Roberto Méndez Arce
+            Julián Vela Saunero (+)
           </p>
           <p
             class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
           >
-            Silvia Olguín de Méndez
+            Margarita Rojas Rosas
           </p>
         </div>
       </div>
@@ -68,22 +82,154 @@
         class="space-y-4 opacity-0 md:col-span-2 md:flex md:flex-col md:items-center"
         id="padrinos"
       >
-        <h4
-          class="text-[#9C7A2E] tracking-[0.2em] uppercase text-lg md:text-2xl lg:text-2xl xl:text-3xl font-semibold"
-        >
-          Nuestros Padrinos
-        </h4>
-        <div class="space-y-2">
-          <p
-            class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
-          >
-            Fernando Castillo Vera
-          </p>
-          <p
-            class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
-          >
-            Mónica Ruiz de Castillo
-          </p>
+        <!-- Grid de categorías de padrinos -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+          <!-- Padrinos de Religión -->
+          <div class="space-y-2 text-center">
+            <p
+              class="text-[#9C7A2E] tracking-[0.2em] uppercase text-lg md:text-2xl lg:text-2xl xl:text-3xl font-semibold mb-2"
+            >
+              Padrinos de Religión
+            </p>
+            <p
+              class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+            >
+              Sr. Wilder Soto
+            </p>
+            <p
+              class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+            >
+              Sra. Giovana Fernández
+            </p>
+          </div>
+
+          <!-- Padrinos de Civil -->
+          <div class="space-y-2 text-center">
+            <p
+              class="text-[#9C7A2E] tracking-[0.2em] uppercase text-lg md:text-2xl lg:text-2xl xl:text-3xl font-semibold mb-2"
+            >
+              Padrinos de Civil
+            </p>
+            <p
+              class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+            >
+              Sr. Yonny Balderrama
+            </p>
+            <p
+              class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+            >
+              Sra. Inés Castro
+            </p>
+          </div>
+
+          <!-- Padrinos de Aros -->
+          <div class="space-y-2 text-center">
+            <p
+              class="text-[#9C7A2E] tracking-[0.2em] uppercase text-lg md:text-2xl lg:text-2xl xl:text-3xl font-semibold mb-2"
+            >
+              Padrinos de Aros
+            </p>
+            <p
+              class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+            >
+              José Aguilar
+            </p>
+            <p
+              class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+            >
+              Sra. Marina Ayala
+            </p>
+          </div>
+
+          <!-- Padrinos de Conteo de Dinero -->
+          <div class="space-y-2 text-center">
+            <p
+              class="text-[#9C7A2E] tracking-[0.2em] uppercase text-lg md:text-2xl lg:text-2xl xl:text-3xl font-semibold mb-2"
+            >
+              Padrinos de Conteo de Dinero
+            </p>
+            <p
+              class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+            >
+              Sr. Freddy Ferrufino
+            </p>
+            <p
+              class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+            >
+              Sra. Flora Rojas
+            </p>
+          </div>
+
+          <!-- Padrinos de Fotos, Video y Mosaico -->
+          <div class="space-y-2 text-center">
+            <p
+              class="text-[#9C7A2E] tracking-[0.2em] uppercase text-lg md:text-2xl lg:text-2xl xl:text-3xl font-semibold mb-2"
+            >
+              Padrinos de Fotos, Video y Mosaico
+            </p>
+            <p
+              class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+            >
+              Ever Balderrama
+            </p>
+            <p
+              class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+            >
+              Sra. Saida Gutiérrez
+            </p>
+          </div>
+
+          <!-- Padrinos de Sorpresa -->
+          <div class="space-y-2 text-center">
+            <p
+              class="text-[#9C7A2E] tracking-[0.2em] uppercase text-lg md:text-2xl lg:text-2xl xl:text-3xl font-semibold mb-2"
+            >
+              Padrinos de Sorpresa
+            </p>
+            <p
+              class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+            >
+              Sr. Iver Málaga
+            </p>
+            <p
+              class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+            >
+              Sra. Eufracia Balderrama
+            </p>
+          </div>
+
+          <!-- Padrinos de Torta -->
+          <div class="space-y-2 text-center">
+            <p
+              class="text-[#9C7A2E] tracking-[0.2em] uppercase text-lg md:text-2xl lg:text-2xl xl:text-3xl font-semibold mb-2"
+            >
+              Padrinos de Torta
+            </p>
+            <p
+              class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+            >
+              Sr. Eddy Aliaga
+            </p>
+            <p
+              class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+            >
+              Sra. Marleny Cordova
+            </p>
+          </div>
+
+          <!-- Padrinos de Decoración -->
+          <div class="space-y-2 text-center">
+            <p
+              class="text-[#9C7A2E] tracking-[0.2em] uppercase text-lg md:text-2xl lg:text-2xl xl:text-3xl font-semibold mb-2"
+            >
+              Padrinos de Decoración
+            </p>
+            <p
+              class="font-charm text-[#0F3D2E] text-xl md:text-3xl lg:text-3xl xl:text-4xl"
+            >
+              Hilarión Rojas y sra.
+            </p>
+          </div>
         </div>
       </div>
     </div>
