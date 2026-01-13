@@ -58,12 +58,12 @@
                         <img
                             src="/iconos/lluvia-sobre.png"
                             alt="Icono de Regalo"
-                            class="w-full h-full object-contain relative z-10 transform transition-transform duration-300 hover:scale-110 dorado-filter"
+                            class="w-full h-full object-contain relative z-10 transform transition-transform duration-300 hover:scale-110 verde-filter"
                         />
                     </div>
                 </div>
 
-                <!-- Título -->
+                <!-- Título SIN efecto brillante -->
                 <h3
                     class="text-[#9C7A2E] tracking-[0.3em] uppercase text-lg md:text-2xl mb-4 relative inline-block"
                 >
@@ -88,7 +88,7 @@
                     class="font-charm text-[#d5afb4] text-lg md:text-2xl lg:text-3xl leading-relaxed"
                 >
                     El mejor regalo es tu presencia, pero si deseas tener un
-                    detalle con nosotros, te dejamos estas opciones
+                    detalle con nosotros, te dejamos esta opción
                 </p>
             </div>
 
@@ -153,8 +153,8 @@
                 </div>
             </div>
 
-            <!-- Texto inferior con icono - EFECTIVO -->
-            <div class="text-center pt-1 pb-4 relative" id="texto-efectivo">
+            <!-- Texto inferior con icono -->
+            <div class="text-center pt-1 relative" id="texto-inferior">
                 <div class="flex justify-center mb-2">
                     <svg
                         class="w-5 h-5 md:w-10 md:h-10 text-[#d5afb4]"
@@ -173,57 +173,6 @@
                     class="font-charm text-[#d5afb4] text-lg md:text-2xl lg:text-3xl leading-relaxed"
                 >
                     Si prefieres hacer un regalo en efectivo
-                </p>
-            </div>
-
-            <!-- Línea decorativa divisora -->
-            <div
-                class="flex items-center justify-center gap-3 my-6"
-                id="divisor"
-            >
-                <div
-                    class="flex-1 h-px bg-gradient-to-r from-transparent via-[#d5afb4]/20 to-transparent"
-                >
-                </div>
-                <div class="w-2 h-2 rounded-full bg-[#d5afb4]/30"></div>
-                <div
-                    class="flex-1 h-px bg-gradient-to-r from-transparent via-[#d5afb4]/20 to-transparent"
-                >
-                </div>
-            </div>
-
-            <!-- NUEVO: Texto para regalos físicos -->
-            <div class="text-center pt-1 relative" id="texto-fisico">
-                <div class="flex justify-center mb-3">
-                    <div class="relative">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-[#d5afb4]/20 to-[#d5afb4]/5 rounded-full blur-lg animate-pulse-slow"
-                        >
-                        </div>
-                        <svg
-                            class="w-6 h-6 md:w-12 md:h-12 text-[#9C7A2E] relative z-10"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
-                            ></path>
-                        </svg>
-                    </div>
-                </div>
-                <p
-                    class="font-charm text-[#d5afb4] text-lg md:text-2xl lg:text-3xl leading-relaxed mb-2"
-                >
-                    También puedes obsequiarnos un presente físico
-                </p>
-                <p
-                    class="font-charm text-[#d5afb4]/80 text-base md:text-xl lg:text-2xl leading-relaxed"
-                >
-                    Será recibido con todo nuestro amor y gratitud
                 </p>
             </div>
         </div>
@@ -333,8 +282,8 @@
         }
     }
 
-    /* Filtro que convierte imágenes PNG negras al color dorado #9C7A2E */
-    .dorado-filter {
+    /* Filtro que convierte imágenes PNG negras al color #d5afb4 */
+    .verde-filter {
         filter: brightness(0) saturate(100%) invert(48%) sepia(78%)
             saturate(628%) hue-rotate(15deg) brightness(94%) contrast(88%);
     }
@@ -393,9 +342,7 @@
 
         gsap.set("#tarjeta-regalo", { opacity: 0, y: 20 });
         gsap.set("#tarjeta-qr", { opacity: 0, y: 30, scale: 0.95 });
-        gsap.set("#texto-efectivo", { opacity: 0, y: 20 });
-        gsap.set("#divisor", { opacity: 0, scaleX: 0 });
-        gsap.set("#texto-fisico", { opacity: 0, y: 20 });
+        gsap.set("#texto-inferior", { opacity: 0, y: 20 });
 
         // ═══ ANIMACIÓN PRINCIPAL ═══
         ScrollTrigger.create({
@@ -496,7 +443,7 @@
                         1.1,
                     )
                     .to(
-                        "#texto-efectivo",
+                        "#texto-inferior",
                         {
                             opacity: 1,
                             y: 0,
@@ -504,26 +451,6 @@
                             ease: "power2.out",
                         },
                         1.4,
-                    )
-                    .to(
-                        "#divisor",
-                        {
-                            opacity: 1,
-                            scaleX: 1,
-                            duration: 0.8,
-                            ease: "power2.out",
-                        },
-                        1.6,
-                    )
-                    .to(
-                        "#texto-fisico",
-                        {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.8,
-                            ease: "power2.out",
-                        },
-                        1.8,
                     );
 
                 // ═══════════════════════════════════════════════════
@@ -625,16 +552,13 @@
 
                 const tl = gsap.timeline();
 
-                tl.to(
-                    "#texto-fisico, #divisor, #texto-efectivo, #tarjeta-qr, #tarjeta-regalo",
-                    {
-                        opacity: 0,
-                        y: 20,
-                        duration: 0.3,
-                        stagger: 0.05,
-                        ease: "power2.in",
-                    },
-                )
+                tl.to("#texto-inferior, #tarjeta-qr, #tarjeta-regalo", {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.3,
+                    stagger: 0.05,
+                    ease: "power2.in",
+                })
 
                     .to(
                         "#contenedor-regalos",
