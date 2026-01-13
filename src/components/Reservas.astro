@@ -42,15 +42,15 @@ const { numeroPases = 1, nombreInvitado = "" } = Astro.props;
     >
         <!-- MARCO PRINCIPAL CON EFECTO GLASSMORPHISM -->
         <div
-            class="backdrop-blur-sm rounded-3xl border-2 border-[#0F3D2E]/25 p-8 shadow-sm relative overflow-hidden"
+            class="backdrop-blur-sm rounded-3xl border-2 border-[#d5afb4]/25 p-8 shadow-sm relative overflow-hidden"
         >
             <!-- Brillo sutil animado en la esquina -->
             <div
-                class="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-[#0F3D2E]/10 to-transparent rounded-full blur-3xl animate-pulse-slow"
+                class="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-[#d5afb4]/10 to-transparent rounded-full blur-3xl animate-pulse-slow"
             >
             </div>
             <div
-                class="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-tr from-[#0F3D2E]/8 to-transparent rounded-full blur-3xl animate-pulse-slow"
+                class="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-tr from-[#d5afb4]/8 to-transparent rounded-full blur-3xl animate-pulse-slow"
                 style="animation-delay: 1s;"
             >
             </div>
@@ -82,12 +82,12 @@ const { numeroPases = 1, nombreInvitado = "" } = Astro.props;
                 <!-- Línea decorativa -->
                 <div class="flex items-center justify-center gap-2 mb-2">
                     <div
-                        class="w-12 h-px bg-gradient-to-r from-transparent to-[#0F3D2E]/30"
+                        class="w-12 h-px bg-gradient-to-r from-transparent to-[#d5afb4]/30"
                     >
                     </div>
-                    <div class="w-2 h-2 rounded-full bg-[#0F3D2E]/40"></div>
+                    <div class="w-2 h-2 rounded-full bg-[#d5afb4]/40"></div>
                     <div
-                        class="w-12 h-px bg-gradient-to-l from-transparent to-[#0F3D2E]/30"
+                        class="w-12 h-px bg-gradient-to-l from-transparent to-[#d5afb4]/30"
                     >
                     </div>
                 </div>
@@ -95,7 +95,7 @@ const { numeroPases = 1, nombreInvitado = "" } = Astro.props;
                 <!-- Nombre del invitado (si se proporciona) -->
                 {
                     nombreInvitado && (
-                        <p class="font-charm text-[#0F3D2E] text-xl md:text-2xl mb-6">
+                        <p class="font-charm text-[#d5afb4] text-xl md:text-2xl mb-6">
                             {nombreInvitado}
                         </p>
                     )
@@ -149,7 +149,7 @@ const { numeroPases = 1, nombreInvitado = "" } = Astro.props;
 
                 <!-- Texto descriptivo -->
                 <p
-                    class="font-charm text-[#0F3D2E] text-lg md:text-2xl lg:text-3xl leading-relaxed mb-6"
+                    class="font-charm text-[#d5afb4] text-lg md:text-2xl lg:text-3xl leading-relaxed mb-6"
                 >
                     {
                         numeroPases === 1
@@ -163,7 +163,7 @@ const { numeroPases = 1, nombreInvitado = "" } = Astro.props;
                     {
                         Array.from({ length: numeroPases }).map((_, index) => (
                             <div
-                                class="w-9 h-9 rounded-full bg-gradient-to-br from-[#0F3D2E]/15 to-[#9C7A2E]/10 flex items-center justify-center person-icon border border-[#9C7A2E]/20"
+                                class="w-9 h-9 rounded-full bg-gradient-to-br from-[#d5afb4]/15 to-[#9C7A2E]/10 flex items-center justify-center person-icon border border-[#9C7A2E]/20"
                                 style={`animation-delay: ${index * 0.2}s;`}
                             >
                                 <svg
@@ -697,7 +697,7 @@ const { numeroPases = 1, nombreInvitado = "" } = Astro.props;
 <style>
     /* Filtro que convierte imágenes PNG negras al color dorado #9C7A2E */
     .verde-filter {
-        filter: brightness(0) saturate(100%) invert(18%) sepia(42%)
-            saturate(525%) hue-rotate(115deg) brightness(78%) contrast(105%);
+        filter: brightness(0) saturate(100%) invert(48%) sepia(78%)
+            saturate(628%) hue-rotate(15deg) brightness(94%) contrast(88%);
     }
 </style>
