@@ -17,10 +17,7 @@
                     class="w-full h-full object-contain"
                 />
             </div>
-            <div
-                id="flor-der"
-                class="absolute top-0 -right-2 w-36 h-36 opacity-80"
-            >
+            <div id="flor-der" class="absolute top-0 -right-2 w-36 h-36">
                 <img
                     src="/imagenes/florde.png"
                     alt=""
@@ -77,7 +74,7 @@
                     id="nombre-fernando"
                     class="text-5xl font-script text-[#0a285e] text-center mb-2"
                 >
-                    Marcial
+                    Daniel
                 </div>
 
                 <!-- Separador elegante -->
@@ -102,14 +99,14 @@
                     id="nombre-abigail"
                     class="text-5xl font-script text-[#0a285e] text-center mt-2"
                 >
-                    Katherine
+                    Melany
                 </div>
             </div>
 
             <!-- Fecha -->
             <div id="fecha" class="text-center mb-8 font-serif text-[#0a285e]">
                 <p class="font-charm text-2xl tracking-wider">
-                    Sábado 31 de Enero
+                    Domingo 19 de Abril
                 </p>
             </div>
 
@@ -174,9 +171,9 @@
             // 🎬 ESTADO INICIAL - TODO OCULTO
             // ═══════════════════════════════════════════════════════
 
-            // Elementos principales
-            gsap.set("#flor-izq", { opacity: 0, x: -60, scale: 0.8 });
-            gsap.set("#flor-der", { opacity: 0, x: 60, scale: 0.8 });
+            // Elementos principales - SIN OPACITY EN FLORES SUPERIORES
+            gsap.set("#flor-izq", { x: -60, scale: 0.8 }); // ✅ SIN opacity
+            gsap.set("#flor-der", { x: 60, scale: 0.8 }); // ✅ SIN opacity
             gsap.set("#titulo", { opacity: 0, y: -30, scale: 0.95 });
             gsap.set("#nombre-fernando", { opacity: 0, x: -40, scale: 0.9 });
             gsap.set("#nombre-abigail", { opacity: 0, x: 40, scale: 0.9 });
@@ -221,11 +218,10 @@
 
             const tl = gsap.timeline({ delay: 0.3 });
 
-            // Fase 1: Flores superiores y título (0s)
+            // Fase 1: Flores superiores y título (0s) - SIN OPACITY
             tl.to(
                 "#flor-izq",
                 {
-                    opacity: 0.9,
                     x: 0,
                     scale: 1,
                     duration: 1.2,
@@ -236,7 +232,6 @@
                 .to(
                     "#flor-der",
                     {
-                        opacity: 0.8,
                         x: 0,
                         scale: 1,
                         duration: 1.2,
@@ -391,7 +386,7 @@
             tl.add(() => {
                 console.log("🍃 Iniciando movimientos naturales de hojas");
 
-                // Flores superiores
+                // Flores superiores - SIN OPACITY, solo movimiento
                 gsap.to("#flor-izq", {
                     y: -4,
                     x: -2,
